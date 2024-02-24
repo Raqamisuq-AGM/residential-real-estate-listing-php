@@ -5,12 +5,8 @@
             <div class="row">
                 <div class="col-xl-12">
                     <p class="copy_right text-center">
-                        Copyright &copy;
-                        <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        All rights reserved
+
+                        @lang('lang.copyright')
                     </p>
                 </div>
             </div>

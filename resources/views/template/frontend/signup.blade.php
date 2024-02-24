@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
     <link rel="stylesheet" href="/style.css" />
-    <title>Signup</title>
+    <title>@lang('lang.signup')</title>
 
     <style>
         /* sign in FORM */
@@ -151,21 +151,21 @@
         <form method="POST" action="{{ route('signup.submit') }}" class="form-signin">
             @csrf
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
-                Sign up
+                @lang('lang.signup')
             </h1>
-            <input type="text" id="fullName" name="name" class="form-control" placeholder="Full Name" required
-                autofocus />
-            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address"
+            <input type="text" id="fullName" name="name" class="form-control" placeholder="@lang('lang.full name')"
                 required autofocus />
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="@lang('lang.email address')"
+                required autofocus />
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="@lang('lang.password')"
                 required />
 
             <button class="btn btn-success btn-block" type="submit">
-                <i class="fas fa-sign-in-alt"></i> Sign up
+                <i class="fas fa-sign-in-alt"></i> @lang('lang.signup')
             </button>
             <hr />
             <a href="{{ route('login') }}" class="btn btn-primary btn-block" type="button" id="btn-signup">
-                <i class="fas fa-user-plus"></i> Back to login
+                <i class="fas fa-user-plus"></i> @lang('lang.back to login')
             </a>
         </form>
 

@@ -40,7 +40,7 @@
                     <div class="col-xl-10 offset-xl-1">
                         <div class="property_wrap">
                             <div class="slider_text text-center justify-content-center">
-                                <h3>Search property</h3>
+                                <h3>@lang('lang.search property')</h3>
                             </div>
                             <div class="property_form">
                                 <form action="{{ route('search') }}" method="POST">
@@ -49,42 +49,42 @@
                                         <div class="col-xl-12">
                                             <div class="form_wrap d-flex">
                                                 <div class="single-field max_width">
-                                                    <label for="#">Place</label>
+                                                    <label for="#">@lang('lang.place')</label>
                                                     <input type="text" class="serach_input_box" name='location'
-                                                        required value="{{ session('location') }}">
+                                                        value="{{ session('location') }}">
                                                 </div>
                                                 <div
                                                     class="single-field
                                                         min_width">
-                                                    <label for="#">Room</label>
+                                                    <label for="#">@lang('lang.room')</label>
                                                     <input type="text" class="serach_input_box" name='room'
-                                                        required value="{{ session('room') }}">
+                                                        value="{{ session('room') }}">
+                                                </div>
+                                                <div class="single-field min_width">
+                                                    <label for="#">@lang('lang.price')</label>
+                                                    <input type="text" class="serach_input_box" name='price'
+                                                        value="{{ session('price') }}">
                                                 </div>
                                                 <div
                                                     class="single-field
                                                         min_width">
-                                                    <label for="#">Type</label>
-                                                    <select class="wide" name='type' required
+                                                    <label for="#">@lang('lang.type')</label>
+                                                    <select class="wide" name='type'
                                                         value="{{ session('type') }}">
-                                                        <option value="Ready">Ready
+                                                        <option value="Ready">@lang('lang.ready')
                                                         </option>
-                                                        <option value="under contruction">Under construction</option>
+                                                        <option value="under contruction">@lang('lang.under construction')</option>
                                                     </select>
                                                 </div>
                                                 <div class="single-field min_width">
-                                                    <label for="#">Classification</label>
-                                                    <select class="wide" name='classification' required
+                                                    <label for="#">@lang('lang.classification')</label>
+                                                    <select class="wide" name='classification'
                                                         value="{{ session('classification') }}">
-                                                        <option value="Appartment">Appartment
+                                                        <option value="Appartment">@lang('lang.apartment')
                                                         </option>
-                                                        <option value="Villa">Villa</option>
-                                                        <option value="Land">Land</option>
+                                                        <option value="Villa">@lang('lang.villa')</option>
+                                                        <option value="Land">@lang('lang.land')</option>
                                                     </select>
-                                                </div>
-                                                <div class="single-field min_width">
-                                                    <label for="#">Price</label>
-                                                    <input type="text" class="serach_input_box" name='price'
-                                                        required value="{{ session('price') }}">
                                                 </div>
                                                 <div class="serach_icon">
                                                     <button type="submit">

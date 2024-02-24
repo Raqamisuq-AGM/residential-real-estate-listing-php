@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.dashboard')
 @section('title')
-    {{ 'Edit property' }}
+    @lang('lang.edit') @lang('lang.properties')
 @endsection
 
 @section('content')
@@ -27,79 +27,68 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit properties</h3>
+                            <h3 class="card-title">@lang('lang.edit') @lang('lang.properties')</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{ route('admin.properties.update', ['id' => $property->id]) }}"
+                        <form method="POST" action="{{ route('dashboard.properties.update', ['id' => $property->id]) }}"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="title">Title</label>
+                                    <label for="title">@lang('lang.title')</label>
                                     <input type="text" class="form-control" id="title" name="title"
                                         placeholder="Enter title" required value="{{ $property->title }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="room">Room</label>
+                                    <label for="room">@lang('lang.room')</label>
                                     <input type="text" class="form-control" id="room" name="room" placeholder="5"
                                         required value="{{ $property->room }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="location">Location</label>
+                                    <label for="location">@lang('lang.place')</label>
                                     <input type="text" class="form-control" id="location" name="location"
                                         placeholder="Enter location" required value="{{ $property->location }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="price">Price</label>
+                                    <label for="price">@lang('lang.price')</label>
                                     <input type="text" class="form-control" id="price" name="price"
                                         placeholder="Enter price" required value="{{ $property->price }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="classification">Classification</label>
+                                    <label for="classification">@lang('lang.classification')</label>
                                     <select class="form-control" style="width: 100%;" name="classification" required>
-                                        <option>Select Classification</option>
                                         <option value="Appartment"
-                                            {{ $property->classification === 'Appartment' ? 'selected' : '' }}>Apartment
+                                            {{ $property->classification === 'Appartment' ? 'selected' : '' }}>
+                                            @lang('lang.apartment')
                                         </option>
                                         <option value="Villa"
-                                            {{ $property->classification === 'Villa' ? 'selected' : '' }}>Villa</option>
+                                            {{ $property->classification === 'Villa' ? 'selected' : '' }}>@lang('lang.villa')
+                                        </option>
                                         <option value="Land" {{ $property->classification === 'Land' ? 'selected' : '' }}>
-                                            Land</option>
+                                            @lang('lang.land')</option>
                                     </select>
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="type">Type</label>
+                                    <label for="type">@lang('lang.type')</label>
                                     <select class="form-control" style="width: 100%;" name="type" required>
-                                        <option>Select Type</option>
-                                        <option value="Ready" {{ $property->type === 'Ready' ? 'selected' : '' }}>Ready
+                                        <option value="Ready" {{ $property->type === 'Ready' ? 'selected' : '' }}>
+                                            @lang('lang.ready')
                                         </option>
                                         <option value="Under Contruction"
                                             {{ $property->type === 'Under Contruction' ? 'selected' : '' }}>Under
-                                            Construction</option>
+                                            @lang('lang.under construction')</option>
                                     </select>
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="dev_name">Developer name</label>
+                                    <label for="dev_name">@lang('lang.developer name')</label>
                                     <input type="text" class="form-control" id="dev_name" name="dev_name"
                                         placeholder="Enter developer name" required value="{{ $property->dev_name }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select class="form-control" style="width: 100%;" name="status" required>
-                                        <option>Select Status</option>
-                                        <option value="Approved" {{ $property->status === 'Approved' ? 'selected' : '' }}>
-                                            Approved</option>
-                                        <option value="Pending" {{ $property->status === 'Pending' ? 'selected' : '' }}>
-                                            Pending</option>
-                                        <option value="Declined" {{ $property->status === 'Declined' ? 'selected' : '' }}>
-                                            Declined</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="thumb">Thumbnail</label>
+                                    <label for="thumb">@lang('lang.thumbnail')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="thumb" name="thumb"
@@ -109,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="slider1">Slider thumb1</label>
+                                    <label for="slider1">@lang('lang.slider thumb1')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="slider1" name="slider1"
@@ -119,17 +108,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="slider2">Slider thumb2</label>
+                                    <label for="slider2">@lang('lang.slider thumb2')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="slider2"
-                                                name="slider2" accept="image/png, image/jpeg" />
+                                            <input type="file" class="custom-file-input" id="slider2" name="slider2"
+                                                accept="image/png, image/jpeg" />
                                             <label class="custom-file-label" for="slider2">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="slider3">Slider thumb3</label>
+                                    <label for="slider3">@lang('lang.slider thumb3')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="slider3"
@@ -139,7 +128,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="slider4">Slider thumb4</label>
+                                    <label for="slider4">@lang('lang.slider thumb4')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="slider4"
@@ -149,7 +138,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label>@lang('lang.description')</label>
                                     <textarea id="summernote" name="description">{{ $property->description }}</textarea>
                                 </div>
                             </div>
@@ -157,7 +146,7 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary"
-                                    style="background: #0c4b36">Submit</button>
+                                    style="background: #0c4b36">@lang('lang.submit')</button>
                             </div>
                         </form>
                     </div>

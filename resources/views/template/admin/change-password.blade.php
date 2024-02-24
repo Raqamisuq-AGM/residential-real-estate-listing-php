@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-    {{ 'Change password' }}
+    @lang('lang.change password')
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header" style="background: #0c4b36">
-                            <h3 class="card-title">Change Password</h3>
+                            <h3 class="card-title">@lang('lang.change password')</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -35,10 +35,10 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="current_password">Current Password</label>
+                                    <label for="current_password">@lang('lang.current password')</label>
                                     <input type="password"
                                         class="form-control @error('current_password') is-invalid @enderror"
-                                        id="current_password" name="current_password" placeholder="Enter current password"
+                                        id="current_password" name="current_password" placeholder="@lang('lang.current password')"
                                         required />
                                     @error('current_password')
                                         <span class="invalid-feedback" role="alert">
@@ -47,9 +47,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="new_password">New Password</label>
+                                    <label for="new_password">@lang('lang.new password')</label>
                                     <input type="password" class="form-control @error('new_password') is-invalid @enderror"
-                                        id="new_password" name="new_password" placeholder="Enter new password" required />
+                                        id="new_password" name="new_password" placeholder="@lang('lang.new password')" required />
                                     @error('new_password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -57,10 +57,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirm_password">Confirm New Password</label>
+                                    <label for="confirm_password">@lang('lang.confirm password')</label>
                                     <input type="password"
                                         class="form-control @error('confirm_password') is-invalid @enderror"
-                                        id="confirm_password" name="confirm_password" placeholder="Confirm new password"
+                                        id="confirm_password" name="confirm_password" placeholder="@lang('lang.confirm password')"
                                         required />
                                     @error('confirm_password')
                                         <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" style="background: #0c4b36">
-                                    Submit
+                                    @lang('lang.submit')
                                 </button>
                             </div>
                         </form>

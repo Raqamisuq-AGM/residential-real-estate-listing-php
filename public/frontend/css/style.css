@@ -722,16 +722,7 @@ h3 {
     position: absolute;
     content: "";
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fdae5c+0,fd8e5e+100 */
-    background: #fdae5c;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #fdae5c 0%, #fd8e5e 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #fdae5c 0%, #fd8e5e 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #fdae5c 0%, #fd8e5e 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdae5c', endColorstr='#fd8e5e',GradientType=0 );
-    /* IE6-9 */
+    background: #039d6b;
     width: 100%;
     height: 3px;
     bottom: -33px;

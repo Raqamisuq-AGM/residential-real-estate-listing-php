@@ -70,7 +70,6 @@ class DashboardController extends Controller
             'location' => 'required',
             'price' => 'required',
             'type' => 'required',
-            'status' => 'required',
             'description' => 'required',
         ]);
 
@@ -83,10 +82,10 @@ class DashboardController extends Controller
         $property->location = $request->location;
         $property->price = $request->price;
         $property->type = $request->type;
-        $property->status = $request->status;
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'admin';
+        $property->status = 'pending';
 
         //update property thumb file
         if ($request->hasFile('thumb')) {
@@ -160,7 +159,6 @@ class DashboardController extends Controller
             'location' => 'required',
             'price' => 'required',
             'type' => 'required',
-            'status' => 'required',
             'description' => 'required',
         ]);
 
@@ -174,7 +172,6 @@ class DashboardController extends Controller
             'location' => $request->location,
             'price' => $request->price,
             'type' => $request->type,
-            'status' => $request->status,
             'description' => $request->description,
         ]);
 
@@ -239,7 +236,7 @@ class DashboardController extends Controller
         toastr()->success('Property updated successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
 
         // Redirect to the property list page or any other page as needed
-        return redirect()->route('admin.properties.edit', ['id' => $id]);
+        return redirect()->route('dashboard.properties.edit', ['id' => $id]);
     }
 
     //dashboard delete properties route controller

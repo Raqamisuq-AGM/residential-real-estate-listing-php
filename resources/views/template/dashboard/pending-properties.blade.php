@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.dashboard')
 @section('title')
-    {{ 'Pending Properties' }}
+    @lang('lang.pending') @lang('lang.properties')
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Pending Properties</h1>
+                    <h1 class="m-0">@lang('lang.pending') @lang('lang.properties')</h1>
                 </div>
             </div>
             <!-- /.row -->
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Properties</h3>
+                            <h3 class="card-title">@lang('lang.properties')</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
@@ -33,12 +33,12 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Thumb</th>
-                                        <th>Title</th>
-                                        <th>Price</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('lang.thumb')</th>
+                                        <th>@lang('lang.title')</th>
+                                        <th>@lang('lang.price')</th>
+                                        <th>@lang('lang.date')</th>
+                                        <th>@lang('lang.status')</th>
+                                        <th>@lang('lang.action')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,7 +68,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center">No properties found</td>
+                                            <td colspan="6" class="text-center">@lang('lang.no properties found')</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

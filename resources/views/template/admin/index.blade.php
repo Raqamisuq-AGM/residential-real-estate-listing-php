@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-    {{ 'Dashboard' }}
+    @lang('lang.dashboard')
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">@lang('lang.dashboard')</h1>
                 </div>
             </div>
             <!-- /.row -->
@@ -29,12 +29,12 @@
                         <div class="inner">
                             <h3>{{ $properties }}</h3>
 
-                            <p>Pending Approval</p>
+                            <p>@lang('lang.pending approval')</p>
                         </div>
                         <div class="icon">
                             <i class="nav-icon fas fa-th"></i>
                         </div>
-                        <a href="{{ route('admin.properties.pending') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('admin.properties.pending') }}" class="small-box-footer">@lang('lang.more info') <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -45,12 +45,12 @@
                         <div class="inner">
                             <h3>{{ $users }}</h3>
 
-                            <p>Users</p>
+                            <p>@lang('lang.users')</p>
                         </div>
                         <div class="icon">
                             <i class="nav-icon fas fa-user"></i>
                         </div>
-                        <a href="{{ route('admin.users') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('admin.users') }}" class="small-box-footer">@lang('lang.more info') <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
