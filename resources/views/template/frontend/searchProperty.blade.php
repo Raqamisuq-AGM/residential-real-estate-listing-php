@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 @section('title')
-    {{ 'Search property' }}
+    @lang('lang.search results')
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="section_title mb-40 text-center">
-                        <h3>Search results</h3>
+                        <h3>@lang('lang.search results')</h3>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                     </div>
                 @empty
                     <div style="margin: auto;">
-                        No property found
+                        @lang('lang.no properties found')
                     </div>
                 @endforelse
             </div>

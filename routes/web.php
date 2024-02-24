@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend Route
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
 Route::get('/property/details/{id}', [HomeController::class, 'propertyDetails'])->name('property_details');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/login', [HomeController::class, 'login'])->name('login');

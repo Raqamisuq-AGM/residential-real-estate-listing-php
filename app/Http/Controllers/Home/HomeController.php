@@ -26,6 +26,20 @@ class HomeController extends Controller
         return view('template.frontend.index', compact('properties'));
     }
 
+    //home route controller
+    public function offers()
+    {
+        //clean search session data
+        Session::forget('location');
+        Session::forget('room');
+        Session::forget('type');
+        Session::forget('classification');
+        Session::forget('price');
+        //get property data
+        $properties = Property::all();
+        return view('template.frontend.offers', compact('properties'));
+    }
+
     //Property details route controller
     public function propertyDetails($id)
     {
@@ -44,10 +58,10 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $properties = Property::where('location', $request->input('location'))
-            ->where('room', $request->input('room'))
-            ->where('type', $request->input('type'))
-            ->where('classification', $request->input('classification'))
-            ->where('price', $request->input('price'))
+            ->orWhere('room', $request->input('room'))
+            ->orWhere('type', $request->input('type'))
+            ->orWhere('classification', $request->input('classification'))
+            ->orWhere('price', $request->input('price'))
             ->get();
 
         //put search session data

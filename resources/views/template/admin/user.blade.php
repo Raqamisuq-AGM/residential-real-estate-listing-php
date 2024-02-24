@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-    {{ 'All users' }}
+    @lang('lang.users')
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">All Users</h1>
+                    <h1 class="m-0">@lang('lang.all') @lang('lang.users')</h1>
                 </div>
             </div>
             <!-- /.row -->
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Users</h3>
+                            <h3 class="card-title">@lang('lang.users')</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
@@ -33,9 +33,9 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Date</th>
+                                        <th>@lang('lang.name')</th>
+                                        <th>@lang('lang.email')</th>
+                                        <th>@lang('lang.date')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,7 +52,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No user found</td>
+                                            <td colspan="7" class="text-center">@lang('lang.no users found')</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

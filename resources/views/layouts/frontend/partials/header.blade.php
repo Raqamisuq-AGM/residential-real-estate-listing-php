@@ -14,8 +14,15 @@
                         <div class="col-xl-6 col-lg-7"></div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
+                                <div class="main-menu d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{{ route('offers') }}">@lang('lang.offers')</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                                 <div class="book_btn d-none d-lg-block">
-                                    <a href="{{ route('login') }}">Add Property</a>
+                                    <a href="{{ route('login') }}">@lang('lang.add property')</a>
                                 </div>
                             </div>
                         </div>

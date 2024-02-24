@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 @section('title')
-    {{ 'Property Details' }}
+    @lang('lang.property details')
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
                             </div>
                             <div class="single_quantity" style="text-align: center;">
                                 <img src="{{ asset('frontend/img/svg_icon/bed2.svg') }}" alt style="width: 15px" />
-                                <span>{{ $property->room }} Room</span>
+                                <span>{{ $property->room }} @lang('lang.room')</span>
                             </div>
                             <div class="single_quantity" style="text-align: center;">
                                 <img src="{{ asset('frontend/img/svg_icon/user2.svg') }}" alt style="width: 15px" />
@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
                     <div class="details_info">
-                        <h4>Description</h4>
+                        <h4>@lang('lang.description')</h4>
                         <p>
                             {!! $property->description !!}
                         </p>

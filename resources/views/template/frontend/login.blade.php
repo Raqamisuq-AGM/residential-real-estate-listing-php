@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
     <link rel="stylesheet" href="/style.css" />
-    <title>Login</title>
+    <title>@lang('lang.login')</title>
 
     <style>
         /* sign in FORM */
@@ -151,10 +151,10 @@
         <form method="POST" action="{{ route('login.submit') }}" class="form-signin">
             @csrf
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
-                Sign in
+                @lang('lang.sign in')
             </h1>
             <input type="email" id="email" name="email"
-                class="form-control @error('email') is-invalid @enderror" placeholder="Email address" required
+                class="form-control @error('email') is-invalid @enderror" placeholder="@lang('lang.email address')" required
                 autofocus />
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -162,7 +162,7 @@
                 </span>
             @enderror
             <input type="password" id="password" name="password"
-                class="form-control @error('password') is-invalid @enderror" placeholder="Password" required />
+                class="form-control @error('password') is-invalid @enderror" placeholder="@lang('lang.password')" required />
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -170,11 +170,11 @@
             @enderror
 
             <button class="btn btn-success btn-block" type="submit">
-                <i class="fas fa-sign-in-alt"></i> Sign in
+                <i class="fas fa-sign-in-alt"></i> @lang('lang.sign in')
             </button>
             <hr />
             <a href="{{ route('signup') }}" class="btn btn-primary btn-block" type="button" id="btn-signup">
-                <i class="fas fa-user-plus"></i> Sign up New Account
+                <i class="fas fa-user-plus"></i> @lang('lang.signup new account')
             </a>
         </form>
 
