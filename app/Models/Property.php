@@ -31,6 +31,7 @@ class Property extends Model
         "slider4",
         "description",
         "post_by",
+        "user_id",
     ];
 
     public function user()

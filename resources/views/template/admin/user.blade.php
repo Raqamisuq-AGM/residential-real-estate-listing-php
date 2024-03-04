@@ -36,6 +36,8 @@
                                         <th>@lang('lang.name')</th>
                                         <th>@lang('lang.email')</th>
                                         <th>@lang('lang.date')</th>
+                                        <th>@lang('lang.status')</th>
+                                        <th>@lang('lang.action')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,6 +51,21 @@
                                             </td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->created_at->format('m/d/y h:i A') }}</td>
+                                            <td>{{ $user->status }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.approve-user', ['id' => $user->id]) }}"
+                                                    style="margin-right: 15px; color: #0c4b36">
+                                                    <i class="fas fa-check" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="{{ route('admin.disapprove-user', ['id' => $user->id]) }}"
+                                                    style="margin-right: 15px; color: #0c4b36">
+                                                    <i class="fas fa-times" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="{{ route('admin.delete-user', ['id' => $user->id]) }}"
+                                                    style="color: #0c4b36">
+                                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>

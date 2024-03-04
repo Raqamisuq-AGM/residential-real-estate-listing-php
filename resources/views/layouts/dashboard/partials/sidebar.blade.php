@@ -16,11 +16,17 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            @lang('lang.properties')
+                            @lang('lang.offers')
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.properties.csv-upload') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@lang('lang.upload csv')</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.properties.add') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -57,6 +63,18 @@
                     <a href="{{ route('admin.users') }}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>@lang('lang.users')</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.change-logo') }}" class="nav-link">
+                        <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+                        <p>@lang('lang.change logo')</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.change-email') }}" class="nav-link">
+                        <i class="nav-icon fas fa-envelope"></i>
+                        <p>@lang('lang.change email')</p>
                     </a>
                 </li>
                 <li class="nav-item">

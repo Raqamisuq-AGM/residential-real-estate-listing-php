@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Imports\PropertiesImport;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -21,7 +23,29 @@ class DashboardController extends Controller
         $pendingProperties = $user->properties()->where('status', 'pending')->count();
         $approvedProperties = $user->properties()->where('status', 'approved')->count();
         $declinedProperties = $user->properties()->where('status', 'declined')->count();
-        return view('template.dashboard.index', compact('allProperties', 'pendingProperties', 'approvedProperties', 'declinedProperties'));
+        return view('template.dashboard.index', compact('allProperties', 'pendingProperties', 'approvedProperties', 'declinedProperties', 'user'));
+    }
+
+    //dashboard change-email properties route controller
+    public function changeEmail()
+    {
+        return view('template.dashboard.change-email');
+    }
+
+    //dashboard change-email submit route controller
+    public function changeEmailSubmit(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+        ]);
+
+        $user = Auth::user();
+
+        $user->email = $request->email;
+        $user->save();
+
+        toastr()->success('Email changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('dashboard.change-email');
     }
 
     //dashboard change-password route controller
@@ -52,10 +76,33 @@ class DashboardController extends Controller
         return redirect()->route('dashboard.change-password');
     }
 
+    //dashboard upload csv properties route controller
+    public function uploadCsv()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+        return view('template.dashboard.properties-csv', compact('user'));
+    }
+
+    //dashboard submit csv properties route controller
+    public function submitCsv(Request $request)
+    {
+
+        // dd($request->file('csv'));
+        Excel::import(new PropertiesImport, $request->file('csv'));
+
+        toastr()->success('Property added successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+
+        // Redirect to the property list page or any other page as needed
+        return redirect()->route('dashboard.properties.all');
+    }
+
     //dashboard add properties route controller
     public function add()
     {
-        return view('template.dashboard.add-properties');
+        // Get the authenticated user
+        $user = Auth::user();
+        return view('template.dashboard.add-properties', compact('user'));
     }
 
     //dashboard add properties submit route controller
@@ -143,8 +190,10 @@ class DashboardController extends Controller
     //dashboard edit properties route controller
     public function editProperty($id)
     {
+        // Get the authenticated user
+        $user = Auth::user();
         $property = Property::where('id', $id)->first();
-        return view('template.dashboard.edit-properties', compact('property'));
+        return view('template.dashboard.edit-properties', compact('property', 'user'));
     }
 
     //dashboard edit properties submit route controller
@@ -257,7 +306,7 @@ class DashboardController extends Controller
 
         // Get the properties associated with the authenticated user
         $properties = $user->properties()->get();
-        return view('template.dashboard.all-properties', compact('properties'));
+        return view('template.dashboard.all-properties', compact('properties', 'user'));
     }
 
     //dashboard pending properties route controller
@@ -268,7 +317,7 @@ class DashboardController extends Controller
 
         // Get the properties associated with the authenticated user where status is "pending"
         $properties = $user->properties()->where('status', 'pending')->get();
-        return view('template.dashboard.pending-properties', compact('properties'));
+        return view('template.dashboard.pending-properties', compact('properties', 'user'));
     }
 
     //dashboard approved properties route controller
@@ -279,7 +328,7 @@ class DashboardController extends Controller
 
         // Get the properties associated with the authenticated user where status is "pending"
         $properties = $user->properties()->where('status', 'approved')->get();
-        return view('template.dashboard.approved-properties', compact('properties'));
+        return view('template.dashboard.approved-properties', compact('properties', 'user'));
     }
 
     //dashboard declined properties route controller
@@ -290,6 +339,6 @@ class DashboardController extends Controller
 
         // Get the properties associated with the authenticated user where status is "pending"
         $properties = $user->properties()->where('status', 'declined')->get();
-        return view('template.dashboard.declined-properties', compact('properties'));
+        return view('template.dashboard.declined-properties', compact('properties', 'user'));
     }
 }
