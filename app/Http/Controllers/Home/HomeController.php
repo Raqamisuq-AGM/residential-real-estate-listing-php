@@ -149,6 +149,7 @@ class HomeController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'type' => 'user',
+            'status' => 'pending',
         ]);
 
         // Log in the user

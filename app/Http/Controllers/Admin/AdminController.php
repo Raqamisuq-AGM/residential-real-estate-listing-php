@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Property;
+use App\Models\SystemLogo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PropertiesImport;
 
 class AdminController extends Controller
 {
@@ -24,6 +27,97 @@ class AdminController extends Controller
     {
         $users = User::where('type', 'user')->get();
         return view('template.admin.user', compact('users'));
+    }
+
+    //admin approve user properties route controller
+    public function approveUser($id)
+    {
+        $user = User::find($id);
+        $user->status = 'approved';
+        $user->save();
+
+        toastr()->success('User approved successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.users');
+    }
+
+    //admin disapprove user properties route controller
+    public function disapproveUser($id)
+    {
+        $user = User::find($id);
+        $user->status = 'disapproved';
+        $user->save();
+
+        toastr()->success('User disapproved successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.users');
+    }
+
+    //admin delete user properties route controller
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            // User not found, handle error
+            toastr()->error('User not found!', 'Error', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->route('admin.users');
+        }
+
+        $user->delete();
+
+        toastr()->success('User deleted successfully!', 'Success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.users');
+    }
+
+    //admin change-logo properties route controller
+    public function changeLogo()
+    {
+        return view('template.admin.change-logo');
+    }
+
+    //admin change-logo submit route controller
+    public function changeLogoSubmit(Request $request)
+    {
+        $request->validate([
+            'logo' => 'required',
+        ]);
+
+        $systemLogo = SystemLogo::find(1);
+
+        if ($request->hasFile('logo')) {
+            // Store the uploaded file in the public directory
+            $File = $request->file('logo');
+            $FileName = time() . '_' . $File->getClientOriginalName();
+            $File->move(public_path('frontend/img'), $FileName);
+
+            $systemLogo->update([
+                'logo' => $FileName,
+            ]);
+        }
+
+        toastr()->success('Logo changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.change-logo');
+    }
+
+    //admin change-email properties route controller
+    public function changeEmail()
+    {
+        return view('template.admin.change-email');
+    }
+
+    //admin change-email submit route controller
+    public function changeEmailSubmit(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+        ]);
+
+        $user = Auth::user();
+
+        $user->email = $request->email;
+        $user->save();
+
+        toastr()->success('Email changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.change-email');
     }
 
     //admin change-password properties route controller
@@ -51,7 +145,26 @@ class AdminController extends Controller
         $user->save();
 
         toastr()->success('Password changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
-        return redirect()->route('dashboard.change-password');
+        return redirect()->route('admin.change-password');
+    }
+
+    //admin upload csv properties route controller
+    public function uploadCsv()
+    {
+        return view('template.admin.properties-csv');
+    }
+
+    //admin submit csv properties route controller
+    public function submitCsv(Request $request)
+    {
+
+        // dd($request->file('csv'));
+        Excel::import(new PropertiesImport, $request->file('csv'));
+
+        toastr()->success('Property added successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+
+        // Redirect to the property list page or any other page as needed
+        return redirect()->route('admin.properties.all');
     }
 
     //admin add properties route controller
