@@ -244,7 +244,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         // Get the properties associated with the authenticated user
-        $properties = $user->properties()->with('images')->get();
+        $properties = $user->properties()->with('images')->orderBy('id', 'desc')->get();
         return view('template.dashboard.all-properties', compact('properties', 'user'));
     }
 
