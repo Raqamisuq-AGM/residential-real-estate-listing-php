@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #0c4b36 !important">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 dashboard_sidebar">
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar Menu -->
@@ -39,25 +39,13 @@
                                 <p>@lang('lang.all')</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.properties.pending') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('lang.pending')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.properties.approved') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('lang.approved')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.properties.declined') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('lang.declined')</p>
-                            </a>
-                        </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.agents') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>@lang('lang.agents')</p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.users') }}" class="nav-link">
@@ -66,9 +54,27 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.change-image') }}" class="nav-link">
+                        <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+                        <p>@lang('lang.change image')</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.change-logo') }}" class="nav-link">
                         <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
                         <p>@lang('lang.change logo')</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.change-icon') }}" class="nav-link">
+                        <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+                        <p>@lang('lang.change icon')</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.change-color') }}" class="nav-link">
+                        <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+                        <p>@lang('lang.change color')</p>
                     </a>
                 </li>
                 <li class="nav-item">

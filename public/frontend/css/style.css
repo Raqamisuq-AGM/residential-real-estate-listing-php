@@ -1264,7 +1264,6 @@ h3 {
 .slider_area .single-field.max_width label {
     display: block;
     font-size: 15px;
-    color: #039d6b;
 }
 
 /* line 176, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_slider.scss */
@@ -1323,7 +1322,6 @@ h3 {
 .slider_area .single-field.min_width label {
     display: block;
     font-size: 15px;
-    color: #039d6b;
 }
 
 /* line 220, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_slider.scss */
@@ -2199,7 +2197,6 @@ h3 {
 
 /* line 119, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_property_details.scss */
 .property_details_banner {
-    background: #0c4b36;
     padding: 125px 0 210px 0;
 }
 
@@ -2574,7 +2571,6 @@ h3 {
 
 /* line 1, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_popular_property.scss */
 .popular_property {
-    padding-top: 120px;
     padding-bottom: 90px;
 }
 
@@ -2688,7 +2684,6 @@ h3 {
 /* line 75, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_popular_property.scss */
 .popular_property .single_property .property_content .amount {
     display: inline-block;
-    background: #039d6b;
     border-radius: 30px;
     padding: 7px 18px;
     color: #fff;

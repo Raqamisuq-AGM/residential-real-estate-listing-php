@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <div class="card-header" style="background: #0c4b36">
+                        <div class="card-header" >
                             <h3 class="card-title">@lang('lang.upload csv')</h3>
                         </div>
                         <!-- /.card-header -->
@@ -49,7 +49,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" style="background: #0c4b36">
+                                <button type="submit" class="btn btn-primary" >
                                     @lang('lang.submit')
                                 </button>
                             </div>

@@ -98,6 +98,9 @@ class HomeController extends Controller
                 if ($user->type === 'admin') {
                     toastr()->success('Login successful!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
                     return redirect()->route('admin.dashboard');
+                } else if ($user->type === 'agent') {
+                    toastr()->success('Login successful!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+                    return redirect()->route('agent.dashboard');
                 } else {
                     toastr()->success('Login successful!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
                     return redirect()->route('dashboard.dashboard');

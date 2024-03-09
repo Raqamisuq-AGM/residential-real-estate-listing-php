@@ -21,82 +21,68 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Check user status -->
-            @if ($user->status == 'pending')
-                <div class="alert alert-warning" role="alert">
-                    Your account is pending approval.
-                </div>
-            @elseif($user->status == 'disapproved')
-                <div class="alert alert-danger" role="alert">
-                    Your account has been disapproved.
-                </div>
-            @elseif($user->status == 'approved')
-                <section class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">@lang('lang.properties')</h3>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body table-responsive p-0">
-                                        <table class="table table-hover text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL</th>
-                                                    <th>@lang('lang.thumb')</th>
-                                                    <th>@lang('lang.title')</th>
-                                                    <th>@lang('lang.price')</th>
-                                                    <th>@lang('lang.date')</th>
-                                                    <th>@lang('lang.status')</th>
-                                                    <th>@lang('lang.action')</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($properties as $property)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $loop->index + 1 }}
-                                                        </td>
-                                                        <td>
-                                                            <img src="{{ asset('assets/image/property') . '/' . $property->thumb }}"
-                                                                alt="" style="max-width: 70px;">
-                                                        </td>
-                                                        <td>{{ $property->title }}</td>
-                                                        <td>{{ $property->price }}</td>
-                                                        <td>{{ $property->created_at }}</td>
-                                                        <td>{{ $property->status }}</td>
-                                                        <td>
-                                                            <a href="{{ route('dashboard.properties.edit', ['id' => $property->id]) }}"
-                                                                style="margin-right: 15px; color: #0c4b36">
-                                                                <i class="fas fa-pen" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="{{ route('dashboard.properties.delete', ['id' => $property->id]) }}"
-                                                                style="color: #0c4b36">
-                                                                <i class="fas fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="6" class="text-center">@lang('lang.no properties found')</td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-                            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">@lang('lang.properties')</h3>
                         </div>
-                        <!-- /.row -->
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>@lang('lang.title')</th>
+                                        <th>@lang('lang.contact number')</th>
+                                        <th>@lang('lang.price')</th>
+                                        <th>@lang('lang.space')</th>
+                                        <th>@lang('lang.district')</th>
+                                        <th>@lang('lang.room')</th>
+                                        <th>@lang('lang.developer name')</th>
+                                        <th>@lang('lang.ready/construction')</th>
+                                        <th>@lang('lang.type')</th>
+                                        <th>@lang('lang.action')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($properties as $property)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $property->title }}</td>
+                                            <td>{{ $property->contact_number }}</td>
+                                            <td>${{ $property->price }}</td>
+                                            <td>{{ $property->space }}</td>
+                                            <td>{{ $property->district }}</td>
+                                            <td>{{ $property->rooms }}</td>
+                                            <td>{{ $property->dev_name }}</td>
+                                            <td>{{ $property->ready_construction }}</td>
+                                            <td>{{ $property->property_type }}</td>
+                                            <td>
+                                                <a href="{{ route('dashboard.properties.edit', ['id' => $property->id]) }}"
+                                                    style="margin-right: 15px; color: #0c4b36">
+                                                    <i class="fas fa-pen" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="{{ route('dashboard.properties.delete', ['id' => $property->id]) }}"
+                                                    style="color: #0c4b36">
+                                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="11" class="text-center">@lang('lang.no properties found')</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.container-fluid -->
-                </section>
-                <!-- /.row -->
-            @endif
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
     </section>

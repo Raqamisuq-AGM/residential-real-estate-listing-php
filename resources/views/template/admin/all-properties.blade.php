@@ -33,38 +33,31 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>@lang('lang.thumb')</th>
                                         <th>@lang('lang.title')</th>
+                                        <th>@lang('lang.contact number')</th>
                                         <th>@lang('lang.price')</th>
-                                        <th>@lang('lang.created by')</th>
-                                        <th>@lang('lang.user')</th>
-                                        <th>@lang('lang.date')</th>
-                                        <th>@lang('lang.status')</th>
+                                        <th>@lang('lang.space')</th>
+                                        <th>@lang('lang.district')</th>
+                                        <th>@lang('lang.room')</th>
+                                        <th>@lang('lang.developer name')</th>
+                                        <th>@lang('lang.ready/construction')</th>
+                                        <th>@lang('lang.type')</th>
                                         <th>@lang('lang.action')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($properties as $property)
                                         <tr>
-                                            <td>
-                                                {{ $loop->index + 1 }}
-                                            </td>
-                                            <td>
-                                                <img src="{{ asset('assets/image/property') . '/' . $property->thumb }}"
-                                                    alt="" style="max-width: 70px;">
-                                            </td>
-                                            <td>
-                                                {{ $property->title }}
-                                            </td>
-                                            <td>
-                                                ${{ $property->price }}
-                                            </td>
-                                            <td>
-                                                {{ $property->user->name }}
-                                            </td>
-                                            <td>{{ $property->post_by }}</td>
-                                            <td>{{ $property->created_at->format('m/d/y h:i A') }}</td>
-                                            <td>{{ $property->status }}</td>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $property->title }}</td>
+                                            <td>{{ $property->contact_number }}</td>
+                                            <td>${{ $property->price }}</td>
+                                            <td>{{ $property->space }}</td>
+                                            <td>{{ $property->district }}</td>
+                                            <td>{{ $property->rooms }}</td>
+                                            <td>{{ $property->dev_name }}</td>
+                                            <td>{{ $property->ready_construction }}</td>
+                                            <td>{{ $property->property_type }}</td>
                                             <td>
                                                 <a href="{{ route('admin.properties.edit', ['id' => $property->id]) }}"
                                                     style="margin-right: 15px; color: #0c4b36">
@@ -78,7 +71,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">@lang('lang.no properties found')</td>
+                                            <td colspan="11" class="text-center">@lang('lang.no properties found')</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
