@@ -95,4 +95,6 @@ return [
     'yes' => 'yes',
     'no' => 'no',
     'offer id' => 'offer id',
+    'previous' => 'previous',
+    'next' => 'next',
 ];

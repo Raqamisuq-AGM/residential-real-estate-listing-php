@@ -69,6 +69,52 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            @if ($agents->lastPage() > 1)
+                                    <!-- Render pagination with page numbers -->
+                                    <div class="pagination-wrap mt-40">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination list-wrap" style="float: right;">
+                                                <!-- Previous Page Link -->
+                                                @if ($agents->onFirstPage())
+                                                    <li class="page-item disabled" aria-disabled="true">
+                                                        <span class="page-link">@lang('lang.previous')</span>
+                                                    </li>
+                                                @else
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="{{ $agents->previousPageUrl() }}"
+                                                            rel="prev">@lang('lang.previous')</a>
+                                                    </li>
+                                                @endif
+
+                                                <!-- Page links -->
+                                                @foreach ($agents->getUrlRange(1, $agents->lastPage()) as $page => $url)
+                                                    @if ($page == $agents->currentPage())
+                                                        <li class="page-item active" aria-current="page">
+                                                            <span class="page-link">{{ $page }}</span>
+                                                        </li>
+                                                    @else
+                                                        <li class="page-item">
+                                                            <a class="page-link"
+                                                                href="{{ $url }}">{{ $page }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+
+                                                <!-- Next Page Link -->
+                                                @if ($agents->hasMorePages())
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="{{ $agents->nextPageUrl() }}"
+                                                            rel="next">@lang('lang.next')</a>
+                                                    </li>
+                                                @else
+                                                    <li class="page-item disabled" aria-disabled="true">
+                                                        <span class="page-link">@lang('lang.next')</span>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                @endif
                         </div>
                         <!-- /.card-body -->
                     </div>
