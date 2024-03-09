@@ -74,6 +74,52 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            @if ($users->lastPage() > 1)
+                                <!-- Render pagination with page numbers -->
+                                <div class="pagination-wrap mt-40">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination list-wrap" style="float: right;">
+                                            <!-- Previous Page Link -->
+                                            @if ($users->onFirstPage())
+                                                <li class="page-item disabled" aria-disabled="true">
+                                                    <span class="page-link">@lang('lang.previous')</span>
+                                                </li>
+                                            @else
+                                                <li class="page-item">
+                                                    <a class="page-link" href="{{ $users->previousPageUrl() }}"
+                                                        rel="prev">@lang('lang.previous')</a>
+                                                </li>
+                                            @endif
+
+                                            <!-- Page links -->
+                                            @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                                                @if ($page == $user->currentPage())
+                                                    <li class="page-item active" aria-current="page">
+                                                        <span class="page-link">{{ $page }}</span>
+                                                    </li>
+                                                @else
+                                                    <li class="page-item">
+                                                        <a class="page-link"
+                                                            href="{{ $url }}">{{ $page }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+
+                                            <!-- Next Page Link -->
+                                            @if ($users->hasMorePages())
+                                                <li class="page-item">
+                                                    <a class="page-link" href="{{ $users->nextPageUrl() }}"
+                                                        rel="next">@lang('lang.next')</a>
+                                                </li>
+                                            @else
+                                                <li class="page-item disabled" aria-disabled="true">
+                                                    <span class="page-link">@lang('lang.next')</span>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            @endif
                         </div>
                         <!-- /.card-body -->
                     </div>

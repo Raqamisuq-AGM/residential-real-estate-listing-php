@@ -56,8 +56,8 @@
                                         <tr id="show-input" style="display: none;">
                                             <td></td>
                                             <td>
-                                                <input type="file" name="thumb[]" style="width: 100%"
-                                                    multiple="multiple">
+                                                <input type="file" name="thumb[]" style="width: 100%" multiple="multiple"
+                                                    accept="jpg,jpeg,png,gif,webp">
                                             </td>
                                             <td><input type="text" disabled style="width: 100%"></td>
                                             <td><input type="text" type="text" class="form-control" id="title"
@@ -147,6 +147,52 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                @if ($properties->lastPage() > 1)
+                                    <!-- Render pagination with page numbers -->
+                                    <div class="pagination-wrap mt-40">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination list-wrap" style="float: right;">
+                                                <!-- Previous Page Link -->
+                                                @if ($properties->onFirstPage())
+                                                    <li class="page-item disabled" aria-disabled="true">
+                                                        <span class="page-link">@lang('lang.previous')</span>
+                                                    </li>
+                                                @else
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="{{ $properties->previousPageUrl() }}"
+                                                            rel="prev">@lang('lang.previous')</a>
+                                                    </li>
+                                                @endif
+
+                                                <!-- Page links -->
+                                                @foreach ($properties->getUrlRange(1, $properties->lastPage()) as $page => $url)
+                                                    @if ($page == $properties->currentPage())
+                                                        <li class="page-item active" aria-current="page">
+                                                            <span class="page-link">{{ $page }}</span>
+                                                        </li>
+                                                    @else
+                                                        <li class="page-item">
+                                                            <a class="page-link"
+                                                                href="{{ $url }}">{{ $page }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+
+                                                <!-- Next Page Link -->
+                                                @if ($properties->hasMorePages())
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="{{ $properties->nextPageUrl() }}"
+                                                            rel="next">@lang('lang.next')</a>
+                                                    </li>
+                                                @else
+                                                    <li class="page-item disabled" aria-disabled="true">
+                                                        <span class="page-link">@lang('lang.next')</span>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                @endif
                             </form>
                         </div>
                         <!-- /.card-body -->

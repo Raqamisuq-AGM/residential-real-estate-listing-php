@@ -282,7 +282,7 @@ class AgentController extends Controller
     //admin all properties route controller
     public function all()
     {
-        $properties = Property::with(['user', 'images'])->orderBy('id', 'desc')->get();
+        $properties = Property::with(['user', 'images'])->orderBy('id', 'desc')->paginate(10);
         return view('template.agent.all-properties', compact('properties'));
     }
 

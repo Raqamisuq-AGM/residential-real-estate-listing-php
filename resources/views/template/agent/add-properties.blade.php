@@ -97,7 +97,7 @@
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="thumb" name="thumb[]"
-                                                multiple="multiple" />
+                                                multiple="multiple" accept="jpg,jpeg,png,gif,webp"/>
                                             <label class="custom-file-label" for="thumb">Choose file</label>
                                         </div>
                                     </div>
