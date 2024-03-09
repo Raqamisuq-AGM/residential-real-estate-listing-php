@@ -356,9 +356,9 @@ class AdminController extends Controller
         // ]);
 
         // Generate a unique ID
-        $uniqueId = Str::random(6);
+        $uniqueId = 'offer#' . mt_rand(100, 999); // Generates a random number between 100 and 999
         while (Property::where('property_id', $uniqueId)->exists()) {
-            $uniqueId = Str::random(6);
+            $uniqueId = 'offer#' . mt_rand(100, 999); // Regenerate if the ID already exists
         }
 
         // Create a new property
@@ -373,6 +373,7 @@ class AdminController extends Controller
         $property->dev_name = $request->dev_name;
         $property->ready_construction = $request->ready_construction;
         $property->property_type = $request->property_type;
+        $property->roof = $request->roof;
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'admin';
@@ -434,6 +435,7 @@ class AdminController extends Controller
             "dev_name" => $request->dev_name,
             "ready_construction" => $request->ready_construction,
             "property_type" => $request->property_type,
+            "roof" => $request->roof,
             "description" => $request->description,
         ]);
 

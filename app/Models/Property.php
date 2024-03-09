@@ -21,6 +21,7 @@ class Property extends Model
         "dev_name",
         "ready_construction",
         "property_type",
+        "roof",
         "description",
         "post_by",
         "user_id",

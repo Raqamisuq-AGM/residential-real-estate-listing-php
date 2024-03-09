@@ -38,7 +38,7 @@
                                         <tr>
                                             <th>SL</th>
                                             <th>@lang('lang.thumb')</th>
-                                            <th>@lang('lang.property_id')</th>
+                                            <th>@lang('lang.offer id')</th>
                                             <th>@lang('lang.title')</th>
                                             <th>@lang('lang.contact number')</th>
                                             <th>@lang('lang.price')</th>
@@ -48,6 +48,7 @@
                                             <th>@lang('lang.developer name')</th>
                                             <th>@lang('lang.ready/construction')</th>
                                             <th>@lang('lang.type')</th>
+                                            <th>@lang('lang.roof')</th>
                                             <th>@lang('lang.action')</th>
                                         </tr>
                                     </thead>
@@ -87,6 +88,13 @@
                                                 </select>
                                             </td>
                                             <td>
+                                                <select class="form-control" style="width: 100%;" name="roof">
+                                                    <option value="yes">@lang('lang.yes')</option>
+                                                    <option value="no">@lang('lang.no')</option>
+
+                                                </select>
+                                            </td>
+                                            <td>
                                                 <button
                                                     style="margin-right: 15px; color: #0c4b36;border: none;
                                             background: transparent;"
@@ -119,6 +127,7 @@
                                                 <td>{{ $property->dev_name }}</td>
                                                 <td>{{ $property->ready_construction }}</td>
                                                 <td>{{ $property->property_type }}</td>
+                                                <td>{{ $property->roof }}</td>
                                                 <td>
                                                     <a href="{{ route('dashboard.properties.edit', ['id' => $property->id]) }}"
                                                         style="margin-right: 15px; color: #0c4b36">
@@ -149,6 +158,14 @@
         <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+@endsection
+
+@section('style')
+    <style>
+        thead tr th {
+            text-transform: capitalize;
+        }
+    </style>
 @endsection
 
 @section('script')
