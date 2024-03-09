@@ -56,7 +56,8 @@
                                         <tr id="show-input" style="display: none;">
                                             <td></td>
                                             <td>
-                                                <input type="file" name="thumb[]" style="width: 100%">
+                                                <input type="file" name="thumb[]" style="width: 100%"
+                                                    multiple="multiple">
                                             </td>
                                             <td><input type="text" disabled style="width: 100%"></td>
                                             <td><input type="text" type="text" class="form-control" id="title"
