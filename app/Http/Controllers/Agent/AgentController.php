@@ -280,7 +280,7 @@ class AgentController extends Controller
     //admin all properties route controller
     public function all()
     {
-        $properties = Property::with('user')->get();
+        $properties = Property::with(['user', 'images'])->get();
         return view('template.agent.all-properties', compact('properties'));
     }
 
