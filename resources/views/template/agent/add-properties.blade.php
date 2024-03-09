@@ -81,6 +81,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="type">@lang('lang.roof')</label>
+                                    <select class="form-control" style="width: 100%;" name="roof" required>
+                                        <option value="yes">@lang('lang.yes')</option>
+                                        <option value="no">@lang('lang.no')</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="space">@lang('lang.space')</label>
                                     <input type="text" class="form-control" id="space" name="space"
                                         placeholder="135" required />
@@ -102,8 +109,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary"
-                                    >@lang('lang.submit')</button>
+                                <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
                             </div>
                         </form>
                     </div>

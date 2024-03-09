@@ -28,7 +28,7 @@ class AgentController extends Controller
     //admin users properties route controller
     public function users()
     {
-        $users = User::where('type', 'user')->get();
+        $users = User::where('type', 'user')->orderBy('id', 'desc')->get();
         return view('template.agent.user', compact('users'));
     }
 
@@ -163,9 +163,9 @@ class AgentController extends Controller
         // ]);
 
         // Generate a unique ID
-        $uniqueId = Str::random(6);
+        $uniqueId = 'offer#' . mt_rand(100, 999); // Generates a random number between 100 and 999
         while (Property::where('property_id', $uniqueId)->exists()) {
-            $uniqueId = Str::random(6);
+            $uniqueId = 'offer#' . mt_rand(100, 999); // Regenerate if the ID already exists
         }
 
         // Create a new property
@@ -180,9 +180,10 @@ class AgentController extends Controller
         $property->dev_name = $request->dev_name;
         $property->ready_construction = $request->ready_construction;
         $property->property_type = $request->property_type;
+        $property->roof = $request->roof;
         $property->description = $request->description;
         $property->user_id = auth()->id();
-        $property->post_by = 'admin';
+        $property->post_by = 'agent';
         $property->save();
 
         // Check if there are any files uploaded
@@ -241,6 +242,7 @@ class AgentController extends Controller
             "dev_name" => $request->dev_name,
             "ready_construction" => $request->ready_construction,
             "property_type" => $request->property_type,
+            "roof" => $request->roof,
             "description" => $request->description,
         ]);
 
@@ -280,7 +282,7 @@ class AgentController extends Controller
     //admin all properties route controller
     public function all()
     {
-        $properties = Property::with(['user', 'images'])->get();
+        $properties = Property::with(['user', 'images'])->orderBy('id', 'desc')->get();
         return view('template.agent.all-properties', compact('properties'));
     }
 

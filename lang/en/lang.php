@@ -91,4 +91,8 @@ return [
     'profile' => 'profile',
     'change color' => 'change color',
     'color' => 'color',
+    'roof' => 'roof',
+    'yes' => 'yes',
+    'no' => 'no',
+    'offer id' => 'offer id',
 ];

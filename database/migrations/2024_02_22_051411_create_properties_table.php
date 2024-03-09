@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string("dev_name")->nullable();
             $table->string("ready_construction")->nullable();
             $table->string("property_type")->nullable();
+            $table->string("roof")->nullable();
             $table->longText("description")->nullable();
             $table->string("post_by")->nullable();
             $table->unsignedBigInteger("user_id")->nullable();
