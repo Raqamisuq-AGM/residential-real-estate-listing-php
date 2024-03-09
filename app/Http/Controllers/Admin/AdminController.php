@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PropertiesImport;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -18,8 +19,9 @@ class AdminController extends Controller
     public function dashboard()
     {
         $users = User::where('type', 'user')->count();
-        $properties = Property::where('status', 'pending')->count();
-        return view('template.admin.index', compact('users', 'properties'));
+        $agents = User::where('type', 'agent')->count();
+        $properties = Property::count();
+        return view('template.admin.index', compact('users', 'agents', 'properties'));
     }
 
     //admin users properties route controller
@@ -27,6 +29,87 @@ class AdminController extends Controller
     {
         $users = User::where('type', 'user')->get();
         return view('template.admin.user', compact('users'));
+    }
+
+    //admin agents properties route controller
+    public function agents()
+    {
+        $agents = User::where('type', 'agent')->get();
+        return view('template.admin.agent', compact('agents'));
+    }
+
+    //admin agent add properties route controller
+    public function agentAdd()
+    {
+        return view('template.admin.add-agent');
+    }
+
+    //admin agents add submit properties route controller
+    public function agentSubmitAgent(Request $request)
+    {
+
+        $agentEmailCount = User::where('email', $request->input('email'))->count();
+
+        if ($agentEmailCount > 0) {
+            toastr()->success('email already registered!', 'Success', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->route('admin.add-agent');
+        }
+
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+            'email' => 'required|email|unique:users,email',
+        ]);
+
+        $agent = new User();
+        $agent->name = $request->input('name');
+        $agent->email = $request->input('email');
+        $agent->password = Hash::make($request->input('password'));
+        $agent->type = 'agent';
+        $agent->status = 'approved';
+        $agent->save();
+
+        toastr()->success('Agent created successfully!', 'Success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.agents');
+    }
+
+    //admin agents edit properties route controller
+    public function agentEdit($id)
+    {
+        $agent = User::findOrFail($id);
+        return view('template.admin.edit-agent', compact('agent'));
+    }
+
+    //admin agents update properties route controller
+    public function agentUpdate(Request $request, $id)
+    {
+        $agent = User::findOrFail($id);
+        $agent->name = $request->input('name');
+        $agent->email = $request->input('email');
+
+        if (!empty($request->input('password'))) {
+            $agent->password = Hash::make($request->input('password'));
+        }
+        $agent->save();
+        toastr()->success('Agent updated successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.edit-agent', ['id' => $id]);
+    }
+
+    //admin delete agent properties route controller
+    public function agentDelete($id)
+    {
+        $agent = User::find($id);
+
+        if (!$agent) {
+            // User not found, handle error
+            toastr()->error('Agent not found!', 'Error', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->route('admin.agents');
+        }
+
+        $agent->delete();
+
+        toastr()->success('Agent deleted successfully!', 'Success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.agents');
     }
 
     //admin approve user properties route controller
@@ -98,6 +181,66 @@ class AdminController extends Controller
         return redirect()->route('admin.change-logo');
     }
 
+    //admin change-icon properties route controller
+    public function changeIcon()
+    {
+        return view('template.admin.change-icon');
+    }
+
+    //admin change-icon submit route controller
+    public function changeIconSubmit(Request $request)
+    {
+        $request->validate([
+            'icon' => 'required',
+        ]);
+
+        $systemLogo = SystemLogo::find(1);
+
+        if ($request->hasFile('icon')) {
+            // Store the uploaded file in the public directory
+            $File = $request->file('icon');
+            $FileName = time() . '_' . $File->getClientOriginalName();
+            $File->move(public_path('frontend/img'), $FileName);
+
+            $systemLogo->update([
+                'fav' => $FileName,
+            ]);
+        }
+
+        toastr()->success('Icon changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.change-icon');
+    }
+
+    //admin change-icon properties route controller
+    public function changeImage()
+    {
+        return view('template.admin.change-image');
+    }
+
+    //admin change-icon submit route controller
+    public function changeImageSubmit(Request $request)
+    {
+        $request->validate([
+            'image' => 'required',
+        ]);
+
+        $systemLogo = SystemLogo::find(1);
+
+        if ($request->hasFile('image')) {
+            // Store the uploaded file in the public directory
+            $File = $request->file('image');
+            $FileName = time() . '_' . $File->getClientOriginalName();
+            $File->move(public_path('frontend/img'), $FileName);
+
+            $systemLogo->update([
+                'image' => $FileName,
+            ]);
+        }
+
+        toastr()->success('Icon changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.change-image');
+    }
+
     //admin change-email properties route controller
     public function changeEmail()
     {
@@ -118,6 +261,28 @@ class AdminController extends Controller
 
         toastr()->success('Email changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
         return redirect()->route('admin.change-email');
+    }
+
+    //admin change-color properties route controller
+    public function changeColor()
+    {
+        $system = SystemLogo::find(1);
+        return view('template.admin.change-color', compact('system'));
+    }
+
+    //admin change-color submit route controller
+    public function changeColorSubmit(Request $request)
+    {
+        $request->validate([
+            'color' => 'required',
+        ]);
+
+        $system = SystemLogo::find(1);
+        $system->color = $request->color;
+        $system->save();
+
+        toastr()->success('System color changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.change-color');
     }
 
     //admin change-password properties route controller
@@ -177,28 +342,36 @@ class AdminController extends Controller
     public function addSubmit(Request $request)
     {
         // Validate the form data
-        $request->validate([
-            'title' => 'required',
-            'room' => 'required',
-            'dev_name' => 'required',
-            'classification' => 'required',
-            'location' => 'required',
-            'price' => 'required',
-            'type' => 'required',
-            'status' => 'required',
-            'description' => 'required',
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'contact_number' => 'required',
+        //     'price' => 'required',
+        //     'space' => 'required',
+        //     'rooms' => 'required',
+        //     'dev_name' => 'required',
+        //     'ready_construction' => 'required',
+        //     'property_type' => 'required',
+        //     'description' => 'required',
+        // ]);
+
+        // Generate a unique ID
+        $uniqueId = Str::random(6);
+        while (Property::where('property_id', $uniqueId)->exists()) {
+            $uniqueId = Str::random(6);
+        }
 
         // Create a new property
         $property = new Property();
         $property->title = $request->title;
-        $property->room = $request->room;
-        $property->dev_name = $request->dev_name;
-        $property->classification = $request->classification;
-        $property->location = $request->location;
+        $property->property_id = $uniqueId;
+        $property->contact_number = $request->contact_number;
         $property->price = $request->price;
-        $property->type = $request->type;
-        $property->status = $request->status;
+        $property->space = $request->space;
+        $property->rooms = $request->rooms;
+        $property->district = $request->district;
+        $property->dev_name = $request->dev_name;
+        $property->ready_construction = $request->ready_construction;
+        $property->property_type = $request->property_type;
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'admin';
@@ -210,42 +383,6 @@ class AdminController extends Controller
             $thumbFileName = time() . '_' . $thumbFile->getClientOriginalName();
             $thumbFile->move(public_path('assets/image/property'), $thumbFileName);
             $property->thumb = $thumbFileName;
-        }
-
-        //update property slider1 file
-        if ($request->hasFile('slider1')) {
-            // Store the uploaded file in the public directory
-            $slider1File = $request->file('slider1');
-            $slider1FileName = time() . '_' . $slider1File->getClientOriginalName();
-            $slider1File->move(public_path('assets/image/property'), $slider1FileName);
-            $property->slider1 = $slider1FileName;
-        }
-
-        //update property slider2 file
-        if ($request->hasFile('slider2')) {
-            // Store the uploaded file in the public directory
-            $slider2File = $request->file('slider2');
-            $slider2FileName = time() . '_' . $slider2File->getClientOriginalName();
-            $slider2File->move(public_path('assets/image/property'), $slider2FileName);
-            $property->slider2 = $slider2FileName;
-        }
-
-        //update property slider3 file
-        if ($request->hasFile('slider3')) {
-            // Store the uploaded file in the public directory
-            $slider3File = $request->file('slider3');
-            $slider3FileName = time() . '_' . $slider3File->getClientOriginalName();
-            $slider3File->move(public_path('assets/image/property'), $slider3FileName);
-            $property->slider3 = $slider3FileName;
-        }
-
-        //update property slider3 file
-        if ($request->hasFile('slider4')) {
-            // Store the uploaded file in the public directory
-            $slider4File = $request->file('slider4');
-            $slider4FileName = time() . '_' . $slider4File->getClientOriginalName();
-            $slider4File->move(public_path('assets/image/property'), $slider4FileName);
-            $property->slider4 = $slider4FileName;
         }
 
         $property->save();
@@ -267,30 +404,31 @@ class AdminController extends Controller
     public function updateProperty(Request $request, $id)
     {
         // Validate the form data
-        $request->validate([
-            'title' => 'required',
-            'room' => 'required',
-            'classification' => 'required',
-            'dev_name' => 'required',
-            'location' => 'required',
-            'price' => 'required',
-            'type' => 'required',
-            'status' => 'required',
-            'description' => 'required',
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'contact_number' => 'required',
+        //     'price' => 'required',
+        //     'space' => 'required',
+        //     'rooms' => 'required',
+        //     'dev_name' => 'required',
+        //     'ready_construction' => 'required',
+        //     'property_type' => 'required',
+        //     'description' => 'required',
+        // ]);
 
         // Create a new property
         $property = Property::findOrFail($id);
         $property->update([
-            'title' => $request->title,
-            'room' => $request->room,
-            'classification' => $request->classification,
-            'dev_name' => $request->dev_name,
-            'location' => $request->location,
-            'price' => $request->price,
-            'type' => $request->type,
-            'status' => $request->status,
-            'description' => $request->description,
+            "title" => $request->title,
+            "contact_number" => $request->contact_number,
+            "price" => $request->price,
+            "space" => $request->space,
+            "rooms" => $request->rooms,
+            "district" => $request->district,
+            "dev_name" => $request->dev_name,
+            "ready_construction" => $request->ready_construction,
+            "property_type" => $request->property_type,
+            "description" => $request->description,
         ]);
 
         //update property thumb file
@@ -301,51 +439,6 @@ class AdminController extends Controller
             $thumbFile->move(public_path('assets/image/property'), $thumbFileName);
             $property->update([
                 'thumb' => $thumbFileName,
-            ]);
-        }
-
-        //update property slider1 file
-        if ($request->hasFile('slider1')) {
-            // Store the uploaded file in the public directory
-            $slider1File = $request->file('slider1');
-            $slider1FileName = time() . '_' . $slider1File->getClientOriginalName();
-            $slider1File->move(public_path('assets/image/property'), $slider1FileName);
-            $property->update([
-                'slider1' => $slider1FileName,
-            ]);
-        }
-
-        //update property slider2 file
-        if ($request->hasFile('slider2')) {
-            // Store the uploaded file in the public directory
-            $slider2File = $request->file('slider2');
-            $slider2FileName = time() . '_' . $slider2File->getClientOriginalName();
-            $slider2File->move(public_path('assets/image/property'), $slider2FileName);
-            $property->update([
-                'slider2' => $slider2FileName,
-            ]);
-        }
-
-        //update property slider3 file
-        if ($request->hasFile('slider3')) {
-            // Store the uploaded file in the public directory
-            $slider3File = $request->file('slider3');
-            $slider3FileName = time() . '_' . $slider3File->getClientOriginalName();
-            $slider3File->move(public_path('assets/image/property'), $slider3FileName);
-            $property->update([
-                'slider3' => $slider3FileName,
-            ]);
-        }
-
-        //update property slider3 file
-        if ($request->hasFile('slider4')) {
-            // Store the uploaded file in the public directory
-            $slider4File = $request->file('slider4');
-            $slider4FileName = time() . '_' . $slider4File->getClientOriginalName();
-            $slider4File->move(public_path('assets/image/property'), $slider4FileName);
-            $property->slider4 = $slider4FileName;
-            $property->update([
-                'slider4' => $slider4FileName,
             ]);
         }
 

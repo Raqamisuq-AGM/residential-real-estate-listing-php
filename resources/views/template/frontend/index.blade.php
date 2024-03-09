@@ -1,3 +1,6 @@
+@php
+    $system = App\Models\SystemLogo::get();
+@endphp
 @extends('layouts.frontend.app')
 @section('title')
     @lang('lang.property listing')
@@ -6,7 +9,7 @@
 @section('content')
     <div class="popular_property">
         <div style="width:100%">
-            <img style="width:100%" src="{{ asset('assets/image/property/Website-1.jpg') }}" alt="">
+            <img style="width:100%" src="{{ asset('frontend/img') . '/' . $system[0]->image }}" alt="">
         </div>
         <div class="container" style="margin-top: 80px">
             <div class="row">
@@ -18,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-xl-4 col-md-6 col-lg-4">
-                    <span>Whatsapp: 123456789</span>
+                    <span>Whatsapp: 00966566592161</span>
                 </div>
             </div>
             {{-- <div class="row">

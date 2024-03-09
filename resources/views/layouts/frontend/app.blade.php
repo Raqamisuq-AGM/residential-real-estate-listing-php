@@ -1,3 +1,7 @@
+@php
+    $system = App\Models\SystemLogo::get();
+@endphp
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -8,7 +12,7 @@
     <meta name="description" content />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/img') . '/' . $system[0]->fav }}" />
 
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}" />
@@ -24,6 +28,28 @@
     <link rel="stylesheet"
         href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
+
+    <style>
+        .header-area {
+            background: {{ $system[0]->color }} !important
+        }
+
+        .slider_area .single-field.max_width label {
+            color: {{ $system[0]->color }} !important
+        }
+
+        .slider_area .single-field.min_width label {
+            color: {{ $system[0]->color }} !important
+        }
+
+        .popular_property .single_property .property_content .amount {
+            background: {{ $system[0]->color }} !important
+        }
+
+        .property_details_banner {
+            background: {{ $system[0]->color }} !important
+        }
+    </style>
 
     @yield('style')
 </head>

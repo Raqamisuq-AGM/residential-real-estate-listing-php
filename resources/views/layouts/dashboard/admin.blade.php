@@ -1,3 +1,6 @@
+@php
+    $system = App\Models\SystemLogo::get();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@yield('title')</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/img') . '/' . $system[0]->fav }}" />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -28,6 +33,21 @@
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/daterangepicker/daterangepicker.css') }}" />
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/summernote/summernote-bs4.min.css') }}" />
+
+    <style>
+        .dashboard_sidebar {
+            background: {{ $system[0]->color }} !important
+        }
+
+        .card-header {
+            background: {{ $system[0]->color }} !important;
+            color: #fff !important;
+        }
+
+        .btn.btn-primary {
+            background: {{ $system[0]->color }} !important;
+        }
+    </style>
 
     @yield('style')
 </head>

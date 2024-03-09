@@ -23,23 +23,23 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-6 col-6">
+                <div class="col-lg-4 col-4">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $properties }}</h3>
 
-                            <p>@lang('lang.pending approval')</p>
+                            <p>@lang('lang.offers')</p>
                         </div>
                         <div class="icon">
                             <i class="nav-icon fas fa-th"></i>
                         </div>
-                        <a href="{{ route('admin.properties.pending') }}" class="small-box-footer">@lang('lang.more info') <i
+                        <a href="{{ route('admin.properties.all') }}" class="small-box-footer">@lang('lang.more info') <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-6 col-6">
+                <div class="col-lg-4 col-4">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
@@ -51,6 +51,22 @@
                             <i class="nav-icon fas fa-user"></i>
                         </div>
                         <a href="{{ route('admin.users') }}" class="small-box-footer">@lang('lang.more info') <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-4">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ $agents }}</h3>
+
+                            <p>@lang('lang.agents')</p>
+                        </div>
+                        <div class="icon">
+                            <i class="nav-icon fas fa-user"></i>
+                        </div>
+                        <a href="{{ route('admin.agents') }}" class="small-box-footer">@lang('lang.more info') <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

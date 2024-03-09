@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #0c4b36 !important">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 dashboard_sidebar">
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar Menu -->
@@ -37,24 +37,6 @@
                             <a href="{{ route('dashboard.properties.all') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>@lang('lang.all')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.properties.pending') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('lang.pending')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.properties.approved') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('lang.approved')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.properties.declined') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@lang('lang.declined')</p>
                             </a>
                         </li>
                     </ul>

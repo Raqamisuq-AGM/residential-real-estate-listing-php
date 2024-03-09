@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <div class="card-header" style="background: #0c4b36">
+                        <div class="card-header">
                             <h3 class="card-title">@lang('lang.add') @lang('lang.properties')</h3>
                         </div>
                         <!-- /.card-header -->
@@ -42,13 +42,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="room">@lang('lang.room')</label>
-                                    <input type="text" class="form-control" id="room" name="room" placeholder="5"
+                                    <input type="text" class="form-control" id="room" name="rooms" placeholder="5"
                                         required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="location">@lang('lang.place')</label>
-                                    <input type="text" class="form-control" id="location" name="location"
-                                        placeholder="@lang('lang.place')" required />
+                                    <label for="district">@lang('lang.district')</label>
+                                    <input type="text" class="form-control" id="district" name="district"
+                                        placeholder="@lang('lang.district')" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="price">@lang('lang.price')</label>
@@ -56,80 +56,41 @@
                                         placeholder="50" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="classification">@lang('lang.classification')</label>
-                                    <select class="form-control" style="width: 100%;" name="classification" required>
+                                    <label for="dev_name">@lang('lang.developer name')</label>
+                                    <input type="text" class="form-control" id="dev_name" name="dev_name"
+                                        placeholder="jon doe" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact_number">@lang('lang.contact number')</label>
+                                    <input type="text" class="form-control" id="contact_number" name="contact_number"
+                                        placeholder="002658745" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="property_type">@lang('lang.property type')</label>
+                                    <select class="form-control" style="width: 100%;" name="property_type" required>
                                         <option value="Appartment">@lang('lang.apartment')</option>
                                         <option value="Villa">@lang('lang.villa')</option>
                                         <option value="Land">@lang('lang.land')</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="type">@lang('lang.type')</label>
-                                    <select class="form-control" style="width: 100%;" name="type" required>
+                                    <label for="type">@lang('lang.ready/construction')</label>
+                                    <select class="form-control" style="width: 100%;" name="ready_construction" required>
                                         <option value="Ready">@lang('lang.ready')</option>
                                         <option value="Under Contruction">@lang('lang.under construction')</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dev_name">@lang('lang.developer name')</label>
-                                    <input type="text" class="form-control" id="dev_name" name="dev_name"
-                                        placeholder="@lang('lang.developer name')" required />
+                                    <label for="space">@lang('lang.space')</label>
+                                    <input type="text" class="form-control" id="space" name="space"
+                                        placeholder="135" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="status">@lang('lang.status')</label>
-                                    <select class="form-control" style="width: 100%;" name="status" required>
-                                        <option value="Approved">@lang('lang.approved')</option>
-                                        <option value="Pending">@lang('lang.pending')</option>
-                                        <option value="Declined">@lang('lang.declined')</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="thumb">@lang('lang.thumbnail')</label>
+                                    <label for="thumb">@lang('lang.images')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="thumb" name="thumb"
-                                                required />
+                                            <input type="file" class="custom-file-input" id="thumb[]" name="thumb" />
                                             <label class="custom-file-label" for="thumb">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="slider1">@lang('lang.slider thumb1')</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="slider1" name="slider1"
-                                                required />
-                                            <label class="custom-file-label" for="slider1">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="slider2">@lang('lang.slider thumb2')</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="slider2" name="slider2"
-                                                required />
-                                            <label class="custom-file-label" for="slider2">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="slider3">@lang('lang.slider thumb3')</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="slider3"
-                                                name="slider3" required />
-                                            <label class="custom-file-label" for="slider3">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="slider4">@lang('lang.slider thumb4')</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="slider4"
-                                                name="slider4" required />
-                                            <label class="custom-file-label" for="slider4">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +103,7 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary"
-                                    style="background: #0c4b36">@lang('lang.submit')</button>
+                                    >@lang('lang.submit')</button>
                             </div>
                         </form>
                     </div>

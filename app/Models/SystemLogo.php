@@ -12,5 +12,7 @@ class SystemLogo extends Model
     protected $fillable = [
         'logo',
         'fav',
+        'image',
+        'color',
     ];
 }
