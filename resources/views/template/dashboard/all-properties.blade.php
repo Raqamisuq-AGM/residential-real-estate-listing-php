@@ -33,6 +33,8 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
+                                        <th>@lang('lang.thumb')</th>
+                                        <th>@lang('lang.property_id')</th>
                                         <th>@lang('lang.title')</th>
                                         <th>@lang('lang.contact number')</th>
                                         <th>@lang('lang.price')</th>
@@ -49,6 +51,15 @@
                                     @forelse ($properties as $property)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
+                                            <td>
+                                                @if ($property->images->isNotEmpty())
+                                                    <img src="{{ asset('assets/image/property/' . $property->images->first()->img) }}"
+                                                        alt="Property Image" style="width: 50px;">
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </td>
+                                            <td>{{ $property->property_id }}</td>
                                             <td>{{ $property->title }}</td>
                                             <td>{{ $property->contact_number }}</td>
                                             <td>${{ $property->price }}</td>

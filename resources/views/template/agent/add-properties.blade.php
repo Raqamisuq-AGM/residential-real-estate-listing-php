@@ -89,7 +89,7 @@
                                     <label for="thumb">@lang('lang.images')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="thumb[]" name="thumb" />
+                                            <input type="file" class="custom-file-input" id="thumb" name="thumb[]" />
                                             <label class="custom-file-label" for="thumb">Choose file</label>
                                         </div>
                                     </div>

@@ -27,7 +27,13 @@
                                 <div class="book_btn d-none d-lg-block">
                                     {{-- <a href="{{ route('login') }}">@lang('lang.login')</a> --}}
                                     @if (Auth::check())
-                                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                        @if (Auth::user()->type == 'admin')
+                                            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                        @elseif (Auth::user()->type == 'agent')
+                                            <a href="{{ route('agent.dashboard') }}">Dashboard</a>
+                                        @else
+                                            <a href="{{ route('dashboard.dashboard') }}">Dashboard</a>
+                                        @endif
                                     @else
                                         <a href="{{ route('login') }}">Login</a>
                                     @endif

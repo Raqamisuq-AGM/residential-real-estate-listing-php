@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Imports\PropertiesImport;
 use App\Models\Property;
+use App\Models\PropertyImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -140,17 +141,22 @@ class DashboardController extends Controller
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'user';
-
-        //update property thumb file
-        if ($request->hasFile('thumb')) {
-            // Store the uploaded file in the public directory
-            $thumbFile = $request->file('thumb');
-            $thumbFileName = time() . '_' . $thumbFile->getClientOriginalName();
-            $thumbFile->move(public_path('assets/image/property'), $thumbFileName);
-            $property->thumb = $thumbFileName;
-        }
-
         $property->save();
+
+        // Check if there are any files uploaded
+        if ($request->hasFile('thumb')) {
+            // Store each uploaded file in the public directory and save their paths
+            foreach ($request->file('thumb') as $thumbFile) {
+                $thumbFileName = time() . '_' . $thumbFile->getClientOriginalName();
+                $thumbFile->move(public_path('assets/image/property'), $thumbFileName);
+
+                // Create a new PropertyImage instance for each uploaded image
+                PropertyImage::create([
+                    'property_id' => $property->id,
+                    'img' => $thumbFileName,
+                ]);
+            }
+        }
 
         toastr()->success('Property added successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
 
@@ -198,18 +204,22 @@ class DashboardController extends Controller
             "description" => $request->description,
         ]);
 
-        //update property thumb file
+        // Check if there are any files uploaded
         if ($request->hasFile('thumb')) {
-            // Store the uploaded file in the public directory
-            $thumbFile = $request->file('thumb');
-            $thumbFileName = time() . '_' . $thumbFile->getClientOriginalName();
-            $thumbFile->move(public_path('assets/image/property'), $thumbFileName);
-            $property->update([
-                'thumb' => $thumbFileName,
-            ]);
-        }
+            // Delete all existing images associated with the property
+            PropertyImage::where('property_id', $property->id)->delete();
+            // Store each uploaded file in the public directory and save their paths
+            foreach ($request->file('thumb') as $thumbFile) {
+                $thumbFileName = time() . '_' . $thumbFile->getClientOriginalName();
+                $thumbFile->move(public_path('assets/image/property'), $thumbFileName);
 
-        $property->save();
+                // Create a new PropertyImage instance for each uploaded image
+                PropertyImage::create([
+                    'property_id' => $property->id,
+                    'img' => $thumbFileName,
+                ]);
+            }
+        }
 
         toastr()->success('Property updated successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
 
