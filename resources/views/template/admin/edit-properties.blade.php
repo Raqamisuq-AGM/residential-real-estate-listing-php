@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <div class="card-header" >
+                        <div class="card-header">
                             <h3 class="card-title">@lang('lang.edit') @lang('lang.properties')</h3>
                         </div>
                         <!-- /.card-header -->
@@ -83,6 +83,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="type">@lang('lang.roof')</label>
+                                    <select class="form-control" style="width: 100%;" name="roof" required
+                                        value="{{ $property->roof }}">
+                                        <option value="yes">@lang('lang.yes')</option>
+                                        <option value="no">@lang('lang.no')</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="space">@lang('lang.space')</label>
                                     <input type="text" class="form-control" id="space" name="space"
                                         placeholder="135" required value="{{ $property->space }}" />
@@ -91,7 +99,8 @@
                                     <label for="thumb">@lang('lang.images')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="thumb" name="thumb[]" />
+                                            <input type="file" class="custom-file-input" id="thumb"
+                                                name="thumb[]" />
                                             <label class="custom-file-label" for="thumb">Choose file</label>
                                         </div>
                                     </div>
@@ -104,8 +113,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary"
-                                    >@lang('lang.submit')</button>
+                                <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
                             </div>
                         </form>
                     </div>
