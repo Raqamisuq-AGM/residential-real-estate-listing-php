@@ -102,4 +102,5 @@ return [
     'ready_construction' => 'جاهزة أو بناء',
     'property_type' => 'نوع الملكية',
     'select' => 'يختار',
+    'location' => 'موقع',
 ];

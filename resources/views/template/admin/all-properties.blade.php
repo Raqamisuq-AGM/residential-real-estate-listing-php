@@ -43,7 +43,7 @@
                                             <th>@lang('lang.contact number')</th>
                                             <th>@lang('lang.price')</th>
                                             <th>@lang('lang.space')</th>
-                                            <th>@lang('lang.district')</th>
+                                            <th>@lang('lang.location')</th>
                                             <th>@lang('lang.room')</th>
                                             <th>@lang('lang.developer name')</th>
                                             <th>@lang('lang.ready/construction')</th>

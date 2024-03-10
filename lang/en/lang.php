@@ -103,4 +103,5 @@ return [
     'ready_construction' => 'ready/construction',
     'property_type' => 'property type',
     'select' => 'select',
+    'location' => 'location',
 ];
