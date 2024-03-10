@@ -30,7 +30,7 @@ class PropertiesImport implements ToModel, WithHeadingRow
             "contact_number" => $row['contact_number'],
             "price" => $row['price'],
             "space" => $row['space'],
-            "district" => $row['district'],
+            "district" => $row['location'],
             "rooms" => $row['rooms'],
             "dev_name" => $row['dev_name'],
             "ready_construction" => $row['ready_construction'],
