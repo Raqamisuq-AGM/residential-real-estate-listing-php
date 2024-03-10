@@ -48,7 +48,7 @@
                                 <div class="form-group">
                                     <label for="district">@lang('lang.location')</label>
                                     <input type="text" class="form-control" id="district" name="district"
-                                        placeholder="@lang('lang.district')" required />
+                                        placeholder="@lang('lang.location')" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="price">@lang('lang.price')</label>
