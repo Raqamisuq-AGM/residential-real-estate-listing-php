@@ -1,3 +1,6 @@
+@php
+    $system = App\Models\SystemLogo::get();
+@endphp
 @extends('layouts.frontend.app')
 @section('title')
     @lang('lang.property listing')
@@ -5,7 +8,8 @@
 
 @section('content')
     <div class="slider_area">
-        <div class="single_slider single_slider2 d-flex align-items-center property_bg overlay2">
+        <div class="single_slider single_slider2 d-flex align-items-center property_bg overlay2"
+            style="background-image: url({{ asset('frontend/img') . '/' . $system[0]->image }})">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-10 offset-xl-1">
