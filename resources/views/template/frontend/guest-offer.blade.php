@@ -7,70 +7,6 @@
 @endsection
 
 @section('content')
-    <div class="slider_area">
-        <div class="single_slider single_slider2 d-flex align-items-center property_bg overlay2"
-            style="background-image: url({{ asset('frontend/img') . '/' . $system[0]->image }})">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-10 offset-xl-1">
-                        <div class="property_wrap">
-                            <div class="slider_text text-center justify-content-center">
-                                <h3>@lang('lang.search property')</h3>
-                            </div>
-                            <div class="property_form">
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <div class="form_wrap d-flex">
-                                            <div
-                                                class="single-field
-                                                    min_width">
-                                                <label for="room">@lang('lang.room')</label>
-                                                <input type="text" class="serach_input_box" name='room'
-                                                    id='room'>
-                                            </div>
-                                            <div class="single-field min_width">
-                                                <label for="#">@lang('lang.price')</label>
-                                                <input type="text" class="serach_input_box" name='price'
-                                                    id='price'>
-                                            </div>
-                                            <div
-                                                class="single-field
-                                                    min_width">
-                                                <label for="type">@lang('lang.ready/construction')</label>
-                                                <select class="wide" name='type' id='type'>
-                                                    <option value="" disabled selected>@lang('lang.select')
-                                                    </option>
-                                                    <option value="Ready">@lang('lang.ready')
-                                                    </option>
-                                                    <option value="under contruction">@lang('lang.under construction')</option>
-                                                </select>
-                                            </div>
-                                            <div class="single-field min_width">
-                                                <label for="classification">@lang('lang.property_type')</label>
-                                                <select class="wide" name='classification' id='classification'>
-                                                    <option value="" disabled selected>@lang('lang.select')
-                                                    </option>
-                                                    <option value="Appartment">@lang('lang.apartment')
-                                                    </option>
-                                                    <option value="Villa">@lang('lang.villa')</option>
-                                                    <option value="Land">@lang('lang.land')</option>
-                                                </select>
-                                            </div>
-                                            <div class="serach_icon">
-                                                <button type="submit" id="filter">
-                                                    <i class="ti-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="popular_property" style="margin-top: 235px;">
         <div class="container">
             <div class="row">
@@ -121,7 +57,7 @@
                         serverSide: true,
                         responsive: true,
                         ajax: {
-                            url: "{{ route('offers') }}",
+                            url: "{{ route('guest.get-offer', ['property_id' => $offerId]) }}",
                             data: {
                                 room: room,
                                 price: price,

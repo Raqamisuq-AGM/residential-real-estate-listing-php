@@ -356,9 +356,9 @@ class AdminController extends Controller
         // ]);
 
         // Generate a unique ID
-        $uniqueId = 'offer#' . mt_rand(100, 999); // Generates a random number between 100 and 999
+        $uniqueId = 'offerUID' . mt_rand(100, 999); // Generates a random number between 100 and 999
         while (Property::where('property_id', $uniqueId)->exists()) {
-            $uniqueId = 'offer#' . mt_rand(100, 999); // Regenerate if the ID already exists
+            $uniqueId = 'offerUID' . mt_rand(100, 999); // Regenerate if the ID already exists
         }
 
         // Create a new property

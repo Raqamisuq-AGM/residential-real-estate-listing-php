@@ -28,6 +28,23 @@ class HomeController extends Controller
         return view('template.frontend.index', compact('properties'));
     }
 
+    //Guest offer route controller
+    public function guestOffer($property_id)
+    {
+        $offerId = $property_id;
+        return view('template.frontend.guest-offer', compact('offerId'));
+    }
+
+    //Get Guest offer route controller
+    public function getGuestOffer($property_id)
+    {
+        $data = DB::table('properties')
+            ->select('*')
+            ->where('property_id', $property_id)
+            ->get();
+        return datatables()->of($data)->make(true);
+    }
+
     //offer route controller
     public function offers(Request $request)
     {

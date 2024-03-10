@@ -13,6 +13,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: normal;
     font-style: normal;
+    text-transform: capitalize !important;
 }
 
 /* line 12, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/theme-default.scss */
