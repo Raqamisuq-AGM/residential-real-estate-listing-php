@@ -97,4 +97,10 @@ return [
     'offer id' => 'offer id',
     'previous' => 'previous',
     'next' => 'next',
+    'id' => 'id',
+    'contact_number' => 'contact number',
+    'dev_name' => 'developer',
+    'ready_construction' => 'ready/construction',
+    'property_type' => 'property type',
+    'select' => 'select',
 ];

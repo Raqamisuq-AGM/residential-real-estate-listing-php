@@ -27,19 +27,12 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/slicknav.css') }}" />
     <link rel="stylesheet"
         href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
 
     <style>
         .header-area {
             background: {{ $system[0]->color }} !important
-        }
-
-        .slider_area .single-field.max_width label {
-            color: {{ $system[0]->color }} !important
-        }
-
-        .slider_area .single-field.min_width label {
-            color: {{ $system[0]->color }} !important
         }
 
         .popular_property .single_property .property_content .amount {
@@ -59,75 +52,7 @@
     @include('layouts.frontend.partials.header')
     <!-- / Header -->
 
-    <div class="slider_area">
-        <div class="single_slider single_slider2 d-flex align-items-center property_bg overlay2">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-10 offset-xl-1">
-                        <div class="property_wrap">
-                            <div class="slider_text text-center justify-content-center">
-                                <h3>@lang('lang.search property')</h3>
-                            </div>
-                            <div class="property_form">
-                                <form action="{{ route('search') }}" method="POST">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-xl-12">
-                                            <div class="form_wrap d-flex">
-                                                <div class="single-field max_width">
-                                                    <label for="#">@lang('lang.place')</label>
-                                                    <input type="text" class="serach_input_box" name='location'
-                                                        value="{{ session('location') }}">
-                                                </div>
-                                                <div
-                                                    class="single-field
-                                                        min_width">
-                                                    <label for="#">@lang('lang.room')</label>
-                                                    <input type="text" class="serach_input_box" name='room'
-                                                        value="{{ session('room') }}">
-                                                </div>
-                                                <div class="single-field min_width">
-                                                    <label for="#">@lang('lang.price')</label>
-                                                    <input type="text" class="serach_input_box" name='price'
-                                                        value="{{ session('price') }}">
-                                                </div>
-                                                <div
-                                                    class="single-field
-                                                        min_width">
-                                                    <label for="#">@lang('lang.type')</label>
-                                                    <select class="wide" name='type'
-                                                        value="{{ session('type') }}">
-                                                        <option value="Ready">@lang('lang.ready')
-                                                        </option>
-                                                        <option value="under contruction">@lang('lang.under construction')</option>
-                                                    </select>
-                                                </div>
-                                                <div class="single-field min_width">
-                                                    <label for="#">@lang('lang.classification')</label>
-                                                    <select class="wide" name='classification'
-                                                        value="{{ session('classification') }}">
-                                                        <option value="Appartment">@lang('lang.apartment')
-                                                        </option>
-                                                        <option value="Villa">@lang('lang.villa')</option>
-                                                        <option value="Land">@lang('lang.land')</option>
-                                                    </select>
-                                                </div>
-                                                <div class="serach_icon">
-                                                    <button type="submit">
-                                                        <i class="ti-search"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Content -->
     @yield('content')
@@ -136,6 +61,8 @@
     <!-- Footer -->
     @include('layouts.frontend.partials.footer')
     <!-- / Footer -->
+
+    @yield('script')
 </body>
 
 </html>

@@ -96,4 +96,10 @@ return [
     'offer id' => 'معرف العرض',
     'previous' => 'سابق',
     'next' => 'التالي',
+    'id' => 'بطاقة تعريف',
+    'contact_number' => 'رقم الاتصال',
+    'dev_name' => 'اسم المطور',
+    'ready_construction' => 'جاهزة أو بناء',
+    'property_type' => 'نوع الملكية',
+    'select' => 'يختار',
 ];

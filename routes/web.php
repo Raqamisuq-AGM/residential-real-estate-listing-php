@@ -25,10 +25,13 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/signup', [HomeController::class, 'signup'])->name('signup');
 Route::post('/signup-submit', [HomeController::class, 'signupSubmit'])->name('signup.submit');
 
+// Offers Route
+Route::middleware('auth')->group(function () {
+    Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
+});
+
 // User Dashboard Route
 Route::middleware(['auth', 'user.type:user'])->group(function () {
-    Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
-    Route::get('/property/details/{id}', [HomeController::class, 'propertyDetails'])->name('property_details');
     Route::post('/search', [HomeController::class, 'search'])->name('search');
     Route::prefix('dashboard')->group(function () {
         Route::get('/panel', [DashboardController::class, 'dashboard'])->name('dashboard.dashboard');
@@ -55,8 +58,6 @@ Route::middleware(['auth', 'user.type:user'])->group(function () {
 
 // Admin Route
 Route::middleware(['auth', 'user.type:admin'])->group(function () {
-    Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
-    Route::get('/property/details/{id}', [HomeController::class, 'propertyDetails'])->name('property_details');
     Route::post('/search', [HomeController::class, 'search'])->name('search');
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -102,8 +103,6 @@ Route::middleware(['auth', 'user.type:admin'])->group(function () {
 
 // Agent Route
 Route::middleware(['auth', 'user.type:agent'])->group(function () {
-    Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
-    Route::get('/property/details/{id}', [HomeController::class, 'propertyDetails'])->name('property_details');
     Route::post('/search', [HomeController::class, 'search'])->name('search');
     Route::prefix('agent')->group(function () {
         Route::get('/dashboard', [AgentController::class, 'dashboard'])->name('agent.dashboard');

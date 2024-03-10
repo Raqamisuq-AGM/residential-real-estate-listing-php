@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Yajra\DataTables\DataTables;
+use DB;
 
 class HomeController extends Controller
 {
@@ -26,18 +28,27 @@ class HomeController extends Controller
         return view('template.frontend.index', compact('properties'));
     }
 
-    //home route controller
-    public function offers()
+    //offer route controller
+    public function offers(Request $request)
     {
-        //clean search session data
-        Session::forget('location');
-        Session::forget('room');
-        Session::forget('type');
-        Session::forget('classification');
-        Session::forget('price');
         //get property data
-        $properties = Property::all();
-        return view('template.frontend.offers', compact('properties'));
+        if (request()->ajax()) {
+            if (!empty($request->room || $request->price || $request->type || $request->classification)) {
+                $data = DB::table('properties')
+                    ->select('*')
+                    ->where('rooms', $request->room)
+                    ->orWhere('price', $request->price)
+                    ->orWhere('ready_construction', $request->type)
+                    ->orWhere('property_type', $request->classification)
+                    ->get();
+            } else {
+                $data = DB::table('properties')
+                    ->select('*')
+                    ->get();
+            }
+            return datatables()->of($data)->make(true);
+        }
+        return view('template.frontend.offers');
     }
 
     //Property details route controller

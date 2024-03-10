@@ -20,7 +20,7 @@
 </script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-<script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
+{{-- <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script> --}}
 
 <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
 <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
