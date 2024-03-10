@@ -92,7 +92,7 @@
                                     <th>@lang('lang.contact_number')</th>
                                     <th>@lang('lang.price')</th>
                                     <th>@lang('lang.space')</th>
-                                    <th>@lang('lang.district')</th>
+                                    <th>@lang('lang.location')</th>
                                     <th>@lang('lang.room')</th>
                                     <th>@lang('lang.dev_name')</th>
                                     <th>@lang('lang.ready_construction')</th>

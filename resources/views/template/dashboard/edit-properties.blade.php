@@ -46,7 +46,7 @@
                                         required value="{{ $property->rooms }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="district">@lang('lang.district')</label>
+                                    <label for="district">@lang('lang.location')</label>
                                     <input type="text" class="form-control" id="district" name="district"
                                         placeholder="@lang('lang.district')" required value="{{ $property->district }}" />
                                 </div>
