@@ -71,6 +71,7 @@
                                         <option value="Appartment">@lang('lang.apartment')</option>
                                         <option value="Villa">@lang('lang.villa')</option>
                                         <option value="Land">@lang('lang.land')</option>
+                                        <option value="Roof">@lang('lang.roof')</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -78,13 +79,6 @@
                                     <select class="form-control" style="width: 100%;" name="ready_construction" required>
                                         <option value="Ready">@lang('lang.ready')</option>
                                         <option value="Under Contruction">@lang('lang.under construction')</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="type">@lang('lang.roof')</label>
-                                    <select class="form-control" style="width: 100%;" name="roof" required>
-                                        <option value="yes">@lang('lang.yes')</option>
-                                        <option value="no">@lang('lang.no')</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

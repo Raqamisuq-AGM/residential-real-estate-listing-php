@@ -138,7 +138,7 @@ class DashboardController extends Controller
         $property->dev_name = $request->dev_name;
         $property->ready_construction = $request->ready_construction;
         $property->property_type = $request->property_type;
-        $property->roof = $request->roof;
+        // $property->roof = $request->roof;
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'user';
@@ -202,7 +202,7 @@ class DashboardController extends Controller
             "dev_name" => $request->dev_name,
             "ready_construction" => $request->ready_construction,
             "property_type" => $request->property_type,
-            "roof" => $request->roof,
+            // "roof" => $request->roof,
             "description" => $request->description,
         ]);
 

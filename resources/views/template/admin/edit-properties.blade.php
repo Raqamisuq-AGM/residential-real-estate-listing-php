@@ -72,6 +72,7 @@
                                         <option value="Appartment">@lang('lang.apartment')</option>
                                         <option value="Villa">@lang('lang.villa')</option>
                                         <option value="Land">@lang('lang.land')</option>
+                                        <option value="Roof">@lang('lang.roof')</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -83,14 +84,6 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="type">@lang('lang.roof')</label>
-                                    <select class="form-control" style="width: 100%;" name="roof" required
-                                        value="{{ $property->roof }}">
-                                        <option value="yes">@lang('lang.yes')</option>
-                                        <option value="no">@lang('lang.no')</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="space">@lang('lang.space')</label>
                                     <input type="text" class="form-control" id="space" name="space"
                                         placeholder="135" required value="{{ $property->space }}" />
@@ -99,8 +92,7 @@
                                     <label for="thumb">@lang('lang.images')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="thumb"
-                                                name="thumb[]" />
+                                            <input type="file" class="custom-file-input" id="thumb" name="thumb[]" />
                                             <label class="custom-file-label" for="thumb">Choose file</label>
                                         </div>
                                     </div>
