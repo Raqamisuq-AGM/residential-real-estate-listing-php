@@ -1262,6 +1262,7 @@ h3 {
 
 /* line 170, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_slider.scss */
 .slider_area .single-field.max_width label {
+    color: #fff !important;
     display: block;
     font-size: 15px;
 }
@@ -1320,8 +1321,10 @@ h3 {
 
 /* line 214, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_slider.scss */
 .slider_area .single-field.min_width label {
+    color: #fff !important;
     display: block;
     font-size: 15px;
+    text-transform: capitalize;
 }
 
 /* line 220, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_slider.scss */
@@ -6378,6 +6381,10 @@ h6 {
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     /* line 150, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_blog_part.scss */
+}
+
+.dt-search {
+    display: none !important;
 }
 
 /* line 166, ../../Arafath/CL/CL October/217. Real Estate/HTML/scss/_blog_part.scss */
