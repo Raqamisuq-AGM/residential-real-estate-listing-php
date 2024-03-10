@@ -28,6 +28,8 @@ Route::post('/signup-submit', [HomeController::class, 'signupSubmit'])->name('si
 // Offers Route
 Route::middleware('auth')->group(function () {
     Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
+    Route::get('/offer/{property_id}', [HomeController::class, 'guestOffer'])->name('guest.offer');
+    Route::get('/get-offer/{property_id}', [HomeController::class, 'getGuestOffer'])->name('guest.get-offer');
 });
 
 // User Dashboard Route

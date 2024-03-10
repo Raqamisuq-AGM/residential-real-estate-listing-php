@@ -48,7 +48,6 @@
                                             <th>@lang('lang.developer name')</th>
                                             <th>@lang('lang.ready/construction')</th>
                                             <th>@lang('lang.type')</th>
-                                            <th>@lang('lang.roof')</th>
                                             <th>@lang('lang.action')</th>
                                         </tr>
                                     </thead>
@@ -128,8 +127,11 @@
                                                 <td>{{ $property->dev_name }}</td>
                                                 <td>{{ $property->ready_construction }}</td>
                                                 <td>{{ $property->property_type }}</td>
-                                                <td>{{ $property->roof }}</td>
                                                 <td>
+                                                    <a href="#" id="copyLink"
+                                                        style="margin-right: 15px; color: #0c4b36">
+                                                        <i class="fa fa-clone" aria-hidden="true"></i>
+                                                    </a>
                                                     <a href="{{ route('agent.properties.edit', ['id' => $property->id]) }}"
                                                         style="margin-right: 15px; color: #0c4b36">
                                                         <i class="fas fa-pen" aria-hidden="true"></i>
@@ -227,6 +229,33 @@
             $('#hideInput').click(function() {
                 $('#show-input').toggle();
             });
+        });
+    </script>
+
+    <script>
+        // JavaScript function to copy URL to clipboard
+        function copyToClipboard(text) {
+            var input = document.createElement('textarea');
+            input.innerHTML = text;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+        }
+
+        // Get the URL and copy it to the clipboard when the link is clicked
+        document.getElementById('copyLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            var url = "{{ request()->getSchemeAndHttpHost() . '/offer' . '/' . $property->property_id }}";
+            copyToClipboard(url);
+
+            // Check if URL is copied successfully
+            var isCopied = document.execCommand('copy');
+
+            // Display Toastr notification based on the result
+            if (isCopied) {
+                alert('link copied')
+            }
         });
     </script>
 @endsection

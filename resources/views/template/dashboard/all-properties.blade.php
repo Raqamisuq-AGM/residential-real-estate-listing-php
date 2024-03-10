@@ -48,7 +48,6 @@
                                             <th>@lang('lang.developer name')</th>
                                             <th>@lang('lang.ready/construction')</th>
                                             <th>@lang('lang.type')</th>
-                                            <th>@lang('lang.roof')</th>
                                             <th>@lang('lang.action')</th>
                                         </tr>
                                     </thead>
@@ -128,7 +127,6 @@
                                                 <td>{{ $property->dev_name }}</td>
                                                 <td>{{ $property->ready_construction }}</td>
                                                 <td>{{ $property->property_type }}</td>
-                                                <td>{{ $property->roof }}</td>
                                                 <td>
                                                     <a href="{{ route('dashboard.properties.edit', ['id' => $property->id]) }}"
                                                         style="margin-right: 15px; color: #0c4b36">

@@ -34,6 +34,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/summernote/summernote-bs4.min.css') }}" />
 
+
     <style>
         .dashboard_sidebar {
             background: {{ $system[0]->color }} !important
