@@ -28,10 +28,12 @@
                             {{-- <h3 class="card-title">@lang('lang.properties')</h3> --}}
                             <div>
                                 <button class="btn btn-primary" id="toggleInput">@lang('lang.add property')</button>
-                                <a class="btn btn-primary" href="{{ route('dashboard.properties.all') }}">@lang('lang.all')</a>
+                                <a class="btn btn-primary"
+                                    href="{{ route('dashboard.properties.all') }}">@lang('lang.all')</a>
                             </div>
                             <div style="display: flex;">
-                                <form method="GET" action="{{ route('dashboard.properties.search') }}" style="display: flex;">
+                                <form method="GET" action="{{ route('dashboard.properties.search') }}"
+                                    style="display: flex;">
                                     {{-- @csrf --}}
                                     <input type="text" name="query" class="form-control" placeholder="search property"
                                         required>
@@ -154,11 +156,11 @@
                                                         style="margin-right: 15px; color: #0c4b36">
                                                         <i class="fa fa-clone" aria-hidden="true"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.properties.edit', ['id' => $property->id]) }}"
+                                                    <a href="{{ route('dashboard.properties.edit', ['id' => $property->id]) }}"
                                                         style="margin-right: 15px; color: #0c4b36">
                                                         <i class="fas fa-pen" aria-hidden="true"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.properties.delete', ['id' => $property->id]) }}"
+                                                    <a href="{{ route('dashboard.properties.delete', ['id' => $property->id]) }}"
                                                         style="color: #0c4b36">
                                                         <i class="fas fa-trash" aria-hidden="true"></i>
                                                     </a>

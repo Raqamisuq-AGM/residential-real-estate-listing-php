@@ -155,11 +155,11 @@
                                                         style="margin-right: 15px; color: #0c4b36">
                                                         <i class="fa fa-clone" aria-hidden="true"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.properties.edit', ['id' => $property->id]) }}"
+                                                    <a href="{{ route('agent.properties.edit', ['id' => $property->id]) }}"
                                                         style="margin-right: 15px; color: #0c4b36">
                                                         <i class="fas fa-pen" aria-hidden="true"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.properties.delete', ['id' => $property->id]) }}"
+                                                    <a href="{{ route('agent.properties.delete', ['id' => $property->id]) }}"
                                                         style="color: #0c4b36">
                                                         <i class="fas fa-trash" aria-hidden="true"></i>
                                                     </a>
