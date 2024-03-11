@@ -244,6 +244,7 @@ class DashboardController extends Controller
     //dashboard all properties route controller
     public function all()
     {
+        session()->forget('searched');
         // Get the authenticated user
         $user = Auth::user();
 
@@ -255,6 +256,7 @@ class DashboardController extends Controller
     //dashboard search properties route controller
     public function searchProperty(Request $request)
     {
+        session(['searched' => 'yes']);
         $query = $request->input('query');
 
         $properties = Property::with(['user', 'images'])

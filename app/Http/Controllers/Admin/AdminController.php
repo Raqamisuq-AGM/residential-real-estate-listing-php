@@ -477,6 +477,7 @@ class AdminController extends Controller
     //admin all properties route controller
     public function all()
     {
+        session()->forget('searched');
         $properties = Property::with(['user', 'images'])->orderBy('id', 'desc')->paginate(10);
         return view('template.admin.all-properties', compact('properties'));
     }
@@ -484,6 +485,7 @@ class AdminController extends Controller
     //admin search properties route controller
     public function searchProperty(Request $request)
     {
+        session(['searched' => 'yes']);
         $query = $request->input('query');
 
         $properties = Property::with(['user', 'images'])
