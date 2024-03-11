@@ -16,28 +16,29 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table id="offerDataTable" class="table table-striped table-bordered dt-responsive nowrap"
-                            style="width:100%">
-                            <thead>
-                                <tr style="text-transform: capitalize">
-                                    <th>@lang('lang.title')</th>
-                                    <th>@lang('lang.property_id')</th>
-                                    <th>@lang('lang.contact_number')</th>
-                                    <th>@lang('lang.price')</th>
-                                    <th>@lang('lang.space')</th>
-                                    <th>@lang('lang.location')</th>
-                                    <th>@lang('lang.room')</th>
-                                    <th>@lang('lang.dev_name')</th>
-                                    <th>@lang('lang.ready_construction')</th>
-                                    <th>@lang('lang.property_type')</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
+        </div>
+        <div class="container-fluid" style="width: 90dvw;
+        margin: auto;">
+            <div class="table-responsive" style="width: 100%;
+            overflow-y: overlay;">
+                <table id="offerDataTable" class="table table-striped table-bordered dt-responsive nowrap">
+                    <thead>
+                        <tr style="text-transform: capitalize">
+                            <th>@lang('lang.title')</th>
+                            <th>@lang('lang.property_id')</th>
+                            <th>@lang('lang.contact_number')</th>
+                            <th>@lang('lang.price')</th>
+                            <th>@lang('lang.space')</th>
+                            <th>@lang('lang.district')</th>
+                            <th>@lang('lang.location')</th>
+                            <th>@lang('lang.room')</th>
+                            <th>@lang('lang.dev_name')</th>
+                            <th>@lang('lang.ready_construction')</th>
+                            <th>@lang('lang.property_type')</th>
+                            <th>@lang('lang.roof')</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -90,6 +91,10 @@
                                 name: 'district'
                             },
                             {
+                                data: 'location',
+                                name: 'location'
+                            },
+                            {
                                 data: 'rooms',
                                 name: 'rooms'
                             },
@@ -104,6 +109,10 @@
                             {
                                 data: 'property_type',
                                 name: 'property_type'
+                            },
+                            {
+                                data: 'roof',
+                                name: 'roof'
                             },
                         ]
                     });

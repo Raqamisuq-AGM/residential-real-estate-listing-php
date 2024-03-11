@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-    @lang('lang.add') @lang('lang.properties')
+    @lang('lang.add properties')
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">@lang('lang.add') @lang('lang.properties')</h3>
+                            <h3 class="card-title">@lang('lang.add properties')</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -46,8 +46,13 @@
                                         required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="district">@lang('lang.location')</label>
+                                    <label for="district">@lang('lang.district')</label>
                                     <input type="text" class="form-control" id="district" name="district"
+                                        placeholder="@lang('lang.district')" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">@lang('lang.location')</label>
+                                    <input type="text" class="form-control" id="location" name="location"
                                         placeholder="@lang('lang.location')" required />
                                 </div>
                                 <div class="form-group">

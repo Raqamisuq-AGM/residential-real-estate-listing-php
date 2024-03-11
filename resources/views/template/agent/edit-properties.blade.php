@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.agent')
 @section('title')
-    @lang('lang.edit') @lang('lang.properties')
+    @lang('lang.edit properties')
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">@lang('lang.edit') @lang('lang.properties')</h3>
+                            <h3 class="card-title">@lang('lang.edit properties')</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -46,9 +46,14 @@
                                         required value="{{ $property->rooms }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="district">@lang('lang.location')</label>
+                                    <label for="district">@lang('lang.district')</label>
                                     <input type="text" class="form-control" id="district" name="district"
-                                        placeholder="@lang('lang.location')" required value="{{ $property->district }}" />
+                                        placeholder="@lang('lang.district')" required value="{{ $property->district }}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">@lang('lang.location')</label>
+                                    <input type="text" class="form-control" id="location" name="location"
+                                        placeholder="@lang('lang.location')" required value="{{ $property->location }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="price">@lang('lang.price')</label>
@@ -92,7 +97,8 @@
                                     <label for="thumb">@lang('lang.images')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="thumb[]" name="thumb" />
+                                            <input type="file" class="custom-file-input" id="thumb[]"
+                                                name="thumb" />
                                             <label class="custom-file-label" for="thumb">Choose file</label>
                                         </div>
                                     </div>
