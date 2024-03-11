@@ -87,6 +87,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="roof">@lang('lang.roof')</label>
+                                    <select class="form-control" style="width: 100%;" name="roof" required
+                                        id="roof">
+                                        <option value="Yes">@lang('lang.yes')</option>
+                                        <option value="No">@lang('lang.no')</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="space">@lang('lang.space')</label>
                                     <input type="text" class="form-control" id="space" name="space"
                                         placeholder="135" required />
@@ -95,8 +103,8 @@
                                     <label for="thumb">@lang('lang.images')</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="thumb" name="thumb[]"
-                                                multiple="multiple" accept="jpg,jpeg,png,gif,webp" />
+                                            <input type="file" class="custom-file-input" id="thumb"
+                                                name="thumb[]" multiple="multiple" accept="jpg,jpeg,png,gif,webp" />
                                             <label class="custom-file-label" for="thumb">Choose file</label>
                                         </div>
                                     </div>
