@@ -43,6 +43,7 @@ Route::middleware(['auth', 'user.type:user'])->group(function () {
         Route::post('/change-email-submit', [DashboardController::class, 'changeEmailSubmit'])->name('dashboard.change-email-submit');
         // User Dashboard properties Route
         Route::prefix('properties')->group(function () {
+            Route::get('/search', [DashboardController::class, 'searchProperty'])->name('dashboard.properties.search');
             Route::get('/upload-csv', [DashboardController::class, 'uploadCsv'])->name('dashboard.properties.csv-upload');
             Route::post('/submit-csv', [DashboardController::class, 'submitCsv'])->name('dashboard.properties.csv-submit');
             Route::get('/add', [DashboardController::class, 'add'])->name('dashboard.properties.add');
@@ -87,6 +88,7 @@ Route::middleware(['auth', 'user.type:admin'])->group(function () {
         Route::post('/change-color-submit', [AdminController::class, 'changeColorSubmit'])->name('admin.change-color-submit');
         // Admin properties Route
         Route::prefix('properties')->group(function () {
+            Route::get('/search', [AdminController::class, 'searchProperty'])->name('admin.properties.search');
             Route::get('/upload-csv', [AdminController::class, 'uploadCsv'])->name('admin.properties.csv-upload');
             Route::post('/submit-csv', [AdminController::class, 'submitCsv'])->name('admin.properties.csv-submit');
             Route::get('/add', [AdminController::class, 'add'])->name('admin.properties.add');
@@ -118,6 +120,7 @@ Route::middleware(['auth', 'user.type:agent'])->group(function () {
         Route::post('/change-password-submit', [AgentController::class, 'changePasswordSubmit'])->name('agent.change-password-submit');
         // Admin properties Route
         Route::prefix('properties')->group(function () {
+            Route::get('/search', [AgentController::class, 'searchProperty'])->name('agent.properties.search');
             Route::get('/upload-csv', [AgentController::class, 'uploadCsv'])->name('agent.properties.csv-upload');
             Route::post('/submit-csv', [AgentController::class, 'submitCsv'])->name('agent.properties.csv-submit');
             Route::get('/add', [AgentController::class, 'add'])->name('agent.properties.add');

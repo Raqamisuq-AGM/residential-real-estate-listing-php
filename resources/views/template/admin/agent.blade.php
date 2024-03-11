@@ -30,7 +30,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-hover text-nowrap table-sortable">
                                 <thead>
                                     <tr>
                                         <th>SL</th>
@@ -70,51 +70,51 @@
                                 </tbody>
                             </table>
                             @if ($agents->lastPage() > 1)
-                                    <!-- Render pagination with page numbers -->
-                                    <div class="pagination-wrap mt-40">
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination list-wrap" style="float: right;">
-                                                <!-- Previous Page Link -->
-                                                @if ($agents->onFirstPage())
-                                                    <li class="page-item disabled" aria-disabled="true">
-                                                        <span class="page-link">@lang('lang.previous')</span>
+                                <!-- Render pagination with page numbers -->
+                                <div class="pagination-wrap mt-40">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination list-wrap" style="float: right;">
+                                            <!-- Previous Page Link -->
+                                            @if ($agents->onFirstPage())
+                                                <li class="page-item disabled" aria-disabled="true">
+                                                    <span class="page-link">@lang('lang.previous')</span>
+                                                </li>
+                                            @else
+                                                <li class="page-item">
+                                                    <a class="page-link" href="{{ $agents->previousPageUrl() }}"
+                                                        rel="prev">@lang('lang.previous')</a>
+                                                </li>
+                                            @endif
+
+                                            <!-- Page links -->
+                                            @foreach ($agents->getUrlRange(1, $agents->lastPage()) as $page => $url)
+                                                @if ($page == $agents->currentPage())
+                                                    <li class="page-item active" aria-current="page">
+                                                        <span class="page-link">{{ $page }}</span>
                                                     </li>
                                                 @else
                                                     <li class="page-item">
-                                                        <a class="page-link" href="{{ $agents->previousPageUrl() }}"
-                                                            rel="prev">@lang('lang.previous')</a>
+                                                        <a class="page-link"
+                                                            href="{{ $url }}">{{ $page }}</a>
                                                     </li>
                                                 @endif
+                                            @endforeach
 
-                                                <!-- Page links -->
-                                                @foreach ($agents->getUrlRange(1, $agents->lastPage()) as $page => $url)
-                                                    @if ($page == $agents->currentPage())
-                                                        <li class="page-item active" aria-current="page">
-                                                            <span class="page-link">{{ $page }}</span>
-                                                        </li>
-                                                    @else
-                                                        <li class="page-item">
-                                                            <a class="page-link"
-                                                                href="{{ $url }}">{{ $page }}</a>
-                                                        </li>
-                                                    @endif
-                                                @endforeach
-
-                                                <!-- Next Page Link -->
-                                                @if ($agents->hasMorePages())
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="{{ $agents->nextPageUrl() }}"
-                                                            rel="next">@lang('lang.next')</a>
-                                                    </li>
-                                                @else
-                                                    <li class="page-item disabled" aria-disabled="true">
-                                                        <span class="page-link">@lang('lang.next')</span>
-                                                    </li>
-                                                @endif
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                @endif
+                                            <!-- Next Page Link -->
+                                            @if ($agents->hasMorePages())
+                                                <li class="page-item">
+                                                    <a class="page-link" href="{{ $agents->nextPageUrl() }}"
+                                                        rel="next">@lang('lang.next')</a>
+                                                </li>
+                                            @else
+                                                <li class="page-item disabled" aria-disabled="true">
+                                                    <span class="page-link">@lang('lang.next')</span>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            @endif
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -126,4 +126,79 @@
         <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+@endsection
+
+@section('style')
+    <style>
+        .table-sortable th {
+            cursor: pointer;
+        }
+
+        .table-sortable .th-sort-asc::after {
+            content: "\25b4";
+        }
+
+        .table-sortable .th-sort-desc::after {
+            content: "\25be";
+        }
+
+        .table-sortable .th-sort-asc::after,
+        .table-sortable .th-sort-desc::after {
+            margin-left: 5px;
+        }
+
+        .table-sortable .th-sort-asc,
+        .table-sortable .th-sort-desc {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+@endsection
+
+@section('script')
+    <script>
+        /**
+         * Sorts a HTML table.
+         *
+         * @param {HTMLTableElement} table The table to sort
+         * @param {number} column The index of the column to sort
+         * @param {boolean} asc Determines if the sorting will be in ascending
+         */
+        function sortTableByColumn(table, column, asc = true) {
+            const dirModifier = asc ? 1 : -1;
+            const tBody = table.tBodies[0];
+            const rows = Array.from(tBody.querySelectorAll("tr"));
+
+            // Sort each row
+            const sortedRows = rows.sort((a, b) => {
+                const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+                const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+
+                return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+            });
+
+            // Remove all existing TRs from the table
+            while (tBody.firstChild) {
+                tBody.removeChild(tBody.firstChild);
+            }
+
+            // Re-add the newly sorted rows
+            tBody.append(...sortedRows);
+
+            // Remember how the column is currently sorted
+            table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+            table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
+            table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+        }
+
+        document.querySelectorAll(".table-sortable th").forEach(headerCell => {
+            headerCell.addEventListener("click", () => {
+                const tableElement = headerCell.parentElement.parentElement.parentElement;
+                const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children,
+                    headerCell);
+                const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+                sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+            });
+        });
+    </script>
 @endsection

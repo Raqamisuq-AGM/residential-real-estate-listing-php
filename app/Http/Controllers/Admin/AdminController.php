@@ -356,9 +356,9 @@ class AdminController extends Controller
         // ]);
 
         // Generate a unique ID
-        $uniqueId = 'offerUID' . mt_rand(100, 999); // Generates a random number between 100 and 999
+        $uniqueId = mt_rand(1000, 9999); // Generates a random number between 100 and 999
         while (Property::where('property_id', $uniqueId)->exists()) {
-            $uniqueId = 'offerUID' . mt_rand(100, 999); // Regenerate if the ID already exists
+            $uniqueId = mt_rand(1000, 9999); // Regenerate if the ID already exists
         }
 
         // Create a new property
@@ -370,10 +370,11 @@ class AdminController extends Controller
         $property->space = $request->space;
         $property->rooms = $request->rooms;
         $property->district = $request->district;
+        $property->location = $request->location;
         $property->dev_name = $request->dev_name;
         $property->ready_construction = $request->ready_construction;
         $property->property_type = $request->property_type;
-        // $property->roof = $request->roof;
+        $property->roof = $request->roof;
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'admin';
@@ -432,10 +433,11 @@ class AdminController extends Controller
             "space" => $request->space,
             "rooms" => $request->rooms,
             "district" => $request->district,
+            "location" => $request->location,
             "dev_name" => $request->dev_name,
             "ready_construction" => $request->ready_construction,
             "property_type" => $request->property_type,
-            // "roof" => $request->roof,
+            "roof" => $request->roof,
             "description" => $request->description,
         ]);
 
@@ -476,6 +478,28 @@ class AdminController extends Controller
     public function all()
     {
         $properties = Property::with(['user', 'images'])->orderBy('id', 'desc')->paginate(10);
+        return view('template.admin.all-properties', compact('properties'));
+    }
+
+    //admin search properties route controller
+    public function searchProperty(Request $request)
+    {
+        $query = $request->input('query');
+
+        $properties = Property::with(['user', 'images'])
+            ->where('rooms', $query)
+            ->orWhere('price', $query)
+            ->orWhere('ready_construction', $query)
+            ->orWhere('property_type', $query)
+            ->orWhere('property_id', $query)
+            ->orWhere('contact_number', $query)
+            ->orWhere('space', $query)
+            ->orWhere('district', $query)
+            ->orWhere('location', $query)
+            ->orWhere('dev_name', $query)
+            ->orWhere('ready_construction', $query)
+            ->orWhere('roof', $query)
+            ->paginate(10);
         return view('template.admin.all-properties', compact('properties'));
     }
 

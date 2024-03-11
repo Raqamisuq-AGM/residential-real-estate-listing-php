@@ -17,6 +17,7 @@ class Property extends Model
         "price",
         "space",
         "district",
+        "location",
         "rooms",
         "dev_name",
         "ready_construction",

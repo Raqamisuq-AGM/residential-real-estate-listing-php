@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-    @lang('lang.edit') @lang('lang.agents')
+    @lang('lang.edit agent')
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">@lang('lang.edit') @lang('lang.agents')</h3>
+                            <h3 class="card-title">@lang('lang.edit agent')</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -53,8 +53,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary"
-                                    >@lang('lang.submit')</button>
+                                <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
                             </div>
                         </form>
                     </div>

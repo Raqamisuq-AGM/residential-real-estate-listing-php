@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("price")->nullable();
             $table->string("space")->nullable();
             $table->string("district")->nullable();
+            $table->string("location")->nullable();
             $table->string("rooms")->nullable();
             $table->string("dev_name")->nullable();
             $table->string("ready_construction")->nullable();
