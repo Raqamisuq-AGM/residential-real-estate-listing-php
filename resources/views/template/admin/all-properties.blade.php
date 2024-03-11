@@ -28,7 +28,10 @@
                             {{-- <h3 class="card-title">@lang('lang.properties')</h3> --}}
                             <div>
                                 <button class="btn btn-primary" id="toggleInput">@lang('lang.add property')</button>
-                                <a class="btn btn-primary" href="{{ route('admin.properties.all') }}">@lang('lang.all')</a>
+                                @if (session()->has('searched'))
+                                    <a class="btn btn-primary"
+                                        href="{{ route('admin.properties.all') }}">@lang('lang.all')</a>
+                                @endif
                             </div>
                             <div style="display: flex;">
                                 <form method="GET" action="{{ route('admin.properties.search') }}" style="display: flex;">
