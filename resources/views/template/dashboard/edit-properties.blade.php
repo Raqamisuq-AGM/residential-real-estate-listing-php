@@ -89,6 +89,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="roof">@lang('lang.roof')</label>
+                                    <select class="form-control" style="width: 100%;" name="roof" required id="roof"
+                                        value="{{ $property->roof }}">
+                                        <option value="Yes">@lang('lang.yes')</option>
+                                        <option value="No">@lang('lang.no')</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="space">@lang('lang.space')</label>
                                     <input type="text" class="form-control" id="space" name="space"
                                         placeholder="135" required value="{{ $property->space }}" />
