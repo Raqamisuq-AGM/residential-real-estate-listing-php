@@ -180,6 +180,11 @@
             <a href="{{ route('signup') }}" class="btn btn-primary btn-block" type="button" id="btn-signup">
                 <i class="fas fa-user-plus"></i> @lang('lang.signup new account')
             </a>
+            <hr />
+            <a href="{{ route('signup.forget-password') }}" class="btn btn-primary btn-block" type="button"
+                id="btn-signup">
+                <i class="fa fa-key" aria-hidden="true"></i> @lang('lang.forget password')
+            </a>
         </form>
 
         <br />
