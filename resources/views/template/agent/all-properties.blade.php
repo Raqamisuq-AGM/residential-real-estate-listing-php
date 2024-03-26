@@ -162,6 +162,10 @@
                                                 <td>{{ $property->property_type }}</td>
                                                 {{-- <td>{{ $property->roof }}</td> --}}
                                                 <td>
+                                                    <a href="{{ route('offer-details', ['offer_id' => $property->property_id]) }}"
+                                                        target="_blank" style="margin-right: 15px; color: #0c4b36">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
                                                     <a href="#" id="copyLink{{ $property->id }}" class="copy-link"
                                                         data-url="{{ request()->getSchemeAndHttpHost() . '/offer' . '/' . $property->property_id }}"
                                                         style="margin-right: 15px; color: #0c4b36">

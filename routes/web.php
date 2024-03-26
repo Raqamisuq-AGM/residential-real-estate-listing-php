@@ -24,12 +24,15 @@ Route::post('/login-submit', [HomeController::class, 'loginSubmit'])->name('logi
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/signup', [HomeController::class, 'signup'])->name('signup');
 Route::post('/signup-submit', [HomeController::class, 'signupSubmit'])->name('signup.submit');
+Route::get('/forget-password', [HomeController::class, 'forgetPassword'])->name('signup.forget-password');
+Route::post('/forget-password-submit', [HomeController::class, 'forgetPasswordSubmit'])->name('signup.forget-password-submit');
 
 // Offers Route
 Route::middleware('auth')->group(function () {
     Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
     Route::get('/offer/{property_id}', [HomeController::class, 'guestOffer'])->name('guest.offer');
     Route::get('/get-offer/{property_id}', [HomeController::class, 'getGuestOffer'])->name('guest.get-offer');
+    Route::get('/offer-details/{offer_id}', [HomeController::class, 'offerDetails'])->name('offer-details');
 });
 
 // User Dashboard Route
