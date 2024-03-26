@@ -191,4 +191,70 @@ class HomeController extends Controller
         // Redirect to the user dashboard
         return redirect()->route('dashboard.dashboard');
     }
+
+    //Forget password route controller
+    public function forgetPassword()
+    {
+        //clean search session data
+        Session::forget('location');
+        Session::forget('room');
+        Session::forget('type');
+        Session::forget('classification');
+        Session::forget('price');
+        return view('template.frontend.forget-password');
+    }
+
+    //Forget password submit route controller
+    public function forgetPasswordSubmit(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        $user = User::where('email', $request->input('email'))
+            ->first();
+
+        if ($user == null) {
+            toastr()->success('Email not found', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->back();
+        }
+
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            // Check if the password matches the hashed password
+            if (Hash::check($request->password, $user->password)) {
+                if ($user->type === 'admin') {
+                    toastr()->success('Password changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+                    return redirect()->route('admin.dashboard');
+                } else if ($user->type === 'agent') {
+                    toastr()->success('Password changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+                    return redirect()->route('agent.dashboard');
+                } else {
+                    toastr()->success('Password changed successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+                    return redirect()->route('dashboard.dashboard');
+                }
+            }
+
+            // Password does not match
+            Auth::logout();
+        }
+        return back()->withErrors(['email' => 'Invalid credentials']);
+    }
+
+    //Offer details route controller
+    public function offerDetails($offer_id)
+    {
+        $offerId = $offer_id;
+        $property = Property::with('images')->where('property_id', $offer_id)->first();
+        return view('template.frontend.propertyDetails', compact('offerId', 'property'));
+    }
 }

@@ -131,19 +131,10 @@
                                 classification: classification
                             }
                         },
-                        columns: [
-                            // {
-                            //     data: 'title',
-                            //     name: 'title'
-                            // },
-                            {
+                        columns: [{
                                 data: 'property_id',
                                 name: 'property_id'
                             },
-                            // {
-                            //     data: 'contact_number',
-                            //     name: 'contact_number'
-                            // },
                             {
                                 data: 'price',
                                 name: 'price'
@@ -152,35 +143,23 @@
                                 data: 'space',
                                 name: 'space'
                             },
-                            // {
-                            //     data: 'district',
-                            //     name: 'district'
-                            // },
-                            // {
-                            //     data: 'location',
-                            //     name: 'location'
-                            // },
                             {
                                 data: 'rooms',
                                 name: 'rooms'
                             },
-                            // {
-                            //     data: 'dev_name',
-                            //     name: 'dev_name'
-                            // },
-                            // {
-                            //     data: 'ready_construction',
-                            //     name: 'ready_construction'
-                            // },
-                            // {
-                            //     data: 'property_type',
-                            //     name: 'property_type'
-                            // },
-                            // {
-                            //     data: 'roof',
-                            //     name: 'roof'
-                            // },
                         ]
+                    });
+
+                    // Handle row click event
+                    $('#offerDataTable tbody').on('click', 'tr', function() {
+                        var data = dataTable.row(this).data();
+                        if (data) {
+                            var id = data.property_id;
+                            if (id) {
+                                var url = "/offer-details/" + id;
+                                window.open(url, '_blank');
+                            }
+                        }
                     });
                 }
 
@@ -192,7 +171,6 @@
 
                     $('#offerDataTable').DataTable().destroy();
                     fill_datatable(room, price, type, classification);
-
                 });
             }
         });

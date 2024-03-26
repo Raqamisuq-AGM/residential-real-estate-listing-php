@@ -59,7 +59,7 @@
                                             <th>@lang('lang.thumb')</th>
                                             <th>@lang('lang.offer id')</th>
                                             <th>@lang('lang.title')</th>
-                                            <th>@lang('lang.contact number')</th>
+                                            {{-- <th>@lang('lang.contact number')</th> --}}
                                             <th>@lang('lang.price')</th>
                                             <th>@lang('lang.space')</th>
                                             <th>@lang('lang.district')</th>
@@ -69,7 +69,7 @@
                                             <th>@lang('lang.ready/construction')</th>
                                             <th>@lang('lang.type')</th>
                                             {{-- <th>@lang('lang.roof')</th> --}}
-                                            {{-- <th>@lang('lang.action')</th> --}}
+                                            <th>@lang('lang.action')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -148,7 +148,7 @@
                                                 </td>
                                                 <td>{{ $property->property_id }}</td>
                                                 <td>{{ $property->title }}</td>
-                                                <td>{{ $property->contact_number }}</td>
+                                                {{-- <td>{{ $property->contact_number }}</td> --}}
                                                 <td>SAR{{ $property->price }}</td>
                                                 <td>{{ $property->space }}</td>
                                                 <td>{{ $property->district }}</td>
@@ -176,6 +176,12 @@
                                                         <i class="fas fa-trash" aria-hidden="true"></i>
                                                     </a>
                                                 </td> --}}
+                                                <td>
+                                                    <a href="{{ route('offer-details', ['offer_id' => $property->property_id]) }}"
+                                                        target="_blank">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>

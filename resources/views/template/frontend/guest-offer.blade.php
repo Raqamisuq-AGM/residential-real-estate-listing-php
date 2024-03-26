@@ -116,6 +116,18 @@
                             // },
                         ]
                     });
+
+                    // Handle row click event
+                    $('#offerDataTable tbody').on('click', 'tr', function() {
+                        var data = dataTable.row(this).data();
+                        if (data) {
+                            var id = data.property_id;
+                            if (id) {
+                                var url = "/offer-details/" + id;
+                                window.open(url, '_blank');
+                            }
+                        }
+                    });
                 }
 
                 $('#filter').click(function() {
