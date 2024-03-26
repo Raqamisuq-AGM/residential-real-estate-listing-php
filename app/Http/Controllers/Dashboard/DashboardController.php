@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         // Get the properties associated with the authenticated user where status is "pending"
-        $allProperties = $user->properties()->count();
+        $allProperties = Property::count();
         return view('template.dashboard.index', compact('allProperties', 'user'));
     }
 
@@ -139,7 +139,7 @@ class DashboardController extends Controller
         $property->dev_name = $request->dev_name;
         $property->ready_construction = $request->ready_construction;
         $property->property_type = $request->property_type;
-        $property->roof = $request->roof;
+        // $property->roof = $request->roof;
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'user';
@@ -204,7 +204,7 @@ class DashboardController extends Controller
             "dev_name" => $request->dev_name,
             "ready_construction" => $request->ready_construction,
             "property_type" => $request->property_type,
-            "roof" => $request->roof,
+            // "roof" => $request->roof,
             "description" => $request->description,
         ]);
 
@@ -249,7 +249,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         // Get the properties associated with the authenticated user
-        $properties = $user->properties()->with('images')->orderBy('id', 'desc')->paginate(10);
+        $properties = Property::with('images')->orderBy('id', 'desc')->paginate(10);
         return view('template.dashboard.all-properties', compact('properties', 'user'));
     }
 

@@ -71,8 +71,10 @@ Route::middleware(['auth', 'user.type:admin'])->group(function () {
         Route::get('/agent/{id}', [AdminController::class, 'agentEdit'])->name('admin.edit-agent');
         Route::post('/agent-update/{id}', [AdminController::class, 'agentUpdate'])->name('admin.update-agent');
         Route::get('/agent-delete/{id}', [AdminController::class, 'agentDelete'])->name('admin.delete-agent');
+        Route::get('/approve-agent/{id}', [AdminController::class, 'approveAgent'])->name('admin.approve-agent');
         Route::get('/approve-user/{id}', [AdminController::class, 'approveUser'])->name('admin.approve-user');
         Route::get('/disapprove-user/{id}', [AdminController::class, 'disapproveUser'])->name('admin.disapprove-user');
+        Route::get('/disapprove-agent/{id}', [AdminController::class, 'disapproveAgent'])->name('admin.disapprove-agent');
         Route::get('/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
         Route::get('/change-password', [AdminController::class, 'changePassword'])->name('admin.change-password');
         Route::get('/change-email', [AdminController::class, 'changeEmail'])->name('admin.change-email');

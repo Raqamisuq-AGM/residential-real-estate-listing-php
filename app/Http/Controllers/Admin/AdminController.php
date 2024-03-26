@@ -131,8 +131,30 @@ class AdminController extends Controller
         $user->status = 'disapproved';
         $user->save();
 
-        toastr()->success('User disapproved successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        toastr()->success('User suspended successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
         return redirect()->route('admin.users');
+    }
+
+    //admin approve agent properties route controller
+    public function approveAgent($id)
+    {
+        $user = User::find($id);
+        $user->status = 'activated';
+        $user->save();
+
+        toastr()->success('agent activated successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.agents');
+    }
+
+    //admin disapprove agent properties route controller
+    public function disapproveAgent($id)
+    {
+        $user = User::find($id);
+        $user->status = 'disapproved';
+        $user->save();
+
+        toastr()->success('User suspended successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.agents');
     }
 
     //admin delete user properties route controller
@@ -374,7 +396,7 @@ class AdminController extends Controller
         $property->dev_name = $request->dev_name;
         $property->ready_construction = $request->ready_construction;
         $property->property_type = $request->property_type;
-        $property->roof = $request->roof;
+        // $property->roof = $request->roof;
         $property->description = $request->description;
         $property->user_id = auth()->id();
         $property->post_by = 'admin';
@@ -437,7 +459,7 @@ class AdminController extends Controller
             "dev_name" => $request->dev_name,
             "ready_construction" => $request->ready_construction,
             "property_type" => $request->property_type,
-            "roof" => $request->roof,
+            // "roof" => $request->roof,
             "description" => $request->description,
         ]);
 

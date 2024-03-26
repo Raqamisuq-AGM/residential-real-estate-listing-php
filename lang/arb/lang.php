@@ -114,4 +114,5 @@ return [
     'sar' => 'SAR',
     'edit property' => 'edit property',
     'edit agency' => 'edit agency',
+    'phone' => 'هاتف',
 ];

@@ -160,7 +160,9 @@
             <input type="text" id="fullName" name="name" class="form-control" placeholder="@lang('lang.full name')"
                 required autofocus />
             <input type="email" id="inputEmail" name="email" class="form-control" placeholder="@lang('lang.email address')"
-                required autofocus />
+                required />
+            <input type="text" id="phone" name="phone" class="form-control" placeholder="@lang('lang.phone')"
+                required />
             <input type="password" id="inputPassword" name="password" class="form-control"
                 placeholder="@lang('lang.password')" required />
 

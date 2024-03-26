@@ -26,7 +26,7 @@
                         <tr style="text-transform: capitalize">
                             <th>@lang('lang.title')</th>
                             <th>@lang('lang.property_id')</th>
-                            <th>@lang('lang.contact_number')</th>
+                            {{-- <th>@lang('lang.contact_number')</th> --}}
                             <th>@lang('lang.price')</th>
                             <th>@lang('lang.space')</th>
                             <th>@lang('lang.district')</th>
@@ -35,7 +35,7 @@
                             <th>@lang('lang.dev_name')</th>
                             <th>@lang('lang.ready_construction')</th>
                             <th>@lang('lang.property_type')</th>
-                            <th>@lang('lang.roof')</th>
+                            {{-- <th>@lang('lang.roof')</th> --}}
                         </tr>
                     </thead>
                 </table>
@@ -74,10 +74,10 @@
                                 data: 'property_id',
                                 name: 'property_id'
                             },
-                            {
-                                data: 'contact_number',
-                                name: 'contact_number'
-                            },
+                            // {
+                            //     data: 'contact_number',
+                            //     name: 'contact_number'
+                            // },
                             {
                                 data: 'price',
                                 name: 'price'
@@ -110,10 +110,10 @@
                                 data: 'property_type',
                                 name: 'property_type'
                             },
-                            {
-                                data: 'roof',
-                                name: 'roof'
-                            },
+                            // {
+                            //     data: 'roof',
+                            //     name: 'roof'
+                            // },
                         ]
                     });
                 }
