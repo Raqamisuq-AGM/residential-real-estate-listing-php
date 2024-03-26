@@ -13,6 +13,34 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('dashboard.properties.all') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            @lang('lang.offers')
+                        </p>
+                    </a>
+                    {{-- <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.properties.csv-upload') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@lang('lang.upload csv')</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.properties.add') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@lang('lang.add')</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.properties.all') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@lang('lang.all')</p>
+                            </a>
+                        </li>
+                    </ul> --}}
+                </li>
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
@@ -40,7 +68,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href="{{ route('dashboard.change-email') }}" class="nav-link">
                         <i class="nav-icon fas fa-envelope"></i>

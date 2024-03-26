@@ -89,18 +89,18 @@
                 <table id="offerDataTable" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead>
                         <tr style="text-transform: capitalize">
-                            <th>@lang('lang.title')</th>
+                            {{-- <th>@lang('lang.title')</th> --}}
                             <th>@lang('lang.property_id')</th>
-                            <th>@lang('lang.contact_number')</th>
+                            {{-- <th>@lang('lang.contact_number')</th> --}}
                             <th>@lang('lang.price')</th>
                             <th>@lang('lang.space')</th>
-                            <th>@lang('lang.district')</th>
-                            <th>@lang('lang.location')</th>
+                            {{-- <th>@lang('lang.district')</th> --}}
+                            {{-- <th>@lang('lang.location')</th> --}}
                             <th>@lang('lang.room')</th>
-                            <th>@lang('lang.dev_name')</th>
-                            <th>@lang('lang.ready_construction')</th>
-                            <th>@lang('lang.property_type')</th>
-                            <th>@lang('lang.roof')</th>
+                            {{-- <th>@lang('lang.dev_name')</th> --}}
+                            {{-- <th>@lang('lang.ready_construction')</th> --}}
+                            {{-- <th>@lang('lang.property_type')</th> --}}
+                            {{-- <th>@lang('lang.roof')</th> --}}
                         </tr>
                     </thead>
                 </table>
@@ -131,18 +131,19 @@
                                 classification: classification
                             }
                         },
-                        columns: [{
-                                data: 'title',
-                                name: 'title'
-                            },
+                        columns: [
+                            // {
+                            //     data: 'title',
+                            //     name: 'title'
+                            // },
                             {
                                 data: 'property_id',
                                 name: 'property_id'
                             },
-                            {
-                                data: 'contact_number',
-                                name: 'contact_number'
-                            },
+                            // {
+                            //     data: 'contact_number',
+                            //     name: 'contact_number'
+                            // },
                             {
                                 data: 'price',
                                 name: 'price'
@@ -151,34 +152,34 @@
                                 data: 'space',
                                 name: 'space'
                             },
-                            {
-                                data: 'district',
-                                name: 'district'
-                            },
-                            {
-                                data: 'location',
-                                name: 'location'
-                            },
+                            // {
+                            //     data: 'district',
+                            //     name: 'district'
+                            // },
+                            // {
+                            //     data: 'location',
+                            //     name: 'location'
+                            // },
                             {
                                 data: 'rooms',
                                 name: 'rooms'
                             },
-                            {
-                                data: 'dev_name',
-                                name: 'dev_name'
-                            },
-                            {
-                                data: 'ready_construction',
-                                name: 'ready_construction'
-                            },
-                            {
-                                data: 'property_type',
-                                name: 'property_type'
-                            },
-                            {
-                                data: 'roof',
-                                name: 'roof'
-                            },
+                            // {
+                            //     data: 'dev_name',
+                            //     name: 'dev_name'
+                            // },
+                            // {
+                            //     data: 'ready_construction',
+                            //     name: 'ready_construction'
+                            // },
+                            // {
+                            //     data: 'property_type',
+                            //     name: 'property_type'
+                            // },
+                            // {
+                            //     data: 'roof',
+                            //     name: 'roof'
+                            // },
                         ]
                     });
                 }

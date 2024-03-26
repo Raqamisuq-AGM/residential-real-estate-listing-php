@@ -86,14 +86,14 @@
                                         <option value="Under Contruction">@lang('lang.under construction')</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="roof">@lang('lang.roof')</label>
                                     <select class="form-control" style="width: 100%;" name="roof" required
                                         id="roof">
                                         <option value="Yes">@lang('lang.yes')</option>
                                         <option value="No">@lang('lang.no')</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="space">@lang('lang.space')</label>
                                     <input type="text" class="form-control" id="space" name="space"

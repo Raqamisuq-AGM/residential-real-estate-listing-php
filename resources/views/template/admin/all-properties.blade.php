@@ -67,7 +67,7 @@
                                             <th>@lang('lang.developer name')</th>
                                             <th>@lang('lang.ready/construction')</th>
                                             <th>@lang('lang.type')</th>
-                                            <th>@lang('lang.roof')</th>
+                                            {{-- <th>@lang('lang.roof')</th> --}}
                                             <th>@lang('lang.action')</th>
                                         </tr>
                                     </thead>
@@ -110,13 +110,13 @@
                                                     <option value="Roof">@lang('lang.roof')</option>
                                                 </select>
                                             </td>
-                                            <td style="width: 6%">
+                                            {{-- <td style="width: 6%">
                                                 <select class="form-control" style="width: 100%;" name="roof">
                                                     <option value="yes">@lang('lang.yes')</option>
                                                     <option value="no">@lang('lang.no')</option>
 
                                                 </select>
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 <button
                                                     style="margin-right: 15px; color: #0c4b36;border: none;
@@ -134,8 +134,13 @@
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>
                                                     @if ($property->images->isNotEmpty())
-                                                        <img src="{{ asset('assets/image/property/' . $property->images->first()->img) }}"
-                                                            alt="Property Image" style="width: 50px;">
+                                                        @foreach ($property->images as $img)
+                                                            <a href="{{ asset('assets/image/property/' . $img->img) }}"
+                                                                class="gallerys prop-imgs">
+                                                                <img src="{{ asset('assets/image/property/' . $img->img) }}"
+                                                                    alt="Property Image" style="width: 50px;">
+                                                            </a>
+                                                        @endforeach
                                                     @else
                                                         N/A
                                                     @endif
@@ -146,12 +151,16 @@
                                                 <td>SAR{{ $property->price }}</td>
                                                 <td>{{ $property->space }}</td>
                                                 <td>{{ $property->district }}</td>
-                                                <td>{{ $property->location }}</td>
+                                                <td>
+                                                    <a href="{{ $property->location }}" target="_blank">
+                                                        Location
+                                                    </a>
+                                                </td>
                                                 <td>{{ $property->rooms }}</td>
                                                 <td>{{ $property->dev_name }}</td>
                                                 <td>{{ $property->ready_construction }}</td>
                                                 <td>{{ $property->property_type }}</td>
-                                                <td>{{ $property->roof }}</td>
+                                                {{-- <td>{{ $property->roof }}</td> --}}
                                                 <td>
                                                     <a href="#" id="copyLink{{ $property->id }}" class="copy-link"
                                                         data-url="{{ request()->getSchemeAndHttpHost() . '/offer' . '/' . $property->property_id }}"
@@ -263,7 +272,19 @@
         .table-sortable .th-sort-desc {
             background: rgba(0, 0, 0, 0.1);
         }
+
+        .prop-imgs {
+            display: none;
+        }
+
+        .prop-imgs:first-child {
+            display: block;
+        }
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+        integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 @section('script')
@@ -348,6 +369,22 @@
                 const currentIsAscending = headerCell.classList.contains("th-sort-asc");
 
                 sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+        integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.gallerys').magnificPopup({
+                type: 'image',
+                // delegate: 'a',
+                gallery: {
+                    enabled: true
+                },
             });
         });
     </script>

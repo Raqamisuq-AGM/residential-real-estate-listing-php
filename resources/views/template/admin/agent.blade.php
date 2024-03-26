@@ -36,7 +36,9 @@
                                         <th>SL</th>
                                         <th>@lang('lang.name')</th>
                                         <th>@lang('lang.email')</th>
+                                        <th>@lang('lang.phone')</th>
                                         <th>@lang('lang.date')</th>
+                                        <th>@lang('lang.status')</th>
                                         <th>@lang('lang.action')</th>
                                     </tr>
                                 </thead>
@@ -50,11 +52,21 @@
                                                 {{ $agent->name }}
                                             </td>
                                             <td>{{ $agent->email }}</td>
+                                            <td>{{ $agent->phone }}</td>
                                             <td>{{ $agent->created_at->format('m/d/y h:i A') }}</td>
+                                            <td>{{ $agent->status }}</td>
                                             <td>
                                                 <a href="{{ route('admin.edit-agent', ['id' => $agent->id]) }}"
                                                     style="margin-right: 15px; color: #0c4b36">
                                                     <i class="fas fa-pen" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="{{ route('admin.approve-agent', ['id' => $agent->id]) }}"
+                                                    style="margin-right: 15px; color: #0c4b36">
+                                                    <i class="fas fa-check" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="{{ route('admin.disapprove-agent', ['id' => $agent->id]) }}"
+                                                    style="margin-right: 15px; color: #0c4b36">
+                                                    <i class="fa fa-ban" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="{{ route('admin.delete-agent', ['id' => $agent->id]) }}"
                                                     style="color: #0c4b36">
