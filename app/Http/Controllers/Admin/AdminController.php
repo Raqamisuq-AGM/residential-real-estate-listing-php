@@ -65,6 +65,7 @@ class AdminController extends Controller
         $agent = new User();
         $agent->name = $request->input('name');
         $agent->email = $request->input('email');
+        $agent->phone = $request->input('phone');
         $agent->password = Hash::make($request->input('password'));
         $agent->type = 'agent';
         $agent->status = 'approved';

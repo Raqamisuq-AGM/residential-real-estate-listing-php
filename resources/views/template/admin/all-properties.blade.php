@@ -148,7 +148,7 @@
                                                 <td>{{ $property->property_id }}</td>
                                                 <td>{{ $property->title }}</td>
                                                 <td>{{ $property->contact_number }}</td>
-                                                <td>SAR{{ $property->price }}</td>
+                                                <td>SAR {{ $property->price }}</td>
                                                 <td>{{ $property->space }}</td>
                                                 <td>{{ $property->district }}</td>
                                                 <td>
