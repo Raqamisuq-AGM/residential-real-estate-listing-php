@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-xl-6 col-md-4 col-lg-6">
                     <div class="prise_quantity">
-                        <h4>${{ $property->price }}</h4>
+                        <h4>SAR {{ $property->price }}</h4>
                         <div
                             style="display: flex; flex-wrap: wrap;width: fit-content;
                         float: right;">
