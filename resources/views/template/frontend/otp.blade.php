@@ -152,21 +152,21 @@
 
 <body>
     <div id="logreg-forms">
-        <form method="POST" action="{{ route('signup.get-otp') }}" class="form-signin">
+        <form method="POST" action="{{ route('signup.otp-check') }}" class="form-signin">
             @csrf
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
                 @lang('lang.forget password')
             </h1>
-            <input type="text" id="fullName" name="email" class="form-control" placeholder="@lang('lang.enter your registered email')"
+            <input type="text" id="fullName" name="otp" class="form-control" placeholder="@lang('lang.enter otp')"
                 required autofocus />
-            @error('email')
+            @error('otp')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
 
             <button class="btn btn-success btn-block" type="submit">
-                <i class="fas fa-sign-in-alt"></i> @lang('lang.get otp')
+                <i class="fas fa-sign-in-alt"></i> @lang('lang.submit')
             </button>
             <hr />
             <a href="{{ route('login') }}" class="btn btn-primary btn-block" type="button" id="btn-signup">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OtpMail;
 use App\Models\Property;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Mail;
 use DB;
 
 class HomeController extends Controller
@@ -202,6 +204,58 @@ class HomeController extends Controller
         Session::forget('classification');
         Session::forget('price');
         return view('template.frontend.forget-password');
+    }
+
+    // Get OTP method
+    public function getOTP(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+        ]);
+
+        $user = User::where('email', $request->input('email'))->first();
+
+        if ($user == null) {
+            toastr()->warning('Email not found', 'warning', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->back();
+        } else {
+            $otp = rand(1000, 9999);
+            $user->otp = $otp;
+            $user->save();
+
+            session(['fp_has_email' => $request->input('email')]);
+
+            Mail::to($request->input('email'))->send(new OtpMail($user->name, $otp));
+
+            toastr()->success('OTP sent successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->route('signup.otp');
+        }
+    }
+
+    // Otp method
+    public function otp()
+    {
+        return view('template.frontend.otp');
+    }
+
+    // Otp check method
+    public function otpCheck(Request $request)
+    {
+        $email = session()->get('fp_has_email');
+        $user = User::where('email', $email)->where('otp', $request->otp)->first();
+
+        if ($user == null) {
+            toastr()->warning('Wrong OTP', 'warning', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->back();
+        } else {
+            return redirect()->route('signup.change-password');
+        }
+    }
+
+    // Change password check method
+    public function changePassword()
+    {
+        return view('template.frontend.change-password');
     }
 
     //Forget password submit route controller

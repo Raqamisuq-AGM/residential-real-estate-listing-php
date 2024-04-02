@@ -115,4 +115,6 @@ return [
     'edit property' => 'edit property',
     'edit agency' => 'edit agency',
     'phone' => 'هاتف',
+    'get otp' => 'Get OTP',
+    'enter otp' => 'Enter OTP',
 ];

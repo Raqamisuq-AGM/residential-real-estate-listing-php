@@ -25,6 +25,10 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/signup', [HomeController::class, 'signup'])->name('signup');
 Route::post('/signup-submit', [HomeController::class, 'signupSubmit'])->name('signup.submit');
 Route::get('/forget-password', [HomeController::class, 'forgetPassword'])->name('signup.forget-password');
+Route::get('/change-password', [HomeController::class, 'changePassword'])->name('signup.change-password');
+Route::post('/get-otp', [HomeController::class, 'getOtp'])->name('signup.get-otp');
+Route::get('/otp', [HomeController::class, 'otp'])->name('signup.otp');
+Route::post('/otp-check', [HomeController::class, 'otpCheck'])->name('signup.otp-check');
 Route::post('/forget-password-submit', [HomeController::class, 'forgetPasswordSubmit'])->name('signup.forget-password-submit');
 
 // Offers Route

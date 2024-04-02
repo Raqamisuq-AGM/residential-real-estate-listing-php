@@ -118,4 +118,6 @@ return [
     'phone' => 'phone',
     'enter your registered email' => 'Enter your registered email',
     'forget password' => 'Forget password',
+    'get otp' => 'Get OTP',
+    'enter otp' => 'Enter OTP',
 ];
