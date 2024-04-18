@@ -1,169 +1,173 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-    @lang('lang.users')
+@lang('lang.users')
 @endsection
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">@lang('lang.all') @lang('lang.users')</h1>
-                </div>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@lang('lang.all') @lang('lang.users')</h1>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.row -->
     </div>
-    <!-- /.content-header -->
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">@lang('lang.users')</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap table-sortable">
-                                <thead>
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>@lang('lang.name')</th>
-                                        <th>@lang('lang.email')</th>
-                                        <th>@lang('lang.phone')</th>
-                                        <th>@lang('lang.date')</th>
-                                        <th>@lang('lang.status')</th>
-                                        <th>@lang('lang.action')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($users as $user)
-                                        <tr>
-                                            <td>
-                                                {{ $loop->index + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ $user->name }}
-                                            </td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->phone }}</td>
-                                            <td>{{ $user->created_at->format('m/d/y h:i A') }}</td>
-                                            <td>{{ $user->status }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.approve-user', ['id' => $user->id]) }}"
-                                                    style="margin-right: 15px; color: #0c4b36">
-                                                    <i class="fas fa-check" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="{{ route('admin.disapprove-user', ['id' => $user->id]) }}"
-                                                    style="margin-right: 15px; color: #0c4b36">
-                                                    <i class="fa fa-ban" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="{{ route('admin.delete-user', ['id' => $user->id]) }}"
-                                                    style="color: #0c4b36">
-                                                    <i class="fas fa-trash" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">@lang('lang.no users found')</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            @if ($users->lastPage() > 1)
-                                <!-- Render pagination with page numbers -->
-                                <div class="pagination-wrap mt-40">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination list-wrap" style="float: right;">
-                                            <!-- Previous Page Link -->
-                                            @if ($users->onFirstPage())
-                                                <li class="page-item disabled" aria-disabled="true">
-                                                    <span class="page-link">@lang('lang.previous')</span>
-                                                </li>
-                                            @else
-                                                <li class="page-item">
-                                                    <a class="page-link" href="{{ $users->previousPageUrl() }}"
-                                                        rel="prev">@lang('lang.previous')</a>
-                                                </li>
-                                            @endif
-
-                                            <!-- Page links -->
-                                            @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
-                                                @if ($page == $user->currentPage())
-                                                    <li class="page-item active" aria-current="page">
-                                                        <span class="page-link">{{ $page }}</span>
-                                                    </li>
-                                                @else
-                                                    <li class="page-item">
-                                                        <a class="page-link"
-                                                            href="{{ $url }}">{{ $page }}</a>
-                                                    </li>
-                                                @endif
-                                            @endforeach
-
-                                            <!-- Next Page Link -->
-                                            @if ($users->hasMorePages())
-                                                <li class="page-item">
-                                                    <a class="page-link" href="{{ $users->nextPageUrl() }}"
-                                                        rel="next">@lang('lang.next')</a>
-                                                </li>
-                                            @else
-                                                <li class="page-item disabled" aria-disabled="true">
-                                                    <span class="page-link">@lang('lang.next')</span>
-                                                </li>
-                                            @endif
-                                        </ul>
-                                    </nav>
-                                </div>
-                            @endif
-                        </div>
-                        <!-- /.card-body -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header" style="display: flex; justify-content:space-between;">
+                        <h3 class="card-title">@lang('lang.users')</h3>
+                        <a href="{{ route('admin.add-user') }}" class="btn btn-primary">Add user</a>
                     </div>
-                    <!-- /.card -->
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap table-sortable">
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>@lang('lang.name')</th>
+                                    <th>@lang('lang.email')</th>
+                                    <th>@lang('lang.phone')</th>
+                                    <th>@lang('lang.date')</th>
+                                    <th>@lang('lang.status')</th>
+                                    <th>@lang('lang.action')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($users as $user)
+                                <tr>
+                                    <td>
+                                        {{ $loop->index + 1 }}
+                                    </td>
+                                    <td>
+                                        {{ $user->name }}
+                                    </td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone }}</td>
+                                    <td>{{ $user->created_at->format('m/d/y h:i A') }}</td>
+                                    <td>{{ $user->status }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.edit-user', ['id' => $user->id]) }}"
+                                            style="margin-right: 15px; color: #0c4b36">
+                                            <i class="fas fa-pen" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="{{ route('admin.approve-user', ['id' => $user->id]) }}"
+                                            style="margin-right: 15px; color: #0c4b36">
+                                            <i class="fas fa-check" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="{{ route('admin.disapprove-user', ['id' => $user->id]) }}"
+                                            style="margin-right: 15px; color: #0c4b36">
+                                            <i class="fa fa-ban" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="{{ route('admin.delete-user', ['id' => $user->id]) }}"
+                                            style="color: #0c4b36">
+                                            <i class="fas fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">@lang('lang.no users found')</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        @if ($users->lastPage() > 1)
+                        <!-- Render pagination with page numbers -->
+                        <div class="pagination-wrap mt-40">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination list-wrap" style="float: right;">
+                                    <!-- Previous Page Link -->
+                                    @if ($users->onFirstPage())
+                                    <li class="page-item disabled" aria-disabled="true">
+                                        <span class="page-link">@lang('lang.previous')</span>
+                                    </li>
+                                    @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $users->previousPageUrl() }}"
+                                            rel="prev">@lang('lang.previous')</a>
+                                    </li>
+                                    @endif
+
+                                    <!-- Page links -->
+                                    @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                                    @if ($page == $user->currentPage())
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">{{ $page }}</span>
+                                    </li>
+                                    @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                    @endif
+                                    @endforeach
+
+                                    <!-- Next Page Link -->
+                                    @if ($users->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $users->nextPageUrl() }}"
+                                            rel="next">@lang('lang.next')</a>
+                                    </li>
+                                    @else
+                                    <li class="page-item disabled" aria-disabled="true">
+                                        <span class="page-link">@lang('lang.next')</span>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </nav>
+                        </div>
+                        @endif
+                    </div>
+                    <!-- /.card-body -->
                 </div>
+                <!-- /.card -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 @endsection
 
 @section('style')
-    <style>
-        .table-sortable th {
-            cursor: pointer;
-        }
+<style>
+    .table-sortable th {
+        cursor: pointer;
+    }
 
-        .table-sortable .th-sort-asc::after {
-            content: "\25b4";
-        }
+    .table-sortable .th-sort-asc::after {
+        content: "\25b4";
+    }
 
-        .table-sortable .th-sort-desc::after {
-            content: "\25be";
-        }
+    .table-sortable .th-sort-desc::after {
+        content: "\25be";
+    }
 
-        .table-sortable .th-sort-asc::after,
-        .table-sortable .th-sort-desc::after {
-            margin-left: 5px;
-        }
+    .table-sortable .th-sort-asc::after,
+    .table-sortable .th-sort-desc::after {
+        margin-left: 5px;
+    }
 
-        .table-sortable .th-sort-asc,
-        .table-sortable .th-sort-desc {
-            background: rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    .table-sortable .th-sort-asc,
+    .table-sortable .th-sort-desc {
+        background: rgba(0, 0, 0, 0.1);
+    }
+</style>
 @endsection
 
 @section('script')
-    <script>
-        /**
+<script>
+    /**
          * Sorts a HTML table.
          *
          * @param {HTMLTableElement} table The table to sort
@@ -207,5 +211,5 @@
                 sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
             });
         });
-    </script>
+</script>
 @endsection
