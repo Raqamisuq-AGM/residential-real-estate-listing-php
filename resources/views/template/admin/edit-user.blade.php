@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-@lang('lang.edit agent')
+@lang('lang.edit user')
 @endsection
 
 @section('content')
@@ -27,11 +27,11 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">@lang('lang.edit agent')</h3>
+                        <h3 class="card-title">@lang('lang.edit user')</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('admin.update-agent', ['id' => $agent->id]) }}">
+                    <form method="POST" action="{{ route('admin.update-user', ['id' => $agent->id]) }}">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">

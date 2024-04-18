@@ -25,11 +25,70 @@ class AdminController extends Controller
         return view('template.admin.index', compact('users', 'agents', 'properties'));
     }
 
-    //admin users properties route controller
+    //admin users route controller
     public function users()
     {
         $users = User::where('type', 'user')->orderBy('id', 'desc')->paginate(10);
         return view('template.admin.user', compact('users'));
+    }
+
+    //admin agent add user route controller
+    public function addUser()
+    {
+        return view('template.admin.add-user');
+    }
+
+    //admin user add submit properties route controller
+    public function userSubmitAgent(Request $request)
+    {
+
+        $agentEmailCount = User::where('email', $request->input('email'))->count();
+
+        if ($agentEmailCount > 0) {
+            toastr()->success('email already registered!', 'Success', ['timeOut' => 5000, 'closeButton' => true]);
+            return redirect()->route('admin.add-user');
+        }
+
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+            'email' => 'required|email|unique:users,email',
+        ]);
+
+        $agent = new User();
+        $agent->name = $request->input('name');
+        $agent->email = $request->input('email');
+        $agent->phone = $request->input('phone');
+        $agent->password = Hash::make($request->input('password'));
+        $agent->type = 'user';
+        $agent->status = 'approved';
+        $agent->save();
+
+        toastr()->success('User created successfully!', 'Success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.users');
+    }
+
+    //admin user edit properties route controller
+    public function userEdit($id)
+    {
+        $agent = User::findOrFail($id);
+        return view('template.admin.edit-user', compact('agent'));
+    }
+
+    //admin user update properties route controller
+    public function userUpdate(Request $request, $id)
+    {
+        $agent = User::findOrFail($id);
+        $agent->name = $request->input('name');
+        $agent->email = $request->input('email');
+        $agent->phone = $request->input('phone');
+
+        if (!empty($request->input('password'))) {
+            $agent->password = Hash::make($request->input('password'));
+        }
+        $agent->save();
+        toastr()->success('User updated successfully!', 'success', ['timeOut' => 5000, 'closeButton' => true]);
+        return redirect()->route('admin.edit-user', ['id' => $id]);
     }
 
     //admin agents properties route controller
@@ -88,6 +147,7 @@ class AdminController extends Controller
         $agent = User::findOrFail($id);
         $agent->name = $request->input('name');
         $agent->email = $request->input('email');
+        $agent->phone = $request->input('phone');
 
         if (!empty($request->input('password'))) {
             $agent->password = Hash::make($request->input('password'));

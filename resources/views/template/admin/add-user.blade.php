@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.admin')
 @section('title')
-@lang('lang.edit agent')
+@lang('lang.add user')
 @endsection
 
 @section('content')
@@ -27,31 +27,52 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">@lang('lang.edit agent')</h3>
+                        <h3 class="card-title">@lang('lang.add user')</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('admin.update-agent', ['id' => $agent->id]) }}">
+                    <form method="POST" action="{{ route('admin.submit-user') }}">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="name">@lang('lang.name')</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"
-                                    required value="{{ $agent->name }}" />
+                                    required />
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="email">@lang('lang.email')</label>
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter email" required value="{{ $agent->email }}" />
+                                    placeholder="Enter email" required />
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="phone">@lang('lang.phone')</label>
                                 <input type="text" class="form-control" id="phone" name="phone"
-                                    placeholder="Enter phone" required value="{{ $agent->phone }}" />
+                                    placeholder="Enter phone" required />
+                                @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="password">@lang('lang.password')</label>
-                                <input type="text" class="form-control" id="password" name="password" placeholder="" />
+                                <input type="text" class="form-control" id="password" name="password"
+                                    placeholder="password" required />
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->

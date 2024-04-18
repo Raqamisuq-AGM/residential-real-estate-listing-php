@@ -72,6 +72,10 @@ Route::middleware(['auth', 'user.type:admin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+        Route::get('/add-user', [AdminController::class, 'addUser'])->name('admin.add-user');
+        Route::post('/user-submit', [AdminController::class, 'userSubmitAgent'])->name('admin.submit-user');
+        Route::get('/user/{id}', [AdminController::class, 'userEdit'])->name('admin.edit-user');
+        Route::post('/user-update/{id}', [AdminController::class, 'userUpdate'])->name('admin.update-user');
         Route::get('/agents', [AdminController::class, 'agents'])->name('admin.agents');
         Route::get('/agent-add', [AdminController::class, 'agentAdd'])->name('admin.add-agent');
         Route::post('/agent-submit', [AdminController::class, 'agentSubmitAgent'])->name('admin.submit-agent');
