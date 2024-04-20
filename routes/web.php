@@ -36,8 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
     Route::get('/offer/{property_id}', [HomeController::class, 'guestOffer'])->name('guest.offer');
     Route::get('/get-offer/{property_id}', [HomeController::class, 'getGuestOffer'])->name('guest.get-offer');
-    Route::get('/offer-details/{offer_id}', [HomeController::class, 'offerDetails'])->name('offer-details');
+    // Route::get('/offer-details/{offer_id}', [HomeController::class, 'offerDetails'])->name('offer-details');
 });
+
+Route::get('/offer-details/{offer_id}', [HomeController::class, 'offerDetails'])->name('offer-details');
 
 // User Dashboard Route
 Route::middleware(['auth', 'user.type:user'])->group(function () {

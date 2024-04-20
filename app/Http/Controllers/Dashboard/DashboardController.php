@@ -121,15 +121,18 @@ class DashboardController extends Controller
         // ]);
 
         // Generate a unique ID
-        $uniqueId = mt_rand(1000, 9999); // Generates a random number between 100 and 999
-        while (Property::where('property_id', $uniqueId)->exists()) {
-            $uniqueId = mt_rand(1000, 9999); // Regenerate if the ID already exists
-        }
+        // $uniqueId = mt_rand(1000, 9999); // Generates a random number between 100 and 999
+        // while (Property::where('property_id', $uniqueId)->exists()) {
+        //     $uniqueId = mt_rand(1000, 9999); // Regenerate if the ID already exists
+        // }
+
+        $lastId = Property::max('property_id');
+        $nextId = $lastId ? (int)$lastId + 1 : 1;
 
         // Create a new property
         $property = new Property();
         $property->title = $request->title;
-        $property->property_id = $uniqueId;
+        $property->property_id = $nextId;
         $property->contact_number = $request->contact_number;
         $property->price = $request->price;
         $property->space = $request->space;
@@ -249,7 +252,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         // Get the properties associated with the authenticated user
-        $properties = Property::with('images')->orderBy('id', 'desc')->paginate(10);
+        $properties = Property::with('images')->paginate(50);
         return view('template.dashboard.all-properties', compact('properties', 'user'));
     }
 
@@ -261,7 +264,9 @@ class DashboardController extends Controller
 
         $properties = Property::with(['user', 'images'])
             ->where('rooms', $query)
+            ->orWhere('property_id', $query)
             ->orWhere('price', $query)
+            ->orWhere('title', $query)
             ->orWhere('ready_construction', $query)
             ->orWhere('property_type', $query)
             ->orWhere('property_id', $query)

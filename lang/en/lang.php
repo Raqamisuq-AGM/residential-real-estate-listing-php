@@ -120,4 +120,7 @@ return [
     'forget password' => 'Forget password',
     'get otp' => 'Get OTP',
     'enter otp' => 'Enter OTP',
+    'add user' => 'Add user',
+    'edit user' => 'Edit user',
+    'edit agent' => 'Edit agent',
 ];
