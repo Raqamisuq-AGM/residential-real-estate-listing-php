@@ -19,14 +19,17 @@ class PropertiesImport implements ToModel, WithHeadingRow
 
         $user = Auth::user();
         // Generate a unique ID
-        $uniqueId = 'offer#' . mt_rand(100, 999); // Generates a random number between 100 and 999
-        while (Property::where('property_id', $uniqueId)->exists()) {
-            $uniqueId = 'offer#' . mt_rand(100, 999); // Regenerate if the ID already exists
-        }
+        // $uniqueId = 'offer#' . mt_rand(100, 999); // Generates a random number between 100 and 999
+        // while (Property::where('property_id', $uniqueId)->exists()) {
+        //     $uniqueId = 'offer#' . mt_rand(100, 999); // Regenerate if the ID already exists
+        // }
+
+        $lastId = Property::max('property_id');
+        $nextId = $lastId ? (int)$lastId + 1 : 1;
 
         return new Property([
             "title" => $row['title'],
-            "property_id" => $uniqueId,
+            "property_id" => $nextId,
             "contact_number" => $row['contact_number'],
             "price" => $row['price'],
             "space" => $row['space'],

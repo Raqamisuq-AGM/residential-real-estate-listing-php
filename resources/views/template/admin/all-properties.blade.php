@@ -52,16 +52,16 @@
                             <table class="table table-hover text-nowrap table-sortable">
                                 <thead>
                                     <tr>
-                                        <th>SL</th>
+                                        {{-- <th>SL</th> --}}
                                         <th>@lang('lang.offer id')</th>
                                         <th>@lang('lang.room')</th>
-                                        <th>@lang('lang.location')</th>
+                                        <th>@lang('lang.space')</th>
                                         <th>@lang('lang.price')</th>
                                         <th>@lang('lang.district')</th>
                                         <th>@lang('lang.title')</th>
                                         <th>@lang('lang.contact number')</th>
-                                        <th>@lang('lang.space')</th>
                                         <th>@lang('lang.developer name')</th>
+                                        <th>@lang('lang.location')</th>
                                         <th>@lang('lang.ready/construction')</th>
                                         <th>@lang('lang.type')</th>
                                         <th>@lang('lang.thumb')</th>
@@ -71,14 +71,14 @@
                                 </thead>
                                 <tbody>
                                     <tr id="show-input" style="display: none;">
-                                        <td></td>
                                         <td><input type="text" disabled style="width: 100%"></td>
                                         <td><input type="text" class="form-control" id="room" name="rooms"
                                                 placeholder="5" style="width: 100%"></td>
-                                        <td><input type="text" class="form-control" id="location" name="location"
-                                                placeholder="@lang('lang.location')" style="width: 100%"></td>
+                                        <td><input type="text" class="form-control" id="space" name="space"
+                                                placeholder="135" style="width: 100%"></td>
                                         <td><input type="text" class="form-control" id="price" name="price"
                                                 placeholder="50" style="width: 100%"></td>
+
                                         <td><input type="text" class="form-control" id="district" name="district"
                                                 placeholder="@lang('lang.district')" style="width: 100%"></td>
                                         <td><input type="text" type="text" class="form-control" id="title" name="title"
@@ -87,12 +87,10 @@
                                         <td><input type="text" class="form-control" id="contact_number"
                                                 name="contact_number" placeholder="002658745" style="width: 100%"></td>
 
-                                        <td><input type="text" class="form-control" id="space" name="space"
-                                                placeholder="135" style="width: 100%"></td>
-
-
                                         <td><input type="text" class="form-control" id="dev_name" name="dev_name"
                                                 placeholder="jon doe" style="width: 100%"></td>
+                                        <td><input type="text" class="form-control" id="location" name="location"
+                                                placeholder="@lang('lang.location')" style="width: 100%"></td>
                                         <td>
                                             <select class="form-control" style="width: 100%;" name="ready_construction">
                                                 <option value="Ready">@lang('lang.ready')</option>
@@ -131,20 +129,20 @@
                                     </tr>
                                     @forelse ($properties as $property)
                                     <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
+                                        {{-- <td>{{ $loop->index + 1 }}</td> --}}
                                         <td>{{ $property->property_id }}</td>
                                         <td>{{ $property->rooms }}</td>
+                                        <td>{{ $property->space }}</td>
+                                        <td>SAR {{ $property->price }}</td>
+                                        <td>{{ $property->district }}</td>
+                                        <td>{{ $property->title }}</td>
+                                        <td>{{ $property->contact_number }}</td>
+                                        <td>{{ $property->dev_name }}</td>
                                         <td>
                                             <a href="{{ $property->location }}" target="_blank">
                                                 Location
                                             </a>
                                         </td>
-                                        <td>SAR {{ $property->price }}</td>
-                                        <td>{{ $property->district }}</td>
-                                        <td>{{ $property->title }}</td>
-                                        <td>{{ $property->contact_number }}</td>
-                                        <td>{{ $property->space }}</td>
-                                        <td>{{ $property->dev_name }}</td>
                                         <td>{{ $property->ready_construction }}</td>
                                         <td>{{ $property->property_type }}</td>
                                         {{-- <td>{{ $property->roof }}</td> --}}
@@ -167,7 +165,7 @@
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </a>
                                             <a href="#" id="copyLink{{ $property->id }}" class="copy-link"
-                                                data-url="{{ request()->getSchemeAndHttpHost() . '/offer' . '/' . $property->property_id }}"
+                                                data-url="{{ request()->getSchemeAndHttpHost() . '/offer-details' . '/' . $property->property_id }}"
                                                 style="margin-right: 15px; color: #0c4b36">
                                                 <i class="fa fa-clone" aria-hidden="true"></i>
                                             </a>
