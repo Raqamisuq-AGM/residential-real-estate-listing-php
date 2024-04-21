@@ -74,7 +74,7 @@
                                     <label for="property_type">@lang('lang.property type')</label>
                                     <select class="form-control" style="width: 100%;" name="property_type" required
                                         value="{{ $property->property_type }}">
-                                        <option value="Appartment">@lang('lang.apartment')</option>
+                                        <option value="Apartment">@lang('lang.apartment')</option>
                                         <option value="Villa">@lang('lang.villa')</option>
                                         <option value="Land">@lang('lang.land')</option>
                                         <option value="Roof">@lang('lang.roof')</option>

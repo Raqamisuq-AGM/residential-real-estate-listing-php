@@ -37,4 +37,16 @@ class Property extends Model
     {
         return $this->hasMany(PropertyImage::class, 'property_id', 'id');
     }
+
+    /**
+     * Get the lead attributes except for the specified columns.
+     *
+     * @param  array  $columns
+     * @return array
+     */
+    public function getAttributesExcept(array $columns = [])
+    {
+        // Get all attributes and exclude specified columns
+        return collect($this->attributes)->except($columns)->toArray();
+    }
 }

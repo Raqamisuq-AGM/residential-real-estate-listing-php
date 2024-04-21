@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\PropertyExport;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use App\Models\SystemLogo;
@@ -444,8 +445,14 @@ class AdminController extends Controller
         //     $uniqueId = mt_rand(1000, 9999); // Regenerate if the ID already exists
         // }
 
-        $lastId = Property::max('property_id');
-        $nextId = $lastId ? (int)$lastId + 1 : 1;
+        $lastProperty = Property::orderBy('id', 'desc')->first();
+        if ($lastProperty) {
+            $lastId = $lastProperty->property_id;
+        } else {
+            $lastId = 0;
+        }
+        $lastId = (int)$lastId ? (int)$lastId : 0; // Cast to integer
+        $nextId = $lastId + 1;
 
         // Create a new property
         $property = new Property();
@@ -612,5 +619,12 @@ class AdminController extends Controller
     {
         $properties = Property::with('user')->where('status', 'declined')->get();
         return view('template.admin.declined-properties', compact('properties'));
+    }
+
+
+    //Export property data route controller
+    public function exportProperty()
+    {
+        return Excel::download(new PropertyExport, 'property.xlsx');
     }
 }

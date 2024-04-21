@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Exports\PropertyExport;
 use App\Http\Controllers\Controller;
 use App\Imports\PropertiesImport;
 use App\Models\Property;
@@ -126,8 +127,14 @@ class DashboardController extends Controller
         //     $uniqueId = mt_rand(1000, 9999); // Regenerate if the ID already exists
         // }
 
-        $lastId = Property::max('property_id');
-        $nextId = $lastId ? (int)$lastId + 1 : 1;
+        $lastProperty = Property::orderBy('id', 'desc')->first();
+        if ($lastProperty) {
+            $lastId = $lastProperty->property_id;
+        } else {
+            $lastId = 0;
+        }
+        $lastId = (int)$lastId ? (int)$lastId : 0; // Cast to integer
+        $nextId = $lastId + 1;
 
         // Create a new property
         $property = new Property();
@@ -312,5 +319,11 @@ class DashboardController extends Controller
         // Get the properties associated with the authenticated user where status is "pending"
         $properties = $user->properties()->where('status', 'declined')->get();
         return view('template.dashboard.declined-properties', compact('properties', 'user'));
+    }
+
+    //Export property data route controller
+    public function exportProperty()
+    {
+        return Excel::download(new PropertyExport, 'property.xlsx');
     }
 }

@@ -47,7 +47,7 @@ $system = App\Models\SystemLogo::get();
                                             <select class="wide" name='classification' id='classification'>
                                                 <option value="" disabled selected>@lang('lang.select')
                                                 </option>
-                                                <option value="Appartment">@lang('lang.apartment')
+                                                <option value="Apartment">@lang('lang.apartment')
                                                 </option>
                                                 <option value="Villa">@lang('lang.villa')</option>
                                                 <option value="Land">@lang('lang.land')</option>

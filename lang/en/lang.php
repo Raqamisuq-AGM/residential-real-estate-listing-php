@@ -123,4 +123,5 @@ return [
     'add user' => 'Add user',
     'edit user' => 'Edit user',
     'edit agent' => 'Edit agent',
+    'export' => 'Export',
 ];
