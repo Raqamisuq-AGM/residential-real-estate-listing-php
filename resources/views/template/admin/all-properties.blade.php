@@ -31,6 +31,8 @@
                             @if (session()->has('searched'))
                             <a class="btn btn-primary" href="{{ route('admin.properties.all') }}">@lang('lang.all')</a>
                             @endif
+                            <a class="btn btn-primary"
+                                href="{{ route('admin.export-property') }}">@lang('lang.export')</a>
                         </div>
                         <div style="display: flex;">
                             <form method="GET" action="{{ route('admin.properties.search') }}" style="display: flex;">
@@ -100,7 +102,7 @@
                                         </td>
                                         <td style="width: 10%">
                                             <select class="form-control" style="width: 100%;" name="property_type">
-                                                <option value="Appartment">@lang('lang.apartment')</option>
+                                                <option value="Apartment">@lang('lang.apartment')</option>
                                                 <option value="Villa">@lang('lang.villa')</option>
                                                 <option value="Land">@lang('lang.land')</option>
                                                 <option value="Roof">@lang('lang.roof')</option>

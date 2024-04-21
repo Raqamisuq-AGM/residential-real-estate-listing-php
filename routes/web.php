@@ -45,6 +45,7 @@ Route::get('/offer-details/{offer_id}', [HomeController::class, 'offerDetails'])
 Route::middleware(['auth', 'user.type:user'])->group(function () {
     Route::post('/search', [HomeController::class, 'search'])->name('search');
     Route::prefix('dashboard')->group(function () {
+        Route::get('/export-property', [AdminController::class, 'exportProperty'])->name('dashboard.export-property');
         Route::get('/panel', [DashboardController::class, 'dashboard'])->name('dashboard.dashboard');
         Route::get('/change-email', [DashboardController::class, 'changeEmail'])->name('dashboard.change-email');
         Route::get('/change-password', [DashboardController::class, 'changePassword'])->name('dashboard.change-password');
@@ -72,6 +73,7 @@ Route::middleware(['auth', 'user.type:user'])->group(function () {
 Route::middleware(['auth', 'user.type:admin'])->group(function () {
     Route::post('/search', [HomeController::class, 'search'])->name('search');
     Route::prefix('admin')->group(function () {
+        Route::get('/export-property', [AdminController::class, 'exportProperty'])->name('admin.export-property');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
         Route::get('/add-user', [AdminController::class, 'addUser'])->name('admin.add-user');
@@ -124,6 +126,7 @@ Route::middleware(['auth', 'user.type:admin'])->group(function () {
 Route::middleware(['auth', 'user.type:agent'])->group(function () {
     Route::post('/search', [HomeController::class, 'search'])->name('search');
     Route::prefix('agent')->group(function () {
+        Route::get('/export-property', [AdminController::class, 'exportProperty'])->name('agent.export-property');
         Route::get('/dashboard', [AgentController::class, 'dashboard'])->name('agent.dashboard');
         Route::get('/users', [AgentController::class, 'users'])->name('agent.users');
         Route::get('/approve-user/{id}', [AgentController::class, 'approveUser'])->name('agent.approve-user');
