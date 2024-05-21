@@ -25,7 +25,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header table-menus" style="display: flex;">
-                        {{-- <h3 class="card-title">@lang('lang.properties')</h3> --}}
                         <div class="row">
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="toggleInput">@lang('lang.add property')</button>
@@ -52,14 +51,14 @@
                                     <option value="Under Construction">@lang('lang.under construction')</option>
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <input type="text" id="district-filter" class="form-control"
                                     placeholder="@lang('lang.district')">
-                            </div>
+                            </div> --}}
                             <div class="col-md-2">
                                 <button type="button" id="clear-filters-button"
-                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 10px;">@lang('lang.clear
-                                    filter')</button>
+                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 45px;">Clear
+                                    filter</button>
                             </div>
                         </div>
                     </div>
@@ -186,11 +185,10 @@
                                                 style="margin-right: 15px; color: #0c4b36">
                                                 <i class="fas fa-pen" aria-hidden="true"></i>
                                             </a>
-                                            {{-- <a
-                                                href="{{ route('agent.properties.delete', ['id' => $property->id]) }}"
+                                            <a href="{{ route('agent.properties.delete', ['id' => $property->id]) }}"
                                                 style="color: #0c4b36">
                                                 <i class="fas fa-trash" aria-hidden="true"></i>
-                                            </a> --}}
+                                            </a>
                                         </td>
                                     </tr>
                                     @empty
@@ -296,8 +294,6 @@
         display: block;
     }
 
-
-
     @media only screen and (max-width: 768px) {
         .card-header.table-menus {
             display: grid !important;
@@ -309,11 +305,6 @@
         }
 
         .card-header.table-menus input {
-            width: 100% !important;
-            margin: 15px 0 0 0 !important;
-        }
-
-        #clear-filters-button {
             width: 100% !important;
             margin: 15px 0 0 0 !important;
         }
@@ -444,38 +435,11 @@
 </script>
 
 <script>
-    //     $(document).ready(function() {
-//     function filterTable() {
-//         var selectedRoom = $('#room-filter').val();
-//         var selectedReadyConstruction = $('#ready-construction-filter').val();
-//         var districtFilter = $('#district-filter').val().toLowerCase();
-
-//         $('#property-table tbody .property-row').each(function() {
-//             var room = $(this).find('.property-room').text().trim();
-//             var readyConstruction = $(this).find('.property-ready-construction').text().trim();
-//             var district = $(this).find('.property-district').text().trim().toLowerCase();
-
-//             var roomMatch = (selectedRoom === "" || room === selectedRoom);
-//             var readyConstructionMatch = (selectedReadyConstruction === "" || readyConstruction === selectedReadyConstruction);
-//             var districtMatch = (districtFilter === "" || district.includes(districtFilter));
-
-//             if (roomMatch && readyConstructionMatch && districtMatch) {
-//                 $(this).show();
-//             } else {
-//                 $(this).hide();
-//             }
-//         });
-//     }
-
-//     $('#room-filter, #ready-construction-filter').on('change', filterTable);
-//     $('#district-filter').on('keyup', filterTable);
-// });
-
-$(document).ready(function() {
+    $(document).ready(function() {
     function filterTable() {
         var selectedRoom = $('#room-filter').val();
         var selectedReadyConstruction = $('#ready-construction-filter').val();
-        var districtFilter = $('#district-filter').val().toLowerCase();
+        // var districtFilter = $('#district-filter').val().toLowerCase();
         var searchFilter = $('#search-filter').val().toLowerCase();
 
         $('#property-table tbody .property-row').each(function() {
@@ -492,7 +456,7 @@ $(document).ready(function() {
 
             var roomMatch = (selectedRoom === "" || room === selectedRoom);
             var readyConstructionMatch = (selectedReadyConstruction === "" || readyConstruction === selectedReadyConstruction);
-            var districtMatch = (districtFilter === "" || district.includes(districtFilter));
+            // var districtMatch = (districtFilter === "" || district.includes(districtFilter));
             var searchMatch = (
                 offerId.includes(searchFilter) ||
                 room.includes(searchFilter) ||
@@ -506,7 +470,7 @@ $(document).ready(function() {
                 propertyType.includes(searchFilter)
             );
 
-            if (roomMatch && readyConstructionMatch && districtMatch && searchMatch) {
+            if (roomMatch && readyConstructionMatch && searchMatch) {
                 $(this).show();
             } else {
                 $(this).hide();
@@ -519,10 +483,10 @@ $(document).ready(function() {
     function toggleClearFiltersButton() {
         var selectedRoom = $('#room-filter').val();
         var selectedReadyConstruction = $('#ready-construction-filter').val();
-        var districtFilter = $('#district-filter').val();
+        // var districtFilter = $('#district-filter').val();
         var searchFilter = $('#search-filter').val();
 
-        if (selectedRoom || selectedReadyConstruction || districtFilter || searchFilter) {
+        if (selectedRoom || selectedReadyConstruction || searchFilter) {
             $('#clear-filters-button').show();
             $('#district-filter').removeClass('ml-5').addClass('ml-3');
         } else {
