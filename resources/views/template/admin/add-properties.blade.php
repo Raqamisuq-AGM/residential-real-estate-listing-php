@@ -83,7 +83,7 @@
                                 <label for="type">@lang('lang.ready/construction')</label>
                                 <select class="form-control" style="width: 100%;" name="ready_construction" required>
                                     <option value="Ready">@lang('lang.ready')</option>
-                                    <option value="Under Contruction">@lang('lang.under construction')</option>
+                                    <option value="Under Construction">@lang('lang.under construction')</option>
                                 </select>
                             </div>
                             {{-- <div class="form-group">

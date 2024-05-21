@@ -121,4 +121,6 @@ return [
     'edit user' => 'تعديل مستخدم',
     'edit agent' => 'تعديل مسوق',
     'export' => 'يصدّر',
+    'clear filter' => 'اعادة ضبط البحث',
+    'search property' => 'البحق عن عقار',
 ];
