@@ -55,14 +55,14 @@
                                     <option value="Under Construction">@lang('lang.under construction')</option>
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <input type="text" id="district-filter" class="form-control"
                                     placeholder="@lang('lang.district')">
-                            </div>
+                            </div> --}}
                             <div class="col-md-2">
                                 <button type="button" id="clear-filters-button"
-                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 10px;">@lang('lang.clear
-                                    filter')</button>
+                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 45px;">Clear
+                                    filter</button>
                             </div>
                         </div>
                     </div>
@@ -298,10 +298,6 @@
         display: block;
     }
 
-    #clear-filters-button {
-        margin-top: 10px
-    }
-
     @media only screen and (max-width: 768px) {
         .card-header.table-menus {
             display: grid !important;
@@ -447,7 +443,7 @@
     function filterTable() {
         var selectedRoom = $('#room-filter').val();
         var selectedReadyConstruction = $('#ready-construction-filter').val();
-        var districtFilter = $('#district-filter').val().toLowerCase();
+        // var districtFilter = $('#district-filter').val().toLowerCase();
         var searchFilter = $('#search-filter').val().toLowerCase();
 
         $('#property-table tbody .property-row').each(function() {
@@ -464,7 +460,7 @@
 
             var roomMatch = (selectedRoom === "" || room === selectedRoom);
             var readyConstructionMatch = (selectedReadyConstruction === "" || readyConstruction === selectedReadyConstruction);
-            var districtMatch = (districtFilter === "" || district.includes(districtFilter));
+            // var districtMatch = (districtFilter === "" || district.includes(districtFilter));
             var searchMatch = (
                 offerId.includes(searchFilter) ||
                 room.includes(searchFilter) ||
@@ -478,7 +474,7 @@
                 propertyType.includes(searchFilter)
             );
 
-            if (roomMatch && readyConstructionMatch && districtMatch && searchMatch) {
+            if (roomMatch && readyConstructionMatch && searchMatch) {
                 $(this).show();
             } else {
                 $(this).hide();
@@ -491,10 +487,10 @@
     function toggleClearFiltersButton() {
         var selectedRoom = $('#room-filter').val();
         var selectedReadyConstruction = $('#ready-construction-filter').val();
-        var districtFilter = $('#district-filter').val();
+        // var districtFilter = $('#district-filter').val();
         var searchFilter = $('#search-filter').val();
 
-        if (selectedRoom || selectedReadyConstruction || districtFilter || searchFilter) {
+        if (selectedRoom || selectedReadyConstruction || searchFilter) {
             $('#clear-filters-button').show();
             $('#district-filter').removeClass('ml-5').addClass('ml-3');
         } else {
