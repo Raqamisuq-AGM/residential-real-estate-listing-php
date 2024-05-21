@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.agent')
+@extends('layouts.dashboard.admin')
 @section('title')
 @lang('lang.all properties')
 @endsection
@@ -24,26 +24,51 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header" style="display: flex; justify-content:space-between;">
+                    <div class="card-header table-menus" style="display: flex;">
                         {{-- <h3 class="card-title">@lang('lang.properties')</h3> --}}
                         <div>
                             <button class="btn btn-primary" id="toggleInput">@lang('lang.add property')</button>
                             @if (session()->has('searched'))
                             <a class="btn btn-primary" href="{{ route('agent.properties.all') }}">@lang('lang.all')</a>
                             @endif
-                            {{-- <a class="btn btn-primary"
-                                href="{{ route('agent.export-property') }}">@lang('lang.export')</a> --}}
                         </div>
-                        <div style="display: flex;">
-                            <form method="GET" action="{{ route('agent.properties.search') }}" style="display: flex;">
-                                {{-- @csrf --}}
-                                <input type="text" name="query" class="form-control" placeholder="search property"
-                                    required>
-                                <button style="background: #0062cc;
-                                width: 80px;
-                                text-align: center;
-                                color: #fff; border:none;">search</button>
+                        <div style="display: flex;" class="mx-3">
+                            <form style="display: flex; width: 100%; height: fit-content;">
+                                <input type="text" id="search-filter" name="query" class="form-control"
+                                    placeholder="search property" required>
+                                {{-- <button type="button" id="search-button"
+                                    style="background: #0062cc; width: 80px; text-align: center; color: #fff; border: none;">search</button>
+                                --}}
                             </form>
+
+                        </div>
+                        <div class="row mx-3">
+                            <div class="col-md-3">
+                                <select id="room-filter" class="form-control mr-3">
+                                    <option value="">Select Room</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="ready-construction-filter" class="form-control" style="width: fit-content">
+                                    <option value="">Ready/Construction</option>
+                                    <option value="Ready">Ready</option>
+                                    <option value="Under Construction">Under Construction</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="district-filter" class="form-control ml-5"
+                                    placeholder="District">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" id="clear-filters-button"
+                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 10px;">Clear
+                                    Filters</button>
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -51,7 +76,7 @@
                         <form method="POST" action="{{ route('agent.properties.add.submit') }}"
                             enctype="multipart/form-data">
                             @csrf
-                            <table class="table table-hover text-nowrap table-sortable">
+                            <table class="table table-hover text-nowrap table-sortable" id="property-table">
                                 <thead>
                                     <tr>
                                         {{-- <th>SL</th> --}}
@@ -130,24 +155,18 @@
                                         </td>
                                     </tr>
                                     @forelse ($properties as $property)
-                                    <tr>
-                                        {{-- <td>{{ $loop->index + 1 }}</td> --}}
-                                        <td>{{ $property->property_id }}</td>
-                                        <td>{{ $property->rooms }}</td>
-                                        <td>{{ $property->space }}</td>
-                                        <td>SAR {{ $property->price }}</td>
-                                        <td>{{ $property->district }}</td>
-                                        <td>{{ $property->title }}</td>
-                                        <td>{{ $property->contact_number }}</td>
-                                        <td>{{ $property->dev_name }}</td>
-                                        <td>
-                                            <a href="{{ $property->location }}" target="_blank">
-                                                Location
-                                            </a>
-                                        </td>
-                                        <td>{{ $property->ready_construction }}</td>
-                                        <td>{{ $property->property_type }}</td>
-                                        {{-- <td>{{ $property->roof }}</td> --}}
+                                    <tr class="property-row">
+                                        <td class="property-offer-id">{{ $property->property_id }}</td>
+                                        <td class="property-room">{{ $property->rooms }}</td>
+                                        <td class="property-space">{{ $property->space }}</td>
+                                        <td class="property-price">SAR {{ $property->price }}</td>
+                                        <td class="property-district">{{ $property->district }}</td>
+                                        <td class="property-title">{{ $property->title }}</td>
+                                        <td class="property-contact-number">{{ $property->contact_number }}</td>
+                                        <td class="property-dev-name">{{ $property->dev_name }}</td>
+                                        <td><a href="{{ $property->location }}" target="_blank">Location</a></td>
+                                        <td class="property-ready-construction">{{ $property->ready_construction }}</td>
+                                        <td class="property-type">{{ $property->property_type }}</td>
                                         <td>
                                             @if ($property->images->isNotEmpty())
                                             @foreach ($property->images as $img)
@@ -171,14 +190,14 @@
                                                 style="margin-right: 15px; color: #0c4b36">
                                                 <i class="fa fa-clone" aria-hidden="true"></i>
                                             </a>
-                                            <a href="{{ route('admin.properties.edit', ['id' => $property->id]) }}"
+                                            <a href="{{ route('agent.properties.edit', ['id' => $property->id]) }}"
                                                 style="margin-right: 15px; color: #0c4b36">
                                                 <i class="fas fa-pen" aria-hidden="true"></i>
                                             </a>
-                                            <a href="{{ route('admin.properties.delete', ['id' => $property->id]) }}"
+                                            {{-- <a href="{{ route('agent.properties.delete', ['id' => $property->id]) }}"
                                                 style="color: #0c4b36">
                                                 <i class="fas fa-trash" aria-hidden="true"></i>
-                                            </a>
+                                            </a> --}}
                                         </td>
                                     </tr>
                                     @empty
@@ -283,11 +302,34 @@
     .prop-imgs:first-child {
         display: block;
     }
+
+    @media only screen and (max-width: 768px) {
+        .card-header.table-menus {
+            display: grid !important;
+        }
+
+        .card-header.table-menus select {
+            width: 100% !important;
+            margin: 15px 0 0 0 !important;
+        }
+
+        .card-header.table-menus input {
+            width: 100% !important;
+            margin: 15px 0 0 0 !important;
+        }
+
+        #clear-filters-button {
+            width: 100% !important;
+            margin: 15px 0 0 0 !important;
+        }
+    }
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
     integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 @endsection
 
 @section('script')
@@ -390,5 +432,121 @@
                 },
             });
         });
+</script>
+
+<script>
+    //     $(document).ready(function() {
+//     function filterTable() {
+//         var selectedRoom = $('#room-filter').val();
+//         var selectedReadyConstruction = $('#ready-construction-filter').val();
+//         var districtFilter = $('#district-filter').val().toLowerCase();
+
+//         $('#property-table tbody .property-row').each(function() {
+//             var room = $(this).find('.property-room').text().trim();
+//             var readyConstruction = $(this).find('.property-ready-construction').text().trim();
+//             var district = $(this).find('.property-district').text().trim().toLowerCase();
+
+//             var roomMatch = (selectedRoom === "" || room === selectedRoom);
+//             var readyConstructionMatch = (selectedReadyConstruction === "" || readyConstruction === selectedReadyConstruction);
+//             var districtMatch = (districtFilter === "" || district.includes(districtFilter));
+
+//             if (roomMatch && readyConstructionMatch && districtMatch) {
+//                 $(this).show();
+//             } else {
+//                 $(this).hide();
+//             }
+//         });
+//     }
+
+//     $('#room-filter, #ready-construction-filter').on('change', filterTable);
+//     $('#district-filter').on('keyup', filterTable);
+// });
+
+$(document).ready(function() {
+    function filterTable() {
+        var selectedRoom = $('#room-filter').val();
+        var selectedReadyConstruction = $('#ready-construction-filter').val();
+        var districtFilter = $('#district-filter').val().toLowerCase();
+        var searchFilter = $('#search-filter').val().toLowerCase();
+
+        $('#property-table tbody .property-row').each(function() {
+            var room = $(this).find('.property-room').text().trim();
+            var readyConstruction = $(this).find('.property-ready-construction').text().trim();
+            var district = $(this).find('.property-district').text().trim().toLowerCase();
+            var offerId = $(this).find('.property-offer-id').text().trim().toLowerCase();
+            var space = $(this).find('.property-space').text().trim().toLowerCase();
+            var price = $(this).find('.property-price').text().trim().toLowerCase();
+            var title = $(this).find('.property-title').text().trim().toLowerCase();
+            var contactNumber = $(this).find('.property-contact-number').text().trim().toLowerCase();
+            var devName = $(this).find('.property-dev-name').text().trim().toLowerCase();
+            var propertyType = $(this).find('.property-type').text().trim().toLowerCase();
+
+            var roomMatch = (selectedRoom === "" || room === selectedRoom);
+            var readyConstructionMatch = (selectedReadyConstruction === "" || readyConstruction === selectedReadyConstruction);
+            var districtMatch = (districtFilter === "" || district.includes(districtFilter));
+            var searchMatch = (
+                offerId.includes(searchFilter) ||
+                room.includes(searchFilter) ||
+                space.includes(searchFilter) ||
+                price.includes(searchFilter) ||
+                district.includes(searchFilter) ||
+                title.includes(searchFilter) ||
+                contactNumber.includes(searchFilter) ||
+                devName.includes(searchFilter) ||
+                readyConstruction.includes(searchFilter) ||
+                propertyType.includes(searchFilter)
+            );
+
+            if (roomMatch && readyConstructionMatch && districtMatch && searchMatch) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+
+        toggleClearFiltersButton();
+    }
+
+    function toggleClearFiltersButton() {
+        var selectedRoom = $('#room-filter').val();
+        var selectedReadyConstruction = $('#ready-construction-filter').val();
+        var districtFilter = $('#district-filter').val();
+        var searchFilter = $('#search-filter').val();
+
+        if (selectedRoom || selectedReadyConstruction || districtFilter || searchFilter) {
+            $('#clear-filters-button').show();
+            $('#district-filter').removeClass('ml-5').addClass('ml-3');
+        } else {
+            $('#clear-filters-button').hide();
+            $('#district-filter').removeClass('ml-3').addClass('ml-5');
+        }
+    }
+
+    $('#room-filter, #ready-construction-filter').on('change', filterTable);
+    $('#district-filter').on('keyup', filterTable);
+    
+    var typingTimer;                
+    var doneTypingInterval = 300;  
+
+    $('#search-filter').on('keyup', function() {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(filterTable, doneTypingInterval);
+    });
+    
+    $('#search-filter').on('keydown', function() {
+        clearTimeout(typingTimer);
+    });
+
+    $('#clear-filters-button').on('click', function() {
+        $('#room-filter').val('');
+        $('#ready-construction-filter').val('');
+        $('#district-filter').val('');
+        $('#search-filter').val('');
+        filterTable();
+    });
+
+    toggleClearFiltersButton(); // Initial check when the page loads
+});
+
 </script>
 @endsection
