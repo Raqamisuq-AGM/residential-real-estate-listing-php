@@ -295,7 +295,7 @@ class AgentController extends Controller
     public function all()
     {
         session()->forget('searched');
-        $properties = Property::with(['user', 'images'])->paginate(50);
+        $properties = Property::with(['user', 'images'])->orderBy('id', 'desc')->paginate(5000);
         return view('template.agent.all-properties', compact('properties'));
     }
 

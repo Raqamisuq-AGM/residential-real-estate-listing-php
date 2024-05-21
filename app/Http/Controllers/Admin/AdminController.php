@@ -29,7 +29,7 @@ class AdminController extends Controller
     //admin users route controller
     public function users()
     {
-        $users = User::where('type', 'user')->orderBy('id', 'desc')->paginate(10);
+        $users = User::where('type', 'user')->orderBy('id', 'desc')->paginate(1000);
         return view('template.admin.user', compact('users'));
     }
 
@@ -95,7 +95,7 @@ class AdminController extends Controller
     //admin agents properties route controller
     public function agents()
     {
-        $agents = User::where('type', 'agent')->orderBy('id', 'desc')->paginate(10);
+        $agents = User::where('type', 'agent')->orderBy('id', 'desc')->paginate(1000);
         return view('template.admin.agent', compact('agents'));
     }
 
@@ -571,7 +571,7 @@ class AdminController extends Controller
     public function all()
     {
         session()->forget('searched');
-        $properties = Property::with(['user', 'images'])->paginate(50);
+        $properties = Property::with(['user', 'images'])->orderBy('id', 'desc')->paginate(5000);
         return view('template.admin.all-properties', compact('properties'));
     }
 
@@ -596,7 +596,7 @@ class AdminController extends Controller
             ->orWhere('dev_name', $query)
             ->orWhere('ready_construction', $query)
             ->orWhere('roof', $query)
-            ->paginate(50);
+            ->paginate(5000);
         return view('template.admin.all-properties', compact('properties'));
     }
 
