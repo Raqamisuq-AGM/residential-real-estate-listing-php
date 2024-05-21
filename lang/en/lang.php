@@ -124,4 +124,6 @@ return [
     'edit user' => 'Edit user',
     'edit agent' => 'Edit agent',
     'export' => 'Export',
+    'clear filter' => 'Clear filters',
+    'search property' => 'Search property',
 ];

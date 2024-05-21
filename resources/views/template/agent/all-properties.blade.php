@@ -26,48 +26,40 @@
                 <div class="card">
                     <div class="card-header table-menus" style="display: flex;">
                         {{-- <h3 class="card-title">@lang('lang.properties')</h3> --}}
-                        <div>
-                            <button class="btn btn-primary" id="toggleInput">@lang('lang.add property')</button>
-                            @if (session()->has('searched'))
-                            <a class="btn btn-primary" href="{{ route('agent.properties.all') }}">@lang('lang.all')</a>
-                            @endif
-                        </div>
-                        <div style="display: flex;" class="mx-3">
-                            <form style="display: flex; width: 100%; height: fit-content;">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="toggleInput">@lang('lang.add property')</button>
+                            </div>
+                            <div class="col-md-2">
                                 <input type="text" id="search-filter" name="query" class="form-control"
-                                    placeholder="search property" required>
-                                {{-- <button type="button" id="search-button"
-                                    style="background: #0062cc; width: 80px; text-align: center; color: #fff; border: none;">search</button>
-                                --}}
-                            </form>
-
-                        </div>
-                        <div class="row mx-3">
-                            <div class="col-md-3">
-                                <select id="room-filter" class="form-control mr-3">
+                                    placeholder="@lang('lang.search property')" required>
+                            </div>
+                            <div class="col-md-2">
+                                <select id="room-filter" class="form-control">
                                     <option value="">@lang('lang.room')</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
+                                    <option value="6">6</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <select id="ready-construction-filter" class="form-control" style="width: fit-content">
                                     <option value="">@lang('lang.ready/construction')</option>
                                     <option value="Ready">@lang('lang.ready')</option>
                                     <option value="Under Construction">@lang('lang.under construction')</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" id="district-filter" class="form-control ml-5"
+                            <div class="col-md-2">
+                                <input type="text" id="district-filter" class="form-control"
                                     placeholder="@lang('lang.district')">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <button type="button" id="clear-filters-button"
-                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 10px;">Clear
-                                    Filters</button>
+                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 10px;">@lang('lang.clear
+                                    filter')</button>
                             </div>
                         </div>
                     </div>
@@ -121,7 +113,7 @@
                                         <td>
                                             <select class="form-control" style="width: 100%;" name="ready_construction">
                                                 <option value="Ready">@lang('lang.ready')</option>
-                                                <option value="Under Contruction">@lang('lang.under construction')
+                                                <option value="Under Construction">@lang('lang.under construction')
                                                 </option>
                                             </select>
                                         </td>
@@ -194,7 +186,8 @@
                                                 style="margin-right: 15px; color: #0c4b36">
                                                 <i class="fas fa-pen" aria-hidden="true"></i>
                                             </a>
-                                            {{-- <a href="{{ route('agent.properties.delete', ['id' => $property->id]) }}"
+                                            {{-- <a
+                                                href="{{ route('agent.properties.delete', ['id' => $property->id]) }}"
                                                 style="color: #0c4b36">
                                                 <i class="fas fa-trash" aria-hidden="true"></i>
                                             </a> --}}
@@ -303,6 +296,8 @@
         display: block;
     }
 
+
+
     @media only screen and (max-width: 768px) {
         .card-header.table-menus {
             display: grid !important;
@@ -321,6 +316,20 @@
         #clear-filters-button {
             width: 100% !important;
             margin: 15px 0 0 0 !important;
+        }
+
+        #clear-filters-button {
+            width: 100% !important;
+            margin: 15px 0 0 0 !important;
+        }
+
+        .btn.btn-primary {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #clear-filters-button {
+            margin-top: 10px
         }
     }
 </style>

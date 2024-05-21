@@ -25,11 +25,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header table-menus" style="display: flex;">
-                        
+
                         <div style="display: flex;" class="mx-3">
                             <form style="display: flex; width: 100%; height: fit-content;">
                                 <input type="text" id="search-filter" name="query" class="form-control"
-                                    placeholder="search property" required>
+                                    placeholder="@lang('lang.search property')" required>
                                 {{-- <button type="button" id="search-button"
                                     style="background: #0062cc; width: 80px; text-align: center; color: #fff; border: none;">search</button>
                                 --}}
@@ -45,6 +45,7 @@
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
+                                    <option value="6">6</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
@@ -60,8 +61,8 @@
                             </div>
                             <div class="col-md-3">
                                 <button type="button" id="clear-filters-button"
-                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 10px;">Clear
-                                    Filters</button>
+                                    style="display:none;height:100%; background: #dc3545; width: 120px; text-align: center; color: #fff; border: none; margin-left: 10px;">@lang('lang.clear
+                                    filter')</button>
                             </div>
                         </div>
                     </div>
@@ -115,7 +116,7 @@
                                         <td>
                                             <select class="form-control" style="width: 100%;" name="ready_construction">
                                                 <option value="Ready">@lang('lang.ready')</option>
-                                                <option value="Under Contruction">@lang('lang.under construction')
+                                                <option value="Under Construction">@lang('lang.under construction')
                                                 </option>
                                             </select>
                                         </td>
