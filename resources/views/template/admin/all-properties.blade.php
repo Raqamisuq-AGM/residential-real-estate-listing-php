@@ -47,7 +47,7 @@
                         <div class="row mx-3">
                             <div class="col-md-3">
                                 <select id="room-filter" class="form-control mr-3">
-                                    <option value="">Select Room</option>
+                                    <option value="">@lang('lang.room')</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -57,14 +57,14 @@
                             </div>
                             <div class="col-md-3">
                                 <select id="ready-construction-filter" class="form-control" style="width: fit-content">
-                                    <option value="">Ready/Construction</option>
-                                    <option value="Ready">Ready</option>
-                                    <option value="Under Construction">Under Construction</option>
+                                    <option value="">@lang('lang.ready/construction')</option>
+                                    <option value="Ready">@lang('lang.ready')</option>
+                                    <option value="Under Construction">@lang('lang.under construction')</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
                                 <input type="text" id="district-filter" class="form-control ml-5"
-                                    placeholder="District">
+                                    placeholder="@lang('lang.district')">
                             </div>
                             <div class="col-md-3">
                                 <button type="button" id="clear-filters-button"
@@ -437,34 +437,7 @@
 </script>
 
 <script>
-    //     $(document).ready(function() {
-//     function filterTable() {
-//         var selectedRoom = $('#room-filter').val();
-//         var selectedReadyConstruction = $('#ready-construction-filter').val();
-//         var districtFilter = $('#district-filter').val().toLowerCase();
-
-//         $('#property-table tbody .property-row').each(function() {
-//             var room = $(this).find('.property-room').text().trim();
-//             var readyConstruction = $(this).find('.property-ready-construction').text().trim();
-//             var district = $(this).find('.property-district').text().trim().toLowerCase();
-
-//             var roomMatch = (selectedRoom === "" || room === selectedRoom);
-//             var readyConstructionMatch = (selectedReadyConstruction === "" || readyConstruction === selectedReadyConstruction);
-//             var districtMatch = (districtFilter === "" || district.includes(districtFilter));
-
-//             if (roomMatch && readyConstructionMatch && districtMatch) {
-//                 $(this).show();
-//             } else {
-//                 $(this).hide();
-//             }
-//         });
-//     }
-
-//     $('#room-filter, #ready-construction-filter').on('change', filterTable);
-//     $('#district-filter').on('keyup', filterTable);
-// });
-
-$(document).ready(function() {
+    $(document).ready(function() {
     function filterTable() {
         var selectedRoom = $('#room-filter').val();
         var selectedReadyConstruction = $('#ready-construction-filter').val();
