@@ -125,5 +125,5 @@ return [
     'edit agent' => 'Edit agent',
     'export' => 'Export',
     'clear filter' => 'Clear filters',
-    'search property' => 'Search property',
+    'search' => 'Search',
 ];

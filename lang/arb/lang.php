@@ -122,5 +122,5 @@ return [
     'edit agent' => 'تعديل مسوق',
     'export' => 'يصدّر',
     'clear filter' => 'اعادة ضبط البحث',
-    'search property' => 'البحق عن عقار',
+    'search' => 'يبحث',
 ];
