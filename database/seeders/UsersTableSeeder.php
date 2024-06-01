@@ -19,6 +19,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'Jhon Doe',
             'email' => 'user@example.com',
             'password' => Hash::make('12345678'),
+            'otp' => '',
+            'status' => 'active',
             'type' => 'user',
         ]);
     }

@@ -11,6 +11,7 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
+        "label",
         "title",
         "property_id",
         "contact_number",
