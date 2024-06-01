@@ -126,4 +126,7 @@ return [
     'export' => 'Export',
     'clear filter' => 'Clear filters',
     'search' => 'Search',
+    'label' => 'Label',
+    'active' => 'Active',
+    'sold' => 'Sold',
 ];

@@ -456,6 +456,7 @@ class AdminController extends Controller
 
         // Create a new property
         $property = new Property();
+        $property->label = 'active';
         $property->title = $request->title;
         $property->property_id = $nextId;
         $property->contact_number = $request->contact_number;
@@ -520,6 +521,7 @@ class AdminController extends Controller
         // Create a new property
         $property = Property::findOrFail($id);
         $property->update([
+            "label" => $request->label,
             "title" => $request->title,
             "contact_number" => $request->contact_number,
             "price" => $request->price,
