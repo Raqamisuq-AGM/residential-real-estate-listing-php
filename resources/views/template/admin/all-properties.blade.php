@@ -87,6 +87,7 @@
                                         <th>@lang('lang.ready/construction')</th>
                                         <th>@lang('lang.type')</th>
                                         <th>@lang('lang.thumb')</th>
+                                        <th>@lang('lang.label')</th>
                                         {{-- <th>@lang('lang.roof')</th> --}}
                                         <th>@lang('lang.action')</th>
                                     </tr>
@@ -140,6 +141,9 @@
                                                 accept="jpg,jpeg,png,gif,webp">
                                         </td>
                                         <td>
+                                            <input type="text" disabled placeholder="active">
+                                        </td>
+                                        <td>
                                             <button style="margin-right: 15px; color: #0c4b36;border: none;
                                                 background: transparent;" type="submit">
                                                 <i class="fas fa-check" aria-hidden="true"></i>
@@ -175,6 +179,7 @@
                                             N/A
                                             @endif
                                         </td>
+                                        <td class="">{{ $property->label }}</td>
                                         <td>
                                             <a href="{{ route('offer-details', ['offer_id' => $property->property_id]) }}"
                                                 target="_blank" style="margin-right: 15px; color: #0c4b36">

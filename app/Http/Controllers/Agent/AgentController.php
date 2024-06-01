@@ -180,6 +180,7 @@ class AgentController extends Controller
 
         // Create a new property
         $property = new Property();
+        $property->label = 'active';
         $property->title = $request->title;
         $property->property_id = $nextId;
         $property->contact_number = $request->contact_number;
