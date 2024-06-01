@@ -19,6 +19,8 @@ class AdminsTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('12345678'),
+            'otp' => '',
+            'status' => 'active',
             'type' => 'admin',
         ]);
     }

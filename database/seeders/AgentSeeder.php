@@ -18,6 +18,8 @@ class AgentSeeder extends Seeder
             'name' => 'Jhon Doe',
             'email' => 'agent@example.com',
             'password' => Hash::make('12345678'),
+            'otp' => '',
+            'status' => 'active',
             'type' => 'agent',
         ]);
     }
