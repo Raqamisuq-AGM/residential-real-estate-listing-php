@@ -123,7 +123,7 @@ return [
     'export' => 'يصدّر',
     'clear filter' => 'اعادة ضبط البحث',
     'search' => 'البحث',
-    'label' => 'Label',
-    'active' => 'Active',
-    'sold' => 'Sold',
+    'label' => 'الحالة',
+    'active' => 'متاح',
+    'sold' => 'مباع',
 ];
