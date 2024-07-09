@@ -245,6 +245,7 @@ class AgentController extends Controller
         // Create a new property
         $property = Property::findOrFail($id);
         $property->update([
+            "label" => $request->label,
             "title" => $request->title,
             "contact_number" => $request->contact_number,
             "price" => $request->price,
