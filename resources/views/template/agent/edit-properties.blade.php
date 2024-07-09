@@ -111,6 +111,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="label">@lang('lang.label')</label>
+                                <select class="form-control" style="width: 100%;" name="label" required
+                                    value="{{ $property->label }}">
+                                    <option value="Active">@lang('lang.active')</option>
+                                    <option value="Sold">@lang('lang.sold')</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>@lang('lang.description')</label>
                                 <textarea id="summernote" name="description">{{ $property->description }}</textarea>
                             </div>
